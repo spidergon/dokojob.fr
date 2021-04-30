@@ -1,14 +1,14 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import styles from '../styles/Home.module.css';
-import { getJobs } from '../lib/jobs';
+import styles from '@styles/Home.module.css';
+import { getJobs } from '@utils/jobs';
 
 export default function Home({ allJobsData }) {
   return (
     <div className={styles.container}>
       <Head>
         <title>Jobs</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link href="/favicon.ico" rel="icon" />
       </Head>
 
       <main className={styles.main}>
@@ -34,9 +34,10 @@ export default function Home({ allJobsData }) {
 
 export async function getStaticProps() {
   const allJobsData = await getJobs();
+
   return {
     props: {
-      allJobsData
-    }
+      allJobsData,
+    },
   };
 }

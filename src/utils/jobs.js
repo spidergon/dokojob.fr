@@ -11,7 +11,7 @@ const locations = {
   972: 'Martinique',
   973: 'Guyane',
   974: 'Réunion',
-  976: 'Mayotte'
+  976: 'Mayotte',
 };
 
 const convertContractCode = (code) => {
@@ -41,9 +41,11 @@ const formatDate = (d) =>
 const logoText = (txt) => {
   const [first, second, third] = txt.split(' ').slice(0, 3);
   let result = '';
+
   if (first && first.length > 2) result += first[0];
   if (second && second.length > 2) result += second[0];
   else if (third && third.length > 2) result += third[0];
+
   return result;
 };
 
@@ -51,6 +53,7 @@ async function getAuthToken() {
   const authUrl =
     'https://entreprise.pole-emploi.fr/connexion/oauth2/access_token?realm=%2Fpartenaire';
   const urlencoded = new URLSearchParams();
+
   urlencoded.append('grant_type', 'client_credentials');
   urlencoded.append('client_id', process.env.ES_CLIENT_ID);
   urlencoded.append('client_secret', process.env.ES_CLIENT_SECRET);
@@ -61,7 +64,7 @@ async function getAuthToken() {
 
   const response = await fetch(authUrl, {
     method: 'POST',
-    body: urlencoded
+    body: urlencoded,
   });
 
   if (!response.ok) throw response;
@@ -75,21 +78,24 @@ async function fetchJobs(token) {
   const url = 'https://api.emploi-store.fr/partenaire/offresdemploi/v2/offres/search';
 
   const newUrl = new URL(url);
+
   newUrl.search = new URLSearchParams({
     departement: '971,972,973,974,976',
     grandDomaine: 'M18', // Informatique / Télécommunication
-    publieeDepuis: '31' // Jours
+    publieeDepuis: '31', // Jours
   });
 
   const response = await fetch(newUrl, {
-    headers: { Authorization: token }
+    headers: { Authorization: token },
   });
 
   if (!response.ok) throw response;
 
   const { resultats } = await response.json();
 
-  return resultats.map((job) => {
+  const result = [];
+
+  resultats.forEach((job) => {
     if (!job.description) return; // Job description is required
 
     const {
@@ -102,7 +108,7 @@ async function fetchJobs(token) {
       origineOffre,
       salaire,
       typeContrat,
-      typeContratLibelle
+      typeContratLibelle,
     } = job;
 
     const newJob = {
@@ -117,10 +123,10 @@ async function fetchJobs(token) {
       company: {
         name: entreprise && entreprise.nom ? entreprise.nom : 'Pôle Emploi',
         logo: entreprise && entreprise.logo ? entreprise.logo : '',
-        url: entreprise && entreprise.url ? entreprise.url : ''
+        url: entreprise && entreprise.url ? entreprise.url : '',
       },
       createdAt: formatDate(dateCreation),
-      raw_createdAt: dateCreation
+      raw_createdAt: dateCreation,
     };
 
     if (newJob.company.name === 'Pôle Emploi' && !newJob.company.logo) {
@@ -134,28 +140,33 @@ async function fetchJobs(token) {
 
     if (newJob.location.label) newJob.location.label = locations[newJob.location.label.slice(0, 3)];
 
-    return newJob;
+    result.push(newJob);
   });
+
+  return result;
 }
 
 export async function getJobs() {
   try {
     const token = await getAuthToken();
     const jobs = await fetchJobs(token);
+
     return jobs;
   } catch (error) {
     console.error(error);
+
     return [];
   }
 }
 
 export function getAllJobIds() {
   const ids = ['toto', 'titi'];
+
   return ids.map((id) => {
     return {
       params: {
-        id
-      }
+        id,
+      },
     };
   });
 }
@@ -163,6 +174,6 @@ export function getAllJobIds() {
 export function getJobData(id) {
   return {
     id,
-    name: id
+    name: id,
   };
 }
