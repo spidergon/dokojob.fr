@@ -1,43 +1,37 @@
-import Head from 'next/head';
 import Link from 'next/link';
-import styles from '@styles/Home.module.css';
+import Layout from '@components/layout';
+// import styles from '@styles/Home.module.css';
 import { getJobs } from '@utils/jobs';
+import getSiteData from '@utils/siteData';
 
-export default function Home({ allJobsData }) {
+export default function Home({ allJobsData, siteData }) {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Jobs</title>
-        <link href="/favicon.ico" rel="icon" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>Jobs</h1>
-
-        <ul>
-          {allJobsData.map(({ id, slug, createdAt }) => {
-            return (
-              <li key={id}>
-                <Link href={`/jobs/${slug}`}>
-                  <a>
-                    {slug}-{createdAt}
-                  </a>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </main>
-    </div>
+    <Layout siteData={siteData} title="Votre emploi digital en Outre-mer">
+      <ul>
+        {allJobsData.map(({ id, slug, createdAt }) => {
+          return (
+            <li key={id}>
+              <Link href={`/jobs/${slug}`}>
+                <a>
+                  {slug}-{createdAt}
+                </a>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </Layout>
   );
 }
 
 export async function getStaticProps() {
   const allJobsData = await getJobs();
+  const siteData = getSiteData();
 
   return {
     props: {
       allJobsData,
+      siteData,
     },
   };
 }

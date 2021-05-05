@@ -50,6 +50,7 @@ const logoText = (txt) => {
 };
 
 async function getAuthToken() {
+  console.log('ES - Auth Token...');
   const authUrl =
     'https://entreprise.pole-emploi.fr/connexion/oauth2/access_token?realm=%2Fpartenaire';
   const urlencoded = new URLSearchParams();
@@ -75,6 +76,7 @@ async function getAuthToken() {
 }
 
 async function fetchJobs(token) {
+  console.log('ES - Getting Jobs...');
   const url = 'https://api.emploi-store.fr/partenaire/offresdemploi/v2/offres/search';
 
   const newUrl = new URL(url);
@@ -150,6 +152,8 @@ export async function getJobs() {
   try {
     const token = await getAuthToken();
     const jobs = await fetchJobs(token);
+
+    console.log('ES - Done.');
 
     return jobs;
   } catch (error) {

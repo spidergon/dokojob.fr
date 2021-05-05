@@ -1,0 +1,22 @@
+:root {
+  font: 16px/1.5 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+body,
+body * {
+  margin: unset;
+  box-sizing: unset;
+  padding: unset;
+  font-size: unset;
+  color: unset;
+  text-decoration: unset;
+}
+
+/* a {
+  color: inherit;
+  text-decoration: none;
+} */
+
+/* * {
+  box-sizing: border-box;
+} */
