@@ -35,3 +35,6 @@ yarn-error.log*
 
 # eslint
 eslint_result.html
+
+# sample data
+sampleJobs.json

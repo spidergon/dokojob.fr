@@ -51,6 +51,7 @@ const logoText = (txt) => {
 
 async function getAuthToken() {
   console.log('ES - Auth Token...');
+
   const authUrl =
     'https://entreprise.pole-emploi.fr/connexion/oauth2/access_token?realm=%2Fpartenaire';
   const urlencoded = new URLSearchParams();
@@ -77,6 +78,7 @@ async function getAuthToken() {
 
 async function fetchJobs(token) {
   console.log('ES - Getting Jobs...');
+
   const url = 'https://api.emploi-store.fr/partenaire/offresdemploi/v2/offres/search';
 
   const newUrl = new URL(url);
@@ -116,7 +118,10 @@ async function fetchJobs(token) {
     const newJob = {
       id,
       title: intitule,
-      slug: slugify(intitule + '-' + id).replace(/-\(?HF\)?/i, ''),
+      slug: slugify(intitule + '-' + id, {
+        lower: true,
+        strict: true,
+      }).replace(/-\(?hf\)?/, ''),
       description,
       location: { label: lieuTravail && lieuTravail.libelle ? lieuTravail.libelle : '' },
       source: origineOffre && origineOffre.urlOrigine ? origineOffre.urlOrigine : '',
@@ -148,19 +153,46 @@ async function fetchJobs(token) {
   return result;
 }
 
-export async function getJobs() {
+async function processJobs() {
   try {
     const token = await getAuthToken();
-    const jobs = await fetchJobs(token);
 
-    console.log('ES - Done.');
-
-    return jobs;
+    return fetchJobs(token);
   } catch (error) {
     console.error(error);
 
     return [];
   }
+}
+
+export async function getJobs() {
+  let jobs;
+
+  if (process.env.NODE_ENV === 'production') {
+    console.log('ES - Processing job data...');
+
+    jobs = await processJobs();
+  } else {
+    console.log('ES - Processing sample job data...');
+
+    try {
+      jobs = require('./sampleJobs.json');
+    } catch (error) {
+      console.log('ES - No sample data found');
+
+      jobs = await processJobs();
+
+      const fs = require('fs');
+
+      fs.writeFile('./src/utils/sampleJobs.json', JSON.stringify(jobs), 'utf8', (err) => {
+        if (err) console.error('Error writing sample data:', err);
+      });
+    }
+  }
+
+  console.log('ES - Done.');
+
+  return jobs;
 }
 
 export function getAllJobIds() {
