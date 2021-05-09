@@ -120,7 +120,6 @@ async function fetchJobs(token) {
       title: intitule,
       slug: slugify(intitule + '-' + id, {
         lower: true,
-        strict: true,
       }).replace(/-\(?hf\)?/, ''),
       description,
       location: { label: lieuTravail && lieuTravail.libelle ? lieuTravail.libelle : '' },
@@ -196,7 +195,7 @@ export async function getJobs() {
 }
 
 export function getAllJobIds() {
-  const ids = ['toto', 'titi'];
+  const ids = ['test'];
 
   return ids.map((id) => {
     return {

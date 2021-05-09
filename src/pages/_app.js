@@ -1,9 +1,6 @@
 import '@styles/reset.css';
 import '@styles/globals.css';
-// import '@styles/debug.css';
 
-function MyApp({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
   return <Component {...pageProps} />;
 }
-
-export default MyApp;

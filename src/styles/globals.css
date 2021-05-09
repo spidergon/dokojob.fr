@@ -1,17 +1,10 @@
-:root {
-  /* --black: #161e2e; */
-  --white: #f8f8f8;
-}
-/* html,
+/* :root { */
+/* --black: #161e2e; */
+/* --white: #f8f8f8; */
+/* } */
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
-    Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background-color: rgba(243, 244, 246);
-} */
-body {
-  background: var(--white);
+  /* background: var(--white); */
+  background: #f8f8f8;
   /* color: var(--black); */
 }
 
@@ -24,4 +17,8 @@ body {
 
 .flex {
   display: flex;
+}
+
+.no-wrap {
+  white-space: nowrap;
 }

@@ -1,37 +1,49 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import styles from '@styles/header.module.css';
 
 export default function Header({ title }) {
   const { pathname } = useRouter();
 
-  const isHome = pathname === '/';
-
   return (
-    <header
-      style={{
-        position: isHome ? 'absolute' : '',
-        borderBottom: !isHome ? '1px solid rgba(151, 151, 151, 0.2)' : '',
-        width: '100%',
-      }}
-    >
-      <div className={`${styles.wrapper} container flex`}>
+    <header className={pathname === '/' ? 'home' : ''}>
+      <div className="wrapper container flex">
         <Link href="/">
-          <a className={styles.title}>{title}</a>
+          <a className="title">{title}</a>
         </Link>
         <Link href="/publier-annonce/">
-          <a
-            className={styles.btn}
-            // style={{
-            //   color: isHome ? '#fff' : '',
-            // }}
-            title="Entreprises / Publier une annonce"
-          >
+          <a className="btn" title="Entreprises / Publier une annonce">
             Publier une annonce
           </a>
         </Link>
       </div>
+      <style jsx>{`
+        header {
+          border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+        }
+        .home {
+          position: absolute;
+          color: #fff;
+          border: none;
+          width: 100%;
+          z-index: 10;
+        }
+        .wrapper {
+          align-items: center;
+          justify-content: space-between;
+          height: 64px;
+        }
+        .title {
+          font-size: 2.125rem;
+        }
+        .btn {
+          font-weight: 700;
+          padding: 5px 15px;
+          border: 1px solid;
+          border-radius: 6px;
+          text-transform: uppercase;
+        }
+      `}</style>
     </header>
   );
 }
