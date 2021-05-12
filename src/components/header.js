@@ -7,7 +7,7 @@ export default function Header({ title }) {
 
   return (
     <header className={pathname === '/' ? 'home' : ''}>
-      <div className="wrapper container flex">
+      <div className="wrapper flex">
         <Link href="/">
           <a className="title">{title}</a>
         </Link>
@@ -32,6 +32,7 @@ export default function Header({ title }) {
           align-items: center;
           justify-content: space-between;
           height: 64px;
+          padding: 0 1em;
         }
         .title {
           font-size: 2.125rem;

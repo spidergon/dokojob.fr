@@ -8,10 +8,12 @@ export default function Hero() {
         <Image alt="" layout="fill" objectFit="cover" quality={100} src="/img/hero.webp" />
         <div className="overlay flex">
           <div className="bgContent">
-            <h1>Votre emploi digital en Outre-mer</h1>
+            <h1>
+              Votre emploi digital en <span className="no-wrap">Outre-mer</span>
+            </h1>
             <h2>
               Parcourez la liste des offres d’emploi sélectionnées pour vous avec soin, et trouvez
-              le job de vos rêves en <span className="no-wrap">Outre-mer !</span>
+              le job de vos rêves en <span className="no-wrap">Outre-mer&nbsp;!</span>
             </h2>
             <p>
               <Link href="/publier-annonce/">
@@ -19,7 +21,7 @@ export default function Hero() {
                   <strong>Entreprises : Publiez votre annonce</strong>
                 </a>
               </Link>{' '}
-              et trouvez votre prochain talent. C’est gratuit !
+              et trouvez votre prochain talent. C’est gratuit&nbsp;!
             </p>
           </div>
         </div>
@@ -57,7 +59,7 @@ export default function Hero() {
         .bgContent {
           color: #fff;
           max-width: 736px;
-          padding: 0.5em;
+          padding: 2em;
           text-align: center;
         }
         h1 {
