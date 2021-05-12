@@ -80,6 +80,7 @@ export default function Hero() {
         }
         a {
           text-decoration: underline;
+          color: inherit;
         }
         .scrollBtnWrap {
           position: absolute;

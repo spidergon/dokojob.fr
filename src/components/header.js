@@ -36,13 +36,19 @@ export default function Header({ title }) {
         }
         .title {
           font-size: 2.125rem;
+          color: inherit;
+          text-decoration: none;
         }
         .btn {
           font-weight: 700;
           padding: 5px 15px;
+          background-color: transparent;
           border: 1px solid;
-          border-radius: 6px;
           text-transform: uppercase;
+        }
+        .btn:hover,
+        .btn:focus {
+          background-color: rgba(0, 0, 0, 0.3);
         }
       `}</style>
     </header>
