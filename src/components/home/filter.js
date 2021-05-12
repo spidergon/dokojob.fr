@@ -37,7 +37,7 @@ export default function Filter({ jobs }) {
           <div>
             {locations.map((loc, index) => (
               <label key={index} htmlFor={loc}>
-                <input id={loc} type="checkbox" value={loc} />
+                <input id={loc} type="checkbox" value={loc} onClick={() => setActive(true)} />
                 {loc}
               </label>
             ))}
@@ -65,7 +65,12 @@ export default function Filter({ jobs }) {
             <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
           </svg>
         )) || (
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+          <svg
+            aria-hidden="true"
+            className={active ? 'active' : ''}
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
             <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" />
           </svg>
         )}
@@ -85,9 +90,12 @@ export default function Filter({ jobs }) {
           margin: 1rem 0 0.5rem;
           border-bottom: 1px solid #dadce0;
         }
-        .filterBtn svg {
+        svg {
           width: 1.5em;
           fill: var(--black);
+        }
+        svg.active {
+          fill: #3f51b5;
         }
       `}</style>
     </div>
