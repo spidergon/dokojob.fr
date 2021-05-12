@@ -13,16 +13,13 @@ const codeToLabel = {
 
 export default function CategoryList({ items }) {
   return (
-    <div className="wrapper">
+    <div className="wrapper flex">
       {items.map((item, index) => (
         <React.Fragment key={index}>
           {item && <span title={codeToLabel[item]}>{item}</span>}
         </React.Fragment>
       ))}
       <style jsx>{`
-        .wrapper {
-          display: flex;
-        }
         .wrapper > * {
           font-size: 0.85rem;
           margin: 0.5em;

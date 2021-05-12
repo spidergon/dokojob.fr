@@ -49,9 +49,7 @@ const logoText = (txt) => {
   return result;
 };
 
-async function getAuthToken() {
-  console.log('ES - Auth Token...');
-
+async function getAuthToken(scope) {
   const authUrl =
     'https://entreprise.pole-emploi.fr/connexion/oauth2/access_token?realm=%2Fpartenaire';
   const urlencoded = new URLSearchParams();
@@ -59,10 +57,7 @@ async function getAuthToken() {
   urlencoded.append('grant_type', 'client_credentials');
   urlencoded.append('client_id', process.env.ES_CLIENT_ID);
   urlencoded.append('client_secret', process.env.ES_CLIENT_SECRET);
-  urlencoded.append(
-    'scope',
-    `api_offresdemploiv2 application_${process.env.ES_CLIENT_ID} o2dsoffre`
-  );
+  urlencoded.append('scope', scope);
 
   const response = await fetch(authUrl, {
     method: 'POST',
@@ -76,20 +71,12 @@ async function getAuthToken() {
   return `${token_type} ${access_token}`;
 }
 
-async function fetchJobs(token) {
-  console.log('ES - Getting Jobs...');
+async function get(appId, token, params) {
+  const url = new URL(`https://api.emploi-store.fr/partenaire/${appId}`);
 
-  const url = 'https://api.emploi-store.fr/partenaire/offresdemploi/v2/offres/search';
+  url.search = new URLSearchParams(params);
 
-  const newUrl = new URL(url);
-
-  newUrl.search = new URLSearchParams({
-    departement: '971,972,973,974,976',
-    grandDomaine: 'M18', // Informatique / Télécommunication
-    publieeDepuis: '31', // Jours
-  });
-
-  const response = await fetch(newUrl, {
+  const response = await fetch(url, {
     headers: { Authorization: token },
   });
 
@@ -97,9 +84,28 @@ async function fetchJobs(token) {
 
   const { resultats } = await response.json();
 
-  const result = [];
+  return resultats;
+}
 
-  resultats.forEach((job) => {
+async function fetchJobs() {
+  console.log('ES - Job Auth Token...');
+
+  const token = await getAuthToken(
+    `api_offresdemploiv2 application_${process.env.ES_CLIENT_ID} o2dsoffre`
+  );
+
+  console.log('ES - Getting Jobs...');
+
+  const data = await get('offresdemploi/v2/offres/search', token, {
+    departement: '971,972,973,974,976',
+    grandDomaine: 'M18', // Informatique / Télécommunication
+    publieeDepuis: 31, // Jours
+    sort: 1,
+  });
+
+  const jobs = [];
+
+  data.forEach((job) => {
     if (!job.description) return; // Job description is required
 
     const {
@@ -146,17 +152,32 @@ async function fetchJobs(token) {
 
     if (newJob.location.label) newJob.location.label = locations[newJob.location.label.slice(0, 3)];
 
-    result.push(newJob);
+    jobs.push(newJob);
   });
 
-  return result;
+  return jobs;
 }
+
+// async function fetchGoodBoys() {
+//   console.log('ES - Goodboy Auth Token...');
+
+//   const token = await getAuthToken(`api_labonneboitev1 application_${process.env.ES_CLIENT_ID}`);
+
+//   console.log('ES - Getting Good Boys...');
+
+//   const data = await get('labonneboite/v1/company', token, {
+//     // departments: '971,972,973,974,976',
+//     // departments: '93,92,91',
+//     // rome_codes: 'M1801,M1806,M1803,M1805,M1802,I1401',
+//     rome_codes: 'M1607',
+//   });
+
+//   return data;
+// }
 
 async function processJobs() {
   try {
-    const token = await getAuthToken();
-
-    return fetchJobs(token);
+    return fetchJobs();
   } catch (error) {
     console.error(error);
 
@@ -195,6 +216,7 @@ export async function getJobs() {
 }
 
 export function getAllJobIds() {
+  console.log('ALL');
   const ids = ['test'];
 
   return ids.map((id) => {
