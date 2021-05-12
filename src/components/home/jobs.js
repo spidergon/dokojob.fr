@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 import JobItem from '@components/jobItem';
+import Filter from '@components/home/filter';
 
 export default function Jobs({ data }) {
   return (
     <section id="top-anchor">
       <div className="wrapper">
+        <Filter jobs={data} />
         {data.map((job, index) => {
           return <JobItem key={index} job={job} />;
         })}
@@ -13,7 +15,7 @@ export default function Jobs({ data }) {
         .wrapper {
           max-width: 900px;
           margin: 50px auto;
-          padding: 0 2em;
+          padding: 0 1em;
         }
       `}</style>
     </section>

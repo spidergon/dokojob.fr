@@ -1,15 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-const codeToLabel = {
-  CDI: 'Contrat à durée indéterminée',
-  CDD: 'Contrat à durée déterminée',
-  Télétravail: 'Télétravail',
-  Intérim: 'Mission intérimaire',
-  Saisonnier: 'Contrat travail saisonnier',
-  Stage: 'Stage',
-  Alternance: 'Alternance',
-};
+import { codeToLabel } from '@utils/constant';
 
 export default function CategoryList({ items }) {
   return (
