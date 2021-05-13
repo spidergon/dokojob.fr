@@ -15,6 +15,20 @@ body {
   white-space: nowrap;
 }
 
+.center {
+  text-align: center;
+}
+
+button {
+  box-sizing: border-box;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+button[disabled] {
+  color: rgba(0, 0, 0, 0.3);
+  cursor: initial;
+}
+
 a {
   color: #3f51b5;
 }

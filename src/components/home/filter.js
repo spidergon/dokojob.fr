@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { locations, codeToLabel, contractCodes } from '@utils/constant';
 
+function isChecked(selected) {
+  return Object.values(selected).find((v) => v === true);
+}
+
 export default function Filter({ allJobs, jobs, setJobs }) {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(false);
@@ -27,14 +31,20 @@ export default function Filter({ allJobs, jobs, setJobs }) {
   }, [allJobs, selectedCode]);
 
   useEffect(() => {
-    if (filteredLoc.length && filteredCode.length) {
+    const isLocChecked = isChecked(selectedLoc);
+    const isCodeChecked = isChecked(selectedCode);
+
+    if (isLocChecked && isCodeChecked) {
       setJobs(filteredLoc.filter((v) => filteredCode.includes(v)));
-    } else if (filteredLoc.length && !filteredCode.length) {
+    } else if (isLocChecked && !isCodeChecked) {
       setJobs(filteredLoc);
-    } else if (!filteredLoc.length && filteredCode.length) {
+    } else if (!isLocChecked && isCodeChecked) {
       setJobs(filteredCode);
-    } else setJobs(allJobs);
-  }, [allJobs, filteredLoc, filteredCode, setJobs]);
+    } else {
+      setJobs(allJobs);
+    }
+    setActive(isLocChecked || isCodeChecked);
+  }, [allJobs, filteredCode, filteredLoc, selectedCode, selectedLoc, setJobs]);
 
   const setLocation = (loc, checked) => {
     setSelectedLoc((s) => ({ ...s, [loc]: checked }));
@@ -129,8 +139,8 @@ export default function Filter({ allJobs, jobs, setJobs }) {
       <style jsx>{`
         .wrapper {
           justify-content: flex-end;
-          margin: 0.5em 0;
           padding: 0.5em;
+          margin-bottom: 1em;
         }
         .wrapper.open {
           background-color: rgba(0, 0, 0, 0.05);
@@ -153,6 +163,7 @@ export default function Filter({ allJobs, jobs, setJobs }) {
 }
 
 Filter.propTypes = {
+  allJobs: PropTypes.array.isRequired,
   jobs: PropTypes.array.isRequired,
   setJobs: PropTypes.func.isRequired,
 };

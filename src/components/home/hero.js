@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { scrollToAnchor } from '@utils/tools';
 
 export default function Hero() {
   return (
@@ -28,9 +29,7 @@ export default function Hero() {
         <div
           className="scrollBtnWrap"
           onClick={() => {
-            const anchor = document.getElementById('top-anchor');
-
-            if (anchor) anchor.scrollIntoView({ behavior: 'smooth' });
+            scrollToAnchor();
           }}
         >
           <button className="scrollBtn flex">
