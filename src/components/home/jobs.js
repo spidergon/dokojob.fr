@@ -1,13 +1,20 @@
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import JobItem from '@components/jobItem';
 import Filter from '@components/home/filter';
 
 export default function Jobs({ data }) {
+  const [jobs, setJobs] = useState([]);
+
+  useEffect(() => {
+    setJobs(data);
+  }, [data]);
+
   return (
     <section id="top-anchor">
       <div className="wrapper">
-        <Filter jobs={data} />
-        {data.map((job, index) => {
+        <Filter allJobs={data} jobs={jobs} setJobs={setJobs} />
+        {jobs.map((job, index) => {
           return <JobItem key={index} job={job} />;
         })}
       </div>

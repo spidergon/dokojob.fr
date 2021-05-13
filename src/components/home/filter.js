@@ -1,10 +1,48 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { locations, codeToLabel, contractCodes } from '@utils/constant';
 
-export default function Filter({ jobs }) {
+export default function Filter({ allJobs, jobs, setJobs }) {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(false);
+  const [selectedLoc, setSelectedLoc] = useState({});
+  const [selectedCode, setSelectedCode] = useState({});
+  const [filteredLoc, setFilteredLoc] = useState([]);
+  const [filteredCode, setFilteredCode] = useState([]);
+
+  useEffect(() => {
+    const newJobs = allJobs.filter((job) => {
+      return selectedLoc[job.location.label] === true;
+    });
+
+    setFilteredLoc(newJobs);
+  }, [allJobs, selectedLoc]);
+
+  useEffect(() => {
+    const newJobs = allJobs.filter((job) => {
+      return selectedCode[job.contract.code] === true;
+    });
+
+    setFilteredCode(newJobs);
+  }, [allJobs, selectedCode]);
+
+  useEffect(() => {
+    if (filteredLoc.length && filteredCode.length) {
+      setJobs(filteredLoc.filter((v) => filteredCode.includes(v)));
+    } else if (filteredLoc.length && !filteredCode.length) {
+      setJobs(filteredLoc);
+    } else if (!filteredLoc.length && filteredCode.length) {
+      setJobs(filteredCode);
+    } else setJobs(allJobs);
+  }, [allJobs, filteredLoc, filteredCode, setJobs]);
+
+  const setLocation = (loc, checked) => {
+    setSelectedLoc((s) => ({ ...s, [loc]: checked }));
+  };
+
+  const setCode = (code, checked) => {
+    setSelectedCode((s) => ({ ...s, [code]: checked }));
+  };
 
   return (
     <div className={`wrapper flex${open ? ' open' : ''}`}>
@@ -37,7 +75,13 @@ export default function Filter({ jobs }) {
           <div>
             {locations.map((loc, index) => (
               <label key={index} htmlFor={loc}>
-                <input id={loc} type="checkbox" value={loc} onClick={() => setActive(true)} />
+                <input
+                  checked={selectedLoc[loc]}
+                  id={loc}
+                  type="checkbox"
+                  value={loc}
+                  onChange={({ target }) => setLocation(loc, target.checked)}
+                />
                 {loc}
               </label>
             ))}
@@ -46,7 +90,13 @@ export default function Filter({ jobs }) {
           <div>
             {contractCodes.map((code, index) => (
               <label key={index} htmlFor={code} title={codeToLabel[code]}>
-                <input id={code} type="checkbox" value={code} />
+                <input
+                  checked={selectedCode[code]}
+                  id={code}
+                  type="checkbox"
+                  value={code}
+                  onChange={({ target }) => setCode(code, target.checked)}
+                />
                 {code}
               </label>
             ))}
@@ -104,4 +154,5 @@ export default function Filter({ jobs }) {
 
 Filter.propTypes = {
   jobs: PropTypes.array.isRequired,
+  setJobs: PropTypes.func.isRequired,
 };
