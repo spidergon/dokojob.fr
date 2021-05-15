@@ -30,11 +30,11 @@ export default function Jobs({ data }) {
 
   return (
     <section id="top-anchor">
-      <div className="wrapper">
+      <div className="container">
         <Filter allJobs={data} jobs={jobs} setJobs={setJobs} />
         {step > 0 && (
           <button
-            style={{ border: 'none', marginBottom: '2em', padding: 'initial' }}
+            style={{ marginBottom: '2em', padding: 'initial' }}
             title="Retourner à la page précédente"
             onClick={() => setStep(step - 1)}
           >
@@ -85,11 +85,6 @@ export default function Jobs({ data }) {
         section {
           padding: 20px 0;
         }
-        .wrapper {
-          max-width: 900px;
-          margin: 0 auto;
-          padding: 0 1em;
-        }
         .pagination {
           margin-top: 2em;
         }
@@ -100,10 +95,12 @@ export default function Jobs({ data }) {
           justify-content: center;
           gap: 0.5em;
         }
-        .buttons button {
-          display: flex;
+        button {
           border: none;
           background: inherit;
+        }
+        .buttons button {
+          display: flex;
         }
         .buttons button svg {
           width: 1.5em;

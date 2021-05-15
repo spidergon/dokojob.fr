@@ -19,6 +19,12 @@ body {
   text-align: center;
 }
 
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
 button {
   box-sizing: border-box;
   padding: 10px 20px;

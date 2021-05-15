@@ -1,13 +1,14 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import Header from './header';
-import Footer from './footer';
+import Header from '@components/header';
+import Footer from '@components/footer';
+import siteData from '@utils/siteData';
 
 const google = 'https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap';
 const boxicons = 'https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css';
 
-export default function Layout({ children, siteData, title }) {
+export default function Layout({ children, title }) {
   const { pathname } = useRouter();
 
   return (
@@ -85,12 +86,12 @@ export default function Layout({ children, siteData, title }) {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  siteData: PropTypes.shape({
+  /* siteData: PropTypes.shape({
     description: PropTypes.string.isRequired,
     socials: PropTypes.shape({
       twitter: PropTypes.string.isRequired,
     }).isRequired,
     title: PropTypes.string.isRequired,
-  }).isRequired,
+  }).isRequired, */
   title: PropTypes.string.isRequired,
 };

@@ -1,20 +1,13 @@
 import Layout from '@components/layout';
-import getSiteData from '@utils/siteData';
 
-export default function Home({ siteData }) {
+export default function PublishPage() {
   return (
-    <Layout siteData={siteData} title="Publiez votre nouvelle offre d'emploi">
-      Publier votre annonce
+    <Layout title="Publiez votre nouvelle offre d'emploi">
+      <div className="container">Formulaire ici</div>
+      <style jsx>{`
+        .container {
+        }
+      `}</style>
     </Layout>
   );
-}
-
-export async function getStaticProps() {
-  const siteData = getSiteData();
-
-  return {
-    props: {
-      siteData,
-    },
-  };
 }
