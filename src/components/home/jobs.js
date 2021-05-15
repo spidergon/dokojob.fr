@@ -103,6 +103,7 @@ export default function Jobs({ data }) {
         .buttons button {
           display: flex;
           border: none;
+          background: inherit;
         }
         .buttons button svg {
           width: 1.5em;

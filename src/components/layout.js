@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import Header from './header';
-// import Footer from './footer';
+import Footer from './footer';
 
 const google = 'https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap';
 const boxicons = 'https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css';
@@ -77,6 +77,8 @@ export default function Layout({ children, siteData, title }) {
       <Header title={siteData.title} />
 
       <main>{children}</main>
+
+      <Footer socials={siteData.socials} title={siteData.title} />
     </>
   );
 }

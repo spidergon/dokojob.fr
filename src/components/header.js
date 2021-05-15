@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import Link from '@components/link';
 
 export default function Header({ title }) {
   const { pathname } = useRouter();
@@ -8,13 +8,11 @@ export default function Header({ title }) {
   return (
     <header className={pathname === '/' ? 'home' : ''}>
       <div className="wrapper flex">
-        <Link href="/">
-          <a className="title">{title}</a>
+        <Link className="title" href="/">
+          {title}
         </Link>
-        <Link href="/publier-annonce/">
-          <a className="btn" title="Entreprises / Publier une annonce">
-            Publier une annonce
-          </a>
+        <Link className="btn" href="/publier-annonce/" title="Entreprises / Publier une annonce">
+          Publier une annonce
         </Link>
       </div>
 
@@ -35,20 +33,26 @@ export default function Header({ title }) {
           height: 64px;
           padding: 0 1em;
         }
-        .title {
+      `}</style>
+      <style global jsx>{`
+        header .title {
           font-size: 2.125rem;
           color: inherit;
           text-decoration: none;
         }
-        .btn {
+        header .btn {
+          display: none;
+        }
+        header.home .btn {
+          display: block;
           font-weight: 700;
           padding: 5px 15px;
           background-color: transparent;
           border: 1px solid;
           text-transform: uppercase;
         }
-        .btn:hover,
-        .btn:focus {
+        header .btn:hover,
+        header .btn:focus {
           background-color: rgba(0, 0, 0, 0.3);
         }
       `}</style>

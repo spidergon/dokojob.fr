@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import PropTypes from 'prop-types';
+import Link from '@components/link';
 import CategoryList from '@components/categoryList';
 import purify from '@utils/purify';
 
@@ -21,8 +21,8 @@ export default function JobItem({ job }) {
         <div className="job-content">
           <p>{job.company.name}</p>
           <h3>
-            <Link href="/">
-              <a>{job.title}</a>
+            <Link href="/" style={{ color: 'var(--black)' }}>
+              {job.title}
             </Link>
           </h3>
           <CategoryList items={[job.location.label, job.contract.code]} />
@@ -54,27 +54,15 @@ export default function JobItem({ job }) {
         )}
         {job.company.url && (
           <p>
-            <a
-              aria-label={`${job.company.url} (s’ouvre dans un nouvel onglet)`}
-              className="styled"
-              href={job.company.url}
-              rel="noreferrer noopener nofollow"
-              target="_blank"
-            >
+            <Link blank href={job.company.url}>
               {job.company.name}
-            </a>
+            </Link>
           </p>
         )}
         <div className="action">
-          <a
-            aria-label={`${job.source} (s’ouvre dans un nouvel onglet)`}
-            className="btn"
-            href={job.source}
-            rel="noreferrer noopener nofollow"
-            target="_blank"
-          >
+          <Link blank className="btn" href={job.source}>
             <strong>Soumettre votre candidature</strong>
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -105,9 +93,6 @@ export default function JobItem({ job }) {
         }
         .job-content {
           flex-grow: 1;
-        }
-        .job-content a {
-          color: var(--black);
         }
         @media (min-width: 481px) {
           .logo-content {
