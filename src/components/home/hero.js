@@ -45,6 +45,7 @@ export default function Hero() {
           </button>
         </div>
       </div>
+
       <style jsx>{`
         .bgWrap {
           height: 100vh;

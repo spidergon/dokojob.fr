@@ -10,6 +10,7 @@ export default function CategoryList({ items }) {
           {item && <span title={codeToLabel[item]}>{item}</span>}
         </React.Fragment>
       ))}
+
       <style jsx>{`
         .wrapper > * {
           font-size: 0.85rem;

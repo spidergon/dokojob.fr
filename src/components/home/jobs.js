@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import JobItem from '@components/jobItem';
 import Filter from '@components/home/filter';
@@ -11,6 +11,8 @@ export default function Jobs({ data }) {
   const [step, setStep] = useState(0);
   const [pages, setPages] = useState(1);
 
+  const canScroll = useRef(false);
+
   useEffect(() => {
     setJobs(data);
   }, [data]);
@@ -20,7 +22,10 @@ export default function Jobs({ data }) {
   }, [jobs]);
 
   useEffect(() => {
-    scrollToAnchor();
+    if (canScroll.current) {
+      canScroll.current = false;
+      scrollToAnchor();
+    }
   }, [step]);
 
   return (
@@ -48,21 +53,34 @@ export default function Jobs({ data }) {
               <button
                 disabled={step === 0}
                 title="Page précédente"
-                onClick={() => setStep(step - 1)}
+                onClick={() => {
+                  canScroll.current = true;
+                  setStep(step - 1);
+                }}
               >
+                <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                  <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z" />
+                </svg>
                 Précédent
               </button>
               <button
                 disabled={step === pages - 1}
                 title="Page suivante"
-                onClick={() => setStep(step + 1)}
+                onClick={() => {
+                  canScroll.current = true;
+                  setStep(step + 1);
+                }}
               >
                 Suivant
+                <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                  <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                </svg>
               </button>
             </div>
           )}
         </div>
       </div>
+
       <style jsx>{`
         section {
           padding: 20px 0;
@@ -80,9 +98,17 @@ export default function Jobs({ data }) {
         }
         .buttons {
           justify-content: center;
+          gap: 0.5em;
         }
         .buttons button {
+          display: flex;
           border: none;
+        }
+        .buttons button svg {
+          width: 1.5em;
+        }
+        .buttons button[disabled] svg {
+          fill: rgba(0, 0, 0, 0.3);
         }
         @media (min-width: 601px) {
           section {

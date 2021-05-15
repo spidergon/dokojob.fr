@@ -17,6 +17,7 @@ export default function Header({ title }) {
           </a>
         </Link>
       </div>
+
       <style jsx>{`
         header {
           border-bottom: 1px solid rgba(151, 151, 151, 0.2);
