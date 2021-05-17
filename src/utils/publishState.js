@@ -16,6 +16,7 @@ export const StateProvider = ({ children }) => {
     duration: storage['duration'] || '',
     salary: storage['salary'] || '',
     source: storage['source'] || '',
+    companyName: storage['companyName'] || '',
     option1: storage['option1'] || false,
     option2: storage['option2'] || false,
     option3: storage['option3'] || false,

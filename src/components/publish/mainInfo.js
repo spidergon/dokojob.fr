@@ -9,6 +9,15 @@ export default function MainInfo({ state, onChange }) {
       <FieldInput
         autoFocus
         required
+        id="companyName"
+        label="Votre entreprise"
+        placeholder="Nom de votre entreprise"
+        value={state.companyName}
+        onChange={onChange}
+      />
+      {/* Intitulé */}
+      <FieldInput
+        required
         id="title"
         label="Intitulé de votre annonce"
         minLength={5}
@@ -84,6 +93,7 @@ export default function MainInfo({ state, onChange }) {
 
 MainInfo.propTypes = {
   state: PropTypes.shape({
+    companyName: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
     contract: PropTypes.string.isRequired,
