@@ -6,16 +6,16 @@ import { setStorage } from '@utils/storage';
 export default function Publish() {
   const { state, setState } = useMyState();
 
-  const onChange = ({ target }) => {
-    setState(target.id, target.value);
-    setStorage(target.id, target.value);
+  const onChange = (id, value) => {
+    setState(id, value);
+    setStorage(id, value);
   };
 
   return (
     <>
       <form className="container">
         <MainInfo state={state} onChange={onChange} />
-        <Options state={state} onChange={onChange} />
+        <Options setState={onChange} state={state} />
         <div style={{ marginTop: '2em', textAlign: 'center' }}>
           <input className="btn" type="submit" value={`Créer mon annonce  ➔  ${state.price} €`} />
         </div>

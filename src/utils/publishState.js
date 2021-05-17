@@ -16,6 +16,11 @@ export const StateProvider = ({ children }) => {
     duration: storage['duration'] || '',
     salary: storage['salary'] || '',
     source: storage['source'] || '',
+    option1: storage['option1'] || false,
+    option2: storage['option2'] || false,
+    option3: storage['option3'] || false,
+    option4: storage['option4'] || false,
+    color: storage['color'] || '',
     price: 0,
   });
 

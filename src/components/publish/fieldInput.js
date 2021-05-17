@@ -15,6 +15,10 @@ export default function FieldInput({
   type,
   value,
 }) {
+  const handleOnChange = ({ target }) => {
+    onChange(target.id, target.value);
+  };
+
   return (
     <div className="field flex">
       <label htmlFor={id}>
@@ -22,7 +26,7 @@ export default function FieldInput({
         {required ? '*' : ''}
       </label>
       {(type === 'select' && (
-        <select id={id} value={value} onChange={onChange}>
+        <select id={id} value={value} onChange={handleOnChange}>
           {options.map((val, index) => {
             const v = codeToLabel[val];
 
@@ -44,7 +48,7 @@ export default function FieldInput({
           required={required}
           type={type || 'text'}
           value={value}
-          onChange={onChange}
+          onChange={handleOnChange}
         />
       )}
       {helperText && <span>{helperText}</span>}
@@ -56,7 +60,7 @@ export default function FieldInput({
         }
         label {
           text-transform: uppercase;
-          font-weight: bold;
+          font-weight: 700;
           font-size: 14px;
           letter-spacing: 0.7px;
         }

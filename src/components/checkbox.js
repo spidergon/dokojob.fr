@@ -1,15 +1,18 @@
 import PropTypes from 'prop-types';
 
-export default function CheckBox({ id, checked, action, title }) {
+export default function CheckBox({ action, checked, id, children, onChange, title, ...other }) {
+  let onChangeHandler;
+
+  if (onChange) {
+    onChangeHandler = onChange;
+  } else if (action) {
+    onChangeHandler = ({ target }) => action(id, target.checked);
+  }
+
   return (
     <label htmlFor={id} title={title}>
-      <input
-        checked={checked}
-        id={id}
-        type="checkbox"
-        onChange={({ target }) => action(id, target.checked)}
-      />
-      {id}
+      <input checked={checked} id={id} type="checkbox" onChange={onChangeHandler} {...other} />
+      {children || id}
 
       <style jsx>{`
         label {
@@ -29,8 +32,9 @@ export default function CheckBox({ id, checked, action, title }) {
 }
 
 CheckBox.propTypes = {
-  id: PropTypes.string.isRequired,
+  action: PropTypes.func,
   checked: PropTypes.bool.isRequired,
-  action: PropTypes.func.isRequired,
+  children: PropTypes.node,
+  id: PropTypes.string.isRequired,
   title: PropTypes.string,
 };
