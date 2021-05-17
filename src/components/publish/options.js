@@ -68,14 +68,15 @@ export default function Options({ state, setState }) {
           <p>
             Mon annonce à la couleur de mon entreprise <strong>➔&nbsp;&nbsp;45&nbsp;€</strong>
           </p>
+          <input
+            name="colorPicker"
+            style={{ marginLeft: '1em' }}
+            type="color"
+            value={pickerColor}
+            onChange={handleColorPickerChange}
+            onClick={handleColorPickerClick}
+          />
         </Checkbox>
-        <input
-          name="colorPicker"
-          type="color"
-          value={pickerColor}
-          onChange={handleColorPickerChange}
-          onClick={handleColorPickerClick}
-        />
       </div>
 
       <div className="optionGroup">
