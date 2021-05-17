@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import JobItem from '@components/jobItem';
-import Filter from '@components/home/filter';
+import Filter from './filter';
 import { scrollToAnchor } from '@utils/tools';
 
 const PER_PAGE = 20;

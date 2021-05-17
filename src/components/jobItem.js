@@ -61,7 +61,7 @@ export default function JobItem({ job }) {
         )}
         <div className="action">
           <Link blank className="btn" href={job.source}>
-            <strong>Soumettre votre candidature</strong>
+            Soumettre votre candidature
           </Link>
         </div>
       </div>

@@ -50,6 +50,7 @@ export default function Header({ title }) {
           background-color: transparent;
           border: 1px solid;
           text-transform: uppercase;
+          width: initial;
         }
         header .btn:hover,
         header .btn:focus {

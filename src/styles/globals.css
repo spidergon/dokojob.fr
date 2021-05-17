@@ -44,16 +44,31 @@ a:focus {
   text-decoration: underline;
 }
 
-a.btn {
+a.btn,
+input.btn {
   display: inline-block;
   box-sizing: border-box;
+  font-weight: 700;
   padding: 15px 20px;
   border-radius: 6px;
   background-color: #3f51b5;
   color: #fff;
+  width: 100%;
   text-decoration: none;
+  cursor: pointer;
+}
+input.btn {
+  border: none;
 }
 a.btn:hover,
-a.btn:focus {
+a.btn:focus,
+input.btn:hover,
+input.btn:focus {
   background-color: rgb(44, 56, 126);
+}
+@media (min-width: 601px) {
+  a.btn,
+  input.btn {
+    width: initial;
+  }
 }

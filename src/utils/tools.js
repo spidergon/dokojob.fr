@@ -3,3 +3,8 @@ export function scrollToAnchor() {
 
   if (anchor) anchor.scrollIntoView({ behavior: 'smooth' });
 }
+
+// export const wait = (ms = 0) =>
+//   new Promise((resolve) => {
+//     setTimeout(resolve, ms);
+//   });
