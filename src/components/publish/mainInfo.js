@@ -56,25 +56,6 @@ export default function MainInfo({ state, onChange }) {
           onChange={onChange}
         />
       )}
-      {/* Salary */}
-      <FieldInput
-        helperText="Les moteurs de recherche référencient mieux les annonces qui indiquent le salaire (annuel brut de préférence)"
-        id="salary"
-        label="Salaire"
-        value={state.salary}
-        onChange={onChange}
-      />
-      {/* Source */}
-      <FieldInput
-        required
-        helperText="Lien permettant aux candidats de répondre à votre annonce (https://)"
-        id="source"
-        label="Lien de votre annonce"
-        pattern="https://.*"
-        placeholder="https://"
-        value={state.source}
-        onChange={onChange}
-      />
 
       <style jsx>{`
         .contractArea {
@@ -98,8 +79,6 @@ MainInfo.propTypes = {
     location: PropTypes.string.isRequired,
     contract: PropTypes.string.isRequired,
     duration: PropTypes.string.isRequired,
-    salary: PropTypes.string.isRequired,
-    source: PropTypes.string.isRequired,
   }).isRequired,
   onChange: PropTypes.func.isRequired,
 };

@@ -1,5 +1,7 @@
 import MainInfo from './mainInfo';
 import Options from './options';
+import Details from './details';
+import Company from './company';
 import { useMyState } from '@utils/publishState';
 import { setStorage } from '@utils/storage';
 
@@ -16,6 +18,8 @@ export default function Publish() {
       <form className="container">
         <MainInfo state={state} onChange={onChange} />
         <Options setState={onChange} state={state} />
+        <Details state={state} onChange={onChange} />
+        <Company state={state} onChange={onChange} />
         <div style={{ marginTop: '2em', textAlign: 'center' }}>
           <input className="btn" type="submit" value={`Créer mon annonce  ➔  ${state.price} €`} />
         </div>
@@ -32,6 +36,9 @@ export default function Publish() {
         .field:not(:first-of-type),
         .contractArea .field {
           margin-top: 2em;
+        }
+        .optionGroup {
+          margin-top: 1em;
         }
       `}</style>
     </>

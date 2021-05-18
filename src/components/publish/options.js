@@ -97,17 +97,15 @@ export default function Options({ state, setState }) {
 
       <style jsx>{`
         h2 {
-          text-transform: uppercase;
           font-weight: 700;
           font-size: 14px;
           letter-spacing: 0.7px;
+          text-transform: uppercase;
+          text-decoration: underline;
         }
         h3 {
           font-weight: 700;
           margin-bottom: 0.5em;
-        }
-        .optionGroup {
-          margin-top: 1em;
         }
       `}</style>
     </div>
