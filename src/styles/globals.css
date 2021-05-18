@@ -25,6 +25,11 @@ body {
   padding: 0 1em;
 }
 
+.error {
+  color: #f44336;
+  font-weight: 700;
+}
+
 button {
   box-sizing: border-box;
   padding: 10px 20px;
@@ -45,7 +50,8 @@ a:focus {
 }
 
 a.btn,
-input.btn {
+input.btn,
+button.btn {
   display: inline-block;
   box-sizing: border-box;
   font-weight: 700;
@@ -57,18 +63,22 @@ input.btn {
   text-decoration: none;
   cursor: pointer;
 }
-input.btn {
+input.btn,
+button.btn {
   border: none;
 }
 a.btn:hover,
 a.btn:focus,
 input.btn:hover,
-input.btn:focus {
+input.btn:focus,
+button.btn:hover,
+button.btn:focus {
   background-color: rgb(44, 56, 126);
 }
 @media (min-width: 601px) {
   a.btn,
-  input.btn {
+  input.btn,
+  button.btn {
     width: initial;
   }
 }

@@ -3,9 +3,11 @@ import { codeToLabel } from '@utils/constant';
 
 export default function FieldInput({
   autoFocus,
+  children,
   id,
   helperText,
   label,
+  style,
   minLength,
   pattern,
   placeholder,
@@ -16,47 +18,52 @@ export default function FieldInput({
   value,
 }) {
   const handleOnChange = ({ target }) => {
-    onChange(target.id, target.value);
+    if (onChange) onChange(target.id, target.value);
   };
 
   return (
-    <div className="field flex">
+    <div className="field flex" style={style}>
       <label htmlFor={id}>
         {label}
         {required ? '*' : ''}
       </label>
-      {(type === 'select' && (
-        <select id={id} value={value} onChange={handleOnChange}>
-          {options.map((val, index) => {
-            const v = codeToLabel[val];
+      {(!children &&
+        ((type === 'select' && (
+          <select id={id} value={value} onChange={handleOnChange}>
+            {options.map((val, index) => {
+              const v = codeToLabel[val];
 
-            return (
-              <option key={index} value={val}>
-                {val}
-                {v && val !== v ? ` - ${v}` : ''}
-              </option>
-            );
-          })}
-        </select>
-      )) || (
-        <input
-          autoFocus={autoFocus}
-          id={id}
-          minLength={minLength}
-          pattern={pattern}
-          placeholder={placeholder || label}
-          required={required}
-          type={type || 'text'}
-          value={value}
-          onChange={handleOnChange}
-        />
-      )}
-      {helperText && <span>{helperText}</span>}
+              return (
+                <option key={index} value={val}>
+                  {val}
+                  {v && val !== v ? ` - ${v}` : ''}
+                </option>
+              );
+            })}
+          </select>
+        )) || (
+          <input
+            autoFocus={autoFocus}
+            id={id}
+            minLength={minLength}
+            pattern={pattern}
+            placeholder={placeholder || label}
+            required={required}
+            type={type || 'text'}
+            value={value}
+            onChange={handleOnChange}
+          />
+        ))) ||
+        children}
+
+      {helperText && <span className="helperText">{helperText}</span>}
+
       <style jsx>{`
         .field {
           flex-direction: column;
           gap: 0.5em;
           width: 100%;
+          margin-top: 2em;
         }
         label {
           text-transform: uppercase;
@@ -74,12 +81,6 @@ export default function FieldInput({
           appearance: none;
           background: #fff;
         }
-        span {
-          font-size: 14px;
-          line-height: 1.66;
-          letter-spacing: 0.03em;
-          color: rgba(0, 0, 0, 0.54);
-        }
       `}</style>
     </div>
   );
@@ -87,15 +88,17 @@ export default function FieldInput({
 
 FieldInput.propTypes = {
   autoFocus: PropTypes.bool,
+  children: PropTypes.node,
   id: PropTypes.string.isRequired,
   helperText: PropTypes.string,
   label: PropTypes.string.isRequired,
   minLength: PropTypes.number,
   pattern: PropTypes.string,
   placeholder: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   options: PropTypes.array,
   required: PropTypes.bool,
+  style: PropTypes.object,
   type: PropTypes.string,
   value: PropTypes.string,
 };

@@ -12,6 +12,7 @@
     "prettier:fix": "prettier --write ."
   },
   "dependencies": {
+    "browser-image-compression": "1.0.14",
     "isomorphic-dompurify": "0.13.0",
     "next": "10.2.0",
     "react": "17.0.2",

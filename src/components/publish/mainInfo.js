@@ -1,10 +1,12 @@
-import PropTypes from 'prop-types';
-import { contractCodes, locations } from '@utils/constant';
 import FieldInput from './fieldInput';
+import { contractCodes, locations } from '@utils/constant';
+import { useMyState } from '@utils/publishState';
 
-export default function MainInfo({ state, onChange }) {
+export default function MainInfo() {
+  const { state, setState } = useMyState();
+
   return (
-    <div className="group">
+    <div className="group info">
       {/* Intitulé */}
       <FieldInput
         autoFocus
@@ -12,8 +14,9 @@ export default function MainInfo({ state, onChange }) {
         id="companyName"
         label="Votre entreprise"
         placeholder="Nom de votre entreprise"
+        style={{ marginTop: 0 }}
         value={state.companyName}
-        onChange={onChange}
+        onChange={setState}
       />
       {/* Intitulé */}
       <FieldInput
@@ -22,7 +25,7 @@ export default function MainInfo({ state, onChange }) {
         label="Intitulé de votre annonce"
         minLength={5}
         value={state.title}
-        onChange={onChange}
+        onChange={setState}
       />
       <div className="contractArea flex">
         {/* Région ou territoire */}
@@ -33,7 +36,7 @@ export default function MainInfo({ state, onChange }) {
           options={locations}
           type="select"
           value={state.location}
-          onChange={onChange}
+          onChange={setState}
         />
         {/* Type de contrat */}
         <FieldInput
@@ -43,7 +46,7 @@ export default function MainInfo({ state, onChange }) {
           options={contractCodes}
           type="select"
           value={state.contract}
-          onChange={onChange}
+          onChange={setState}
         />
       </div>
       {/* Duration */}
@@ -53,7 +56,7 @@ export default function MainInfo({ state, onChange }) {
           id="duration"
           label="Durée du contrat"
           value={state.duration}
-          onChange={onChange}
+          onChange={setState}
         />
       )}
 
@@ -71,14 +74,3 @@ export default function MainInfo({ state, onChange }) {
     </div>
   );
 }
-
-MainInfo.propTypes = {
-  state: PropTypes.shape({
-    companyName: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
-    contract: PropTypes.string.isRequired,
-    duration: PropTypes.string.isRequired,
-  }).isRequired,
-  onChange: PropTypes.func.isRequired,
-};

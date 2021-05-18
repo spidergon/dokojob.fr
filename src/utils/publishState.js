@@ -1,6 +1,6 @@
 import { createContext, useContext, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import { getStorage } from './storage';
+import { getStorage, setStorage } from './storage';
 
 const Context = createContext();
 
@@ -20,6 +20,7 @@ export const StateProvider = ({ children }) => {
     option3: storage['option3'] || false,
     option4: storage['option4'] || false,
     color: storage['color'] || '',
+    logo: storage['logo'] || null,
     salary: storage['salary'] || '',
     description: storage['description'] || '',
     source: storage['source'] || '',
@@ -29,8 +30,9 @@ export const StateProvider = ({ children }) => {
     price: 0,
   });
 
-  const setMyState = (id, value) => {
+  const setMyState = (id, value, stored = true) => {
     setState((s) => ({ ...s, [id]: value }));
+    if (stored) setStorage(id, value);
   };
 
   const value = useMemo(() => ({ state, setState: setMyState }), [state]);

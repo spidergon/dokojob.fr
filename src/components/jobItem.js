@@ -12,9 +12,10 @@ export default function JobItem({ job }) {
           {(job.company.logo && (
             <Image
               alt={job.company.name}
-              layout="fill"
+              height={64}
               objectFit="contain"
               src={job.company.logo}
+              width={64}
             />
           )) || <p>{job.company.logoText}</p>}
         </div>

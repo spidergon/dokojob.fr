@@ -1,7 +1,9 @@
-import PropTypes from 'prop-types';
 import FieldInput from './fieldInput';
+import { useMyState } from '@utils/publishState';
 
-export default function Company({ state, onChange }) {
+export default function Company() {
+  const { state, setState } = useMyState();
+
   return (
     <div className="group">
       <h2>Vos informations</h2>
@@ -15,7 +17,7 @@ export default function Company({ state, onChange }) {
         placeholder="nom@entreprise.com"
         type="email"
         value={state.companyEmail}
-        onChange={onChange}
+        onChange={setState}
       />
 
       {/* companyLink */}
@@ -25,21 +27,10 @@ export default function Company({ state, onChange }) {
         pattern="https://.*"
         placeholder="https://"
         value={state.companyLink}
-        onChange={onChange}
+        onChange={setState}
       />
 
       <style jsx>{`
-        h2 {
-          font-weight: 700;
-          font-size: 14px;
-          letter-spacing: 0.7px;
-          text-transform: uppercase;
-          text-decoration: underline;
-        }
-        h3 {
-          font-weight: 700;
-          margin-bottom: 0.5em;
-        }
         label {
           text-transform: uppercase;
           font-weight: 700;
@@ -50,11 +41,3 @@ export default function Company({ state, onChange }) {
     </div>
   );
 }
-
-Company.propTypes = {
-  state: PropTypes.shape({
-    companyEmail: PropTypes.string,
-    companyLink: PropTypes.string,
-  }).isRequired,
-  onChange: PropTypes.func.isRequired,
-};

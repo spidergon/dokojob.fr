@@ -1,15 +1,18 @@
-import PropTypes from 'prop-types';
 import FieldInput from './fieldInput';
+import Logo from './logo';
+import { useMyState } from '@utils/publishState';
 
-export default function Details({ state, onChange }) {
+export default function Details() {
+  const { state, setState } = useMyState();
+
   return (
     <div className="group">
       <h2>Détails de votre annonce</h2>
 
-      <div className="optionGroup">
-        <h3>Logo de votre entreprise</h3>
-        Logo
-      </div>
+      {/* Logo */}
+      <FieldInput id="logo" label="Logo de votre entreprise">
+        <Logo />
+      </FieldInput>
 
       {/* Salary */}
       <FieldInput
@@ -17,12 +20,13 @@ export default function Details({ state, onChange }) {
         id="salary"
         label="Salaire"
         value={state.salary}
-        onChange={onChange}
+        onChange={setState}
       />
 
-      <label htmlFor="description">Description*</label>
-      <br />
-      <textarea required cols="30" id="description" rows="10" />
+      {/* Description */}
+      <FieldInput id="description" label="Description*">
+        <textarea required cols="30" id="description" rows="10" />
+      </FieldInput>
 
       {/* Source */}
       <FieldInput
@@ -32,7 +36,7 @@ export default function Details({ state, onChange }) {
         pattern="https://.*"
         placeholder="https://"
         value={state.source}
-        onChange={onChange}
+        onChange={setState}
       />
 
       {/* Source email */}
@@ -43,38 +47,19 @@ export default function Details({ state, onChange }) {
         placeholder="postulez@entreprise.com"
         type="email"
         value={state.sourceEmail}
-        onChange={onChange}
+        onChange={setState}
       />
 
       <style jsx>{`
-        h2 {
-          font-weight: 700;
-          font-size: 14px;
-          letter-spacing: 0.7px;
-          text-transform: uppercase;
-          text-decoration: underline;
-        }
-        h3 {
-          font-weight: 700;
-          margin-bottom: 0.5em;
-        }
-        label {
+         {
+          /* label {
           text-transform: uppercase;
           font-weight: 700;
           font-size: 14px;
           letter-spacing: 0.7px;
+        } */
         }
       `}</style>
     </div>
   );
 }
-
-Details.propTypes = {
-  state: PropTypes.shape({
-    salary: PropTypes.string,
-    description: PropTypes.string,
-    source: PropTypes.string,
-    sourceEmail: PropTypes.string,
-  }).isRequired,
-  onChange: PropTypes.func.isRequired,
-};

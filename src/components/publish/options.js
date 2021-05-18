@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import Checkbox from '@components/checkbox';
+import { useMyState } from '@utils/publishState';
 
 const YELLOW = '#fff9c9';
 const RED = '#f5a4a4';
 
-export default function Options({ state, setState }) {
+export default function Options() {
+  const { state, setState } = useMyState();
+
   const [pickerColor, setPickerColor] = useState(state.color || RED);
 
   const handleOptionChange = ({ target }) => {
@@ -94,31 +96,6 @@ export default function Options({ state, setState }) {
           </p>
         </Checkbox>
       </div>
-
-      <style jsx>{`
-        h2 {
-          font-weight: 700;
-          font-size: 14px;
-          letter-spacing: 0.7px;
-          text-transform: uppercase;
-          text-decoration: underline;
-        }
-        h3 {
-          font-weight: 700;
-          margin-bottom: 0.5em;
-        }
-      `}</style>
     </div>
   );
 }
-
-Options.propTypes = {
-  state: PropTypes.shape({
-    color: PropTypes.string,
-    option1: PropTypes.bool,
-    option2: PropTypes.bool,
-    option3: PropTypes.bool,
-    option4: PropTypes.bool,
-  }).isRequired,
-  setState: PropTypes.func.isRequired,
-};
