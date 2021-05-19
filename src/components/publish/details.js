@@ -1,3 +1,4 @@
+import Description from './description';
 import FieldInput from './fieldInput';
 import Logo from './logo';
 import { useMyState } from '@utils/publishState';
@@ -25,7 +26,7 @@ export default function Details() {
 
       {/* Description */}
       <FieldInput id="description" label="Description*">
-        <textarea required cols="30" id="description" rows="10" />
+        <Description />
       </FieldInput>
 
       {/* Source */}
