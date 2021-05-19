@@ -9,24 +9,24 @@ export default function JobItem({ job }) {
     <details>
       <summary className="flex">
         <div className="logo-content">
-          {(job.company.logo && (
+          {(job.logo && (
             <Image
-              alt={job.company.name}
+              alt={job.companyName}
               height={64}
               objectFit="contain"
-              src={job.company.logo}
+              src={job.logo}
               width={64}
             />
-          )) || <p>{job.company.logoText}</p>}
+          )) || <p>{job.logoText}</p>}
         </div>
         <div className="job-content">
-          <p>{job.company.name}</p>
+          <p>{job.companyName}</p>
           <h3>
             <Link href="/" style={{ color: 'var(--black)' }}>
               {job.title}
             </Link>
           </h3>
-          <CategoryList items={[job.location.label, job.contract.code]} />
+          <CategoryList items={[job.location, job.contractCode]} />
         </div>
         <div className="job-date">
           <p className="no-wrap">{job.createdAt}</p>
@@ -48,15 +48,15 @@ export default function JobItem({ job }) {
           }}
         />
         <p style={{ fontSize: '14px', margin: '0.5rem 0' }}>
-          {job.contract.code} - {job.contract.label}
+          {job.contractCode} - {job.contractLabel}
         </p>
         {job.salary && (
           <p style={{ fontSize: '14px', marginBottom: '0.5rem' }}>Salaire : {job.salary}</p>
         )}
-        {job.company.url && (
+        {job.companyLink && (
           <p>
-            <Link blank href={job.company.url}>
-              {job.company.name}
+            <Link blank href={job.companyLink}>
+              {job.companyName}
             </Link>
           </p>
         )}

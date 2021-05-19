@@ -25,8 +25,9 @@ export const StateProvider = ({ children }) => {
     description: storage['description'] || '',
     source: storage['source'] || '',
     sourceEmail: storage['sourceEmail'] || '',
-    companyLink: storage['companyLink'] || '',
+    companyTwitter: storage['companyTwitter'] || '',
     companyEmail: storage['companyEmail'] || '',
+    companyLink: storage['companyLink'] || '',
     price: 0,
   });
 

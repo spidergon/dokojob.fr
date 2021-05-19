@@ -1,7 +1,8 @@
+import Company from './company';
+import Details from './details';
 import MainInfo from './mainInfo';
 import Options from './options';
-import Details from './details';
-import Company from './company';
+import Preview from './preview';
 import { useMyState } from '@utils/publishState';
 
 export default function Publish() {
@@ -9,6 +10,7 @@ export default function Publish() {
 
   return (
     <>
+      <Preview />
       <form className="container">
         <MainInfo />
         <Options />

@@ -12,6 +12,7 @@ export default function FieldInput({
   pattern,
   placeholder,
   onChange,
+  onFocus,
   options,
   required,
   type,
@@ -52,6 +53,7 @@ export default function FieldInput({
             type={type || 'text'}
             value={value}
             onChange={handleOnChange}
+            onFocus={onFocus}
           />
         ))) ||
         children}
@@ -96,6 +98,7 @@ FieldInput.propTypes = {
   pattern: PropTypes.string,
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
   options: PropTypes.array,
   required: PropTypes.bool,
   style: PropTypes.object,

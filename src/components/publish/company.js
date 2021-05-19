@@ -8,6 +8,16 @@ export default function Company() {
     <div className="group">
       <h2>Vos informations</h2>
 
+      {/* companyTwitter */}
+      <FieldInput
+        helperText="Identifiant Twitter sans '@'. Utilisé pour tagger votre entreprise quand nous posterons votre annonce sur Twitter"
+        id="companyTwitter"
+        label="Compte Twitter"
+        placeholder="Identifiant"
+        value={state.companyTwitter}
+        onChange={setState}
+      />
+
       {/* companyEmail */}
       <FieldInput
         required
@@ -22,22 +32,15 @@ export default function Company() {
 
       {/* companyLink */}
       <FieldInput
+        helperText="Site Internet de votre entreprise"
         id="companyLink"
         label="Site Internet"
         pattern="https://.*"
         placeholder="https://"
+        type="url"
         value={state.companyLink}
         onChange={setState}
       />
-
-      <style jsx>{`
-        label {
-          text-transform: uppercase;
-          font-weight: 700;
-          font-size: 14px;
-          letter-spacing: 0.7px;
-        }
-      `}</style>
     </div>
   );
 }

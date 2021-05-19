@@ -27,7 +27,7 @@ export default function Filter({ allJobs, jobs, setJobs }) {
 
   useEffect(() => {
     const newJobs = allJobs.filter((job) => {
-      return selectedLoc[job.location.label] === true;
+      return selectedLoc[job.location] === true;
     });
 
     setFilteredLoc(newJobs);
@@ -35,7 +35,7 @@ export default function Filter({ allJobs, jobs, setJobs }) {
 
   useEffect(() => {
     const newJobs = allJobs.filter((job) => {
-      return selectedCode[job.contract.code] === true;
+      return selectedCode[job.contractCode] === true;
     });
 
     setFilteredCode(newJobs);

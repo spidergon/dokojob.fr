@@ -122,35 +122,58 @@ async function fetchJobs() {
     } = job;
 
     const newJob = {
-      id,
+      companyName: entreprise?.nom ? entreprise.nom : 'Pôle Emploi',
       title: intitule,
-      slug: slugify(intitule + '-' + id, {
-        lower: true,
-      }).replace(/-\(?hf\)?/, ''),
+      location: lieuTravail?.libelle ? locations[lieuTravail.libelle.slice(0, 3)] : '',
+      contractCode: convertContractCode(typeContrat),
+      contractLabel: typeContratLibelle,
+      logo: entreprise?.logo ? entreprise.logo : '',
+      salary: salaire?.libelle ? salaire.libelle : '',
       description,
-      location: { label: lieuTravail && lieuTravail.libelle ? lieuTravail.libelle : '' },
-      source: origineOffre && origineOffre.urlOrigine ? origineOffre.urlOrigine : '',
-      salary: salaire && salaire.libelle ? salaire.libelle : '',
-      contract: { code: convertContractCode(typeContrat), label: typeContratLibelle },
-      company: {
-        name: entreprise && entreprise.nom ? entreprise.nom : 'Pôle Emploi',
-        logo: entreprise && entreprise.logo ? entreprise.logo : '',
-        url: entreprise && entreprise.url ? entreprise.url : '',
-      },
+      source: origineOffre?.urlOrigine ? origineOffre.urlOrigine : '',
+      companyLink: entreprise?.url ? entreprise.url : '',
       createdAt: formatDate(dateCreation),
-      raw_createdAt: dateCreation,
+      slug: slugify(intitule + '-' + id, { lower: true }).replace(/-\(?hf\)?/, ''),
     };
 
-    if (newJob.company.name === 'Pôle Emploi' && !newJob.company.logo) {
-      newJob.company.logo =
+    // const newJob = {
+    //   id,
+    //   title: intitule,
+    //   slug: slugify(intitule + '-' + id, {
+    //     lower: true,
+    //   }).replace(/-\(?hf\)?/, ''),
+    //   description,
+    //   location: { label: lieuTravail && lieuTravail.libelle ? lieuTravail.libelle : '' },
+    //   source: origineOffre && origineOffre.urlOrigine ? origineOffre.urlOrigine : '',
+    //   salary: salaire && salaire.libelle ? salaire.libelle : '',
+    //   contract: { code: convertContractCode(typeContrat), label: typeContratLibelle },
+    //   company: {
+    //     name: entreprise && entreprise.nom ? entreprise.nom : 'Pôle Emploi',
+    //     logo: entreprise && entreprise.logo ? entreprise.logo : '',
+    //     url: entreprise && entreprise.url ? entreprise.url : '',
+    //   },
+    //   createdAt: formatDate(dateCreation),
+    //   raw_createdAt: dateCreation,
+    // };
+
+    if (newJob.companyName === 'Pôle Emploi' && !newJob.logo) {
+      newJob.logo =
         'https://res.cloudinary.com/cserviusprod/image/upload/v1581454070/jobapp/pole-emploi-logo.png';
     }
 
-    if (!newJob.company.logo) {
-      newJob.company.logoText = logoText(newJob.company.name);
+    if (!newJob.logo) {
+      newJob.logoText = logoText(newJob.companyName);
     }
+    // if (newJob.company.name === 'Pôle Emploi' && !newJob.company.logo) {
+    //   newJob.company.logo =
+    //     'https://res.cloudinary.com/cserviusprod/image/upload/v1581454070/jobapp/pole-emploi-logo.png';
+    // }
 
-    if (newJob.location.label) newJob.location.label = locations[newJob.location.label.slice(0, 3)];
+    // if (!newJob.company.logo) {
+    //   newJob.company.logoText = logoText(newJob.company.name);
+    // }
+
+    // if (newJob.location.label) newJob.location.label = locations[newJob.location.label.slice(0, 3)];
 
     jobs.push(newJob);
   });
