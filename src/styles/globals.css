@@ -1,9 +1,10 @@
 :root {
   --black: #1a1a1a;
+  --white: #f8f8f8;
 }
 
 body {
-  background: #f8f8f8;
+  background: var(--white);
   color: var(--black);
 }
 
@@ -22,7 +23,7 @@ body {
 .container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 0 1em;
+  padding: 0 0.5em;
 }
 
 .error {

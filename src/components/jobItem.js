@@ -1,32 +1,58 @@
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import PropTypes from 'prop-types';
-import Link from '@components/link';
 import CategoryList from '@components/categoryList';
+import Link from '@components/link';
+import { codeToLabel } from '@utils/constant';
 import purify from '@utils/purify';
 
-export default function JobItem({ job }) {
+export default function JobItem({ job, preview }) {
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    if (job.color) {
+      const color = job.color.replace('#', '');
+      const r = parseInt(color.substr(0, 2), 16);
+      const g = parseInt(color.substr(2, 2), 16);
+      const b = parseInt(color.substr(4, 2), 16);
+      const brightness = Math.round((r * 299 + g * 587 + b * 114) / 1000);
+
+      setDark(brightness <= 130);
+    } else {
+      setDark(false);
+    }
+  }, [job.color]);
+
   return (
     <details>
-      <summary className="flex">
+      <summary
+        className={`flex${dark ? ' dark' : ''}`}
+        style={{ background: job.color || 'var(--white)' }}
+      >
         <div className="logo-content">
           {(job.logo && (
-            <Image
-              alt={job.companyName}
-              height={64}
-              objectFit="contain"
-              src={job.logo}
-              width={64}
-            />
+            <>
+              {!preview && (
+                <Image
+                  alt={job.companyName}
+                  height={64}
+                  objectFit="contain"
+                  src={job.logo}
+                  width={64}
+                />
+              )}
+              {preview && <img alt="" src={job.logo} />}
+            </>
           )) || <p>{job.logoText}</p>}
         </div>
         <div className="job-content">
           <p>{job.companyName}</p>
           <h3>
-            <Link href="/" style={{ color: 'var(--black)' }}>
+            <Link href="/" style={{ color: dark ? '#fff' : 'var(--black)' }}>
               {job.title}
             </Link>
           </h3>
-          <CategoryList items={[job.location, job.contractCode]} />
+          <CategoryList dark={dark} items={[job.location, job.contract]} />
         </div>
         <div className="job-date">
           <p className="no-wrap">{job.createdAt}</p>
@@ -48,7 +74,7 @@ export default function JobItem({ job }) {
           }}
         />
         <p style={{ fontSize: '14px', margin: '0.5rem 0' }}>
-          {job.contractCode} - {job.contractLabel}
+          {job.contract} - {codeToLabel[job.contract]}
         </p>
         {job.salary && (
           <p style={{ fontSize: '14px', marginBottom: '0.5rem' }}>Salaire : {job.salary}</p>
@@ -61,7 +87,7 @@ export default function JobItem({ job }) {
           </p>
         )}
         <div className="action">
-          <Link blank className="btn" href={job.source}>
+          <Link blank className="btn" href={job.source || 'mailto:' + job.sourceEmail}>
             Soumettre votre candidature
           </Link>
         </div>
@@ -70,17 +96,19 @@ export default function JobItem({ job }) {
       <style jsx>{`
         details {
           border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-          padding-bottom: 1em;
           margin-bottom: 1em;
         }
         summary {
           align-items: center;
+          padding: 0.5em;
           cursor: pointer;
+        }
+        summary.dark {
+          color: #fff;
         }
         .content {
           border-top: 1px solid rgba(0, 0, 0, 0.2);
-          margin-top: 1em;
-          padding: 1.5em 0 2em;
+          padding: 1.5em 0.5em 2em;
         }
         .action {
           text-align: center;
@@ -91,6 +119,7 @@ export default function JobItem({ job }) {
         }
         .logo-content {
           display: none;
+          background: #fff;
         }
         .job-content {
           flex-grow: 1;
@@ -126,4 +155,5 @@ export default function JobItem({ job }) {
 
 JobItem.propTypes = {
   job: PropTypes.object.isRequired,
+  preview: PropTypes.bool,
 };

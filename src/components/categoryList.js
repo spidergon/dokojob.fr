@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { codeToLabel } from '@utils/constant';
 
-export default function CategoryList({ items }) {
+export default function CategoryList({ dark, items }) {
   return (
-    <div className="wrapper flex">
+    <div className={`flex${dark ? ' dark' : ''}`}>
       {items.map((item, index) => (
         <React.Fragment key={index}>
           {item && <span title={codeToLabel[item]}>{item}</span>}
@@ -12,15 +12,18 @@ export default function CategoryList({ items }) {
       ))}
 
       <style jsx>{`
-        .wrapper > * {
+        span {
           font-size: 0.85rem;
           margin: 0.5em;
           border: 1px solid rgba(0, 0, 0, 0.23);
           border-radius: 16px;
           padding: 0 10px;
         }
-        .wrapper > :first-child {
+        span:first-of-type {
           margin-left: 0;
+        }
+        .dark span {
+          border-color: rgba(255, 255, 255, 0.5);
         }
       `}</style>
     </div>
@@ -28,5 +31,6 @@ export default function CategoryList({ items }) {
 }
 
 CategoryList.propTypes = {
+  dark: PropTypes.bool,
   items: PropTypes.arrayOf(PropTypes.string.isRequired),
 };

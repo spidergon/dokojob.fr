@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import fr from 'dayjs/locale/fr';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import slugify from 'slugify';
+import { logoText } from '@utils/tools';
 
 dayjs.extend(relativeTime);
 dayjs.locale(fr);
@@ -38,16 +39,16 @@ const formatDate = (d) =>
     .replace('mois', 'mo')
     .replace('quelques secondes', '1 m');
 
-const logoText = (txt) => {
-  const [first, second, third] = txt.split(' ').slice(0, 3);
-  let result = '';
+// const logoText = (txt) => {
+//   const [first, second, third] = txt.split(' ').slice(0, 3);
+//   let result = '';
 
-  if (first && first.length > 2) result += first[0];
-  if (second && second.length > 2) result += second[0];
-  else if (third && third.length > 2) result += third[0];
+//   if (first && first.length > 2) result += first[0];
+//   if (second && second.length > 2) result += second[0];
+//   else if (third && third.length > 2) result += third[0];
 
-  return result;
-};
+//   return result;
+// };
 
 async function getAuthToken(scope) {
   const authUrl =
@@ -118,15 +119,15 @@ async function fetchJobs() {
       origineOffre,
       salaire,
       typeContrat,
-      typeContratLibelle,
+      // typeContratLibelle,
     } = job;
 
     const newJob = {
       companyName: entreprise?.nom ? entreprise.nom : 'Pôle Emploi',
       title: intitule,
       location: lieuTravail?.libelle ? locations[lieuTravail.libelle.slice(0, 3)] : '',
-      contractCode: convertContractCode(typeContrat),
-      contractLabel: typeContratLibelle,
+      contract: convertContractCode(typeContrat),
+      // contractLabel: typeContratLibelle,
       logo: entreprise?.logo ? entreprise.logo : '',
       salary: salaire?.libelle ? salaire.libelle : '',
       description,

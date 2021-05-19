@@ -40,8 +40,10 @@ export default function Details() {
         pattern="https://.*"
         placeholder="https://"
         required={
-          (state.source && state.sourceEmail) ||
-          ((isSourceLink || state.source) && !state.sourceEmail)
+          !!(
+            (state.source && state.sourceEmail) ||
+            ((isSourceLink || state.source) && !state.sourceEmail)
+          )
         }
         style={{ color: !isSourceLink ? 'gray' : 'var(--black)' }}
         type="url"
@@ -58,7 +60,7 @@ export default function Details() {
         id="sourceEmail"
         label="E-mail de votre annonce"
         placeholder="postulez@entreprise.com"
-        required={(!isSourceLink || state.sourceEmail) && !state.source}
+        required={!!((!isSourceLink || state.sourceEmail) && !state.source)}
         style={{ marginTop: '1em', color: isSourceLink ? 'gray' : 'var(--black)' }}
         type="email"
         value={state.sourceEmail}
