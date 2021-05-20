@@ -27,8 +27,7 @@ export const StateProvider = ({ children }) => {
     sourceEmail: storage['sourceEmail'] || '',
     companyTwitter: storage['companyTwitter'] || '',
     companyEmail: storage['companyEmail'] || '',
-    companyLink: storage['companyLink'] || '',
-    price: 0,
+    companyUrl: storage['companyUrl'] || '',
   });
 
   const setMyState = (id, value, stored = true) => {

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Checkbox from '@components/checkbox';
 import { useMyState } from '@utils/publishState';
+import { PRICE1, PRICE2, PRICE3, PRICE4 } from '@utils/constant';
 
 const YELLOW = '#fff9c9';
 const RED = '#f5a4a4';
@@ -62,13 +63,13 @@ export default function Options() {
         <h3>Choisissez la couleur de votre annonce&nbsp;:</h3>
         <Checkbox checked={!!state.option1} id="option1" onChange={handleOptionChange}>
           <p>
-            Mon annonce mise en avant en jaune <strong>➔&nbsp;&nbsp;20&nbsp;€</strong>
+            Mon annonce mise en avant en jaune <strong>➔&nbsp;&nbsp;{PRICE1}&nbsp;€</strong>
           </p>
         </Checkbox>
 
         <Checkbox checked={!!state.option2} id="option2" onChange={handleOptionChange}>
           <p>
-            Mon annonce à la couleur de mon entreprise <strong>➔&nbsp;&nbsp;45&nbsp;€</strong>
+            Mon annonce à la couleur de mon entreprise <strong>➔&nbsp;&nbsp;{PRICE2}&nbsp;€</strong>
           </p>
           <input
             name="colorPicker"
@@ -86,13 +87,13 @@ export default function Options() {
         <Checkbox checked={!!state.option3} id="option3" onChange={handleOptionChange}>
           <p>
             Mon annonce parmi les 10 premières de la liste pendant{' '}
-            <strong>7&nbsp;jours&nbsp;&nbsp;➔&nbsp;&nbsp;75&nbsp;€</strong>
+            <strong>7&nbsp;jours&nbsp;&nbsp;➔&nbsp;&nbsp;{PRICE3}&nbsp;€</strong>
           </p>
         </Checkbox>
         <Checkbox checked={!!state.option4} id="option4" onChange={handleOptionChange}>
           <p>
             Mon annonce parmi les 10 premières de la liste pendant{' '}
-            <strong>30&nbsp;jours&nbsp;&nbsp;➔&nbsp;&nbsp;90&nbsp;€</strong>
+            <strong>30&nbsp;jours&nbsp;&nbsp;➔&nbsp;&nbsp;{PRICE4}&nbsp;€</strong>
           </p>
         </Checkbox>
       </div>

@@ -39,17 +39,6 @@ const formatDate = (d) =>
     .replace('mois', 'mo')
     .replace('quelques secondes', '1 m');
 
-// const logoText = (txt) => {
-//   const [first, second, third] = txt.split(' ').slice(0, 3);
-//   let result = '';
-
-//   if (first && first.length > 2) result += first[0];
-//   if (second && second.length > 2) result += second[0];
-//   else if (third && third.length > 2) result += third[0];
-
-//   return result;
-// };
-
 async function getAuthToken(scope) {
   const authUrl =
     'https://entreprise.pole-emploi.fr/connexion/oauth2/access_token?realm=%2Fpartenaire';
@@ -123,6 +112,7 @@ async function fetchJobs() {
     } = job;
 
     const newJob = {
+      id,
       companyName: entreprise?.nom ? entreprise.nom : 'Pôle Emploi',
       title: intitule,
       location: lieuTravail?.libelle ? locations[lieuTravail.libelle.slice(0, 3)] : '',
@@ -132,7 +122,7 @@ async function fetchJobs() {
       salary: salaire?.libelle ? salaire.libelle : '',
       description,
       source: origineOffre?.urlOrigine ? origineOffre.urlOrigine : '',
-      companyLink: entreprise?.url ? entreprise.url : '',
+      companyUrl: entreprise?.url ? entreprise.url : '',
       createdAt: formatDate(dateCreation),
       slug: slugify(intitule + '-' + id, { lower: true }).replace(/-\(?hf\)?/, ''),
     };

@@ -1,4 +1,5 @@
 export const locations = ['Guadeloupe', 'Martinique', 'Guyane', 'Réunion', 'Mayotte'];
+
 export const contracts = [
   'CDI',
   'CDD',
@@ -8,6 +9,7 @@ export const contracts = [
   'Stage',
   'Alternance',
 ];
+
 export const codeToLabel = {
   CDI: 'Contrat à durée indéterminée',
   CDD: 'Contrat à durée déterminée',
@@ -17,6 +19,11 @@ export const codeToLabel = {
   Stage: 'Stage',
   Alternance: 'Alternance',
 };
+
+export const PRICE1 = 20;
+export const PRICE2 = 45;
+export const PRICE3 = 75;
+export const PRICE4 = 90;
 
 // export const urlPattern =
 //   /https\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/=]*)/;

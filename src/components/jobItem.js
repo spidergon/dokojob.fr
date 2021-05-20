@@ -79,9 +79,9 @@ export default function JobItem({ job, preview }) {
         {job.salary && (
           <p style={{ fontSize: '14px', marginBottom: '0.5rem' }}>Salaire : {job.salary}</p>
         )}
-        {job.companyLink && (
+        {job.companyUrl && (
           <p>
-            <Link blank href={job.companyLink}>
+            <Link blank href={job.companyUrl}>
               {job.companyName}
             </Link>
           </p>

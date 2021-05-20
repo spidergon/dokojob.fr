@@ -30,15 +30,15 @@ export default function Company() {
         onChange={setState}
       />
 
-      {/* companyLink */}
+      {/* companyUrl */}
       <FieldInput
         helperText="Site Internet de votre entreprise"
-        id="companyLink"
+        id="companyUrl"
         label="Site Internet"
         pattern="https://.*"
         placeholder="https://"
         type="url"
-        value={state.companyLink}
+        value={state.companyUrl}
         onChange={setState}
       />
     </div>
