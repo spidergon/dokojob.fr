@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import CheckBox from '@components/checkbox';
-import { locations, codeToLabel, contractCodes } from '@utils/constant';
+import { locations, codeToLabel, contracts } from '@utils/constant';
 
 function isChecked(selected) {
   return Object.values(selected).find((v) => v === true);
@@ -21,7 +21,7 @@ export default function Filter({ allJobs, jobs, setJobs }) {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(false);
   const [selectedLoc, setSelectedLoc] = useState(toObj(locations));
-  const [selectedCode, setSelectedCode] = useState(toObj(contractCodes));
+  const [selectedCode, setSelectedCode] = useState(toObj(contracts));
   const [filteredLoc, setFilteredLoc] = useState([]);
   const [filteredCode, setFilteredCode] = useState([]);
 
@@ -35,7 +35,7 @@ export default function Filter({ allJobs, jobs, setJobs }) {
 
   useEffect(() => {
     const newJobs = allJobs.filter((job) => {
-      return selectedCode[job.contractCode] === true;
+      return selectedCode[job.contract] === true;
     });
 
     setFilteredCode(newJobs);
@@ -85,7 +85,7 @@ export default function Filter({ allJobs, jobs, setJobs }) {
           </div>
           <p className="title">Contrats</p>
           <div>
-            {contractCodes.map((code, index) => (
+            {contracts.map((code, index) => (
               <CheckBox
                 key={index}
                 action={setCode}

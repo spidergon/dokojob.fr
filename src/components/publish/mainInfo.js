@@ -1,5 +1,5 @@
 import FieldInput from './fieldInput';
-import { contractCodes, locations } from '@utils/constant';
+import { contracts, locations } from '@utils/constant';
 import { useMyState } from '@utils/publishState';
 
 export default function MainInfo() {
@@ -43,7 +43,7 @@ export default function MainInfo() {
           required
           id="contract"
           label="Type de contrat"
-          options={contractCodes}
+          options={contracts}
           type="select"
           value={state.contract}
           onChange={setState}

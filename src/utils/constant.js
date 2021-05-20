@@ -1,5 +1,5 @@
 export const locations = ['Guadeloupe', 'Martinique', 'Guyane', 'Réunion', 'Mayotte'];
-export const contractCodes = [
+export const contracts = [
   'CDI',
   'CDD',
   'Télétravail',
