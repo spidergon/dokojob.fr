@@ -6,12 +6,14 @@ import Details from './details';
 import MainInfo from './mainInfo';
 import Options from './options';
 import Preview from './preview';
+import Link from '@components/link';
 import { useMyState } from '@utils/publishState';
 import { PRICE1, PRICE2, PRICE3, PRICE4 } from '@utils/constant';
 
 export default function Publish() {
   const { state } = useMyState();
 
+  const [success, setSuccess] = useState(true);
   const [loading, setLoading] = useState(false);
   const [price, setPrice] = useState(0);
 
@@ -74,6 +76,8 @@ export default function Publish() {
       const { message } = await jobsRes.json();
 
       console.log(message);
+
+      setSuccess(true);
     } catch (error) {
       console.error(error);
     } finally {
@@ -83,21 +87,40 @@ export default function Publish() {
 
   return (
     <>
-      <Preview />
-      <form className="container" onSubmit={createJob}>
-        <MainInfo />
-        <Options />
-        <Details />
-        <Company />
-        <div style={{ marginTop: '2em', textAlign: 'center' }}>
-          <input
-            className="btn"
-            disabled={loading}
-            type="submit"
-            value={!loading ? `Créer mon annonce  ➔  ${price} €` : 'Chargement...'}
-          />
+      {!success && (
+        <>
+          <Preview />
+          <form className="container" onSubmit={createJob}>
+            <MainInfo />
+            <Options />
+            <Details />
+            <Company />
+            <div style={{ marginTop: '2em', textAlign: 'center' }}>
+              <input
+                className="btn"
+                disabled={loading}
+                type="submit"
+                value={!loading ? `Créer mon annonce  ➔  ${price} €` : 'Chargement...'}
+              />
+            </div>
+          </form>
+        </>
+      )}
+
+      {success && (
+        <div className="container success">
+          <h2>Votre annonce a été créée avec succès&nbsp;!</h2>
+          <p>
+            Nous vous avons envoyé un e-mail à l&rsquo;adresse <strong>{state.companyEmail}</strong>{' '}
+            contenant un lien permettant d&rsquo;accéder à votre annonce. Veuillez cliquer sur ce
+            lien afin de valider votre compte.
+          </p>
+          <p>Nous étudierons votre annonce et la publierons aussitôt après validation. </p>
+          <Link href="/" style={{ display: 'inline-block', marginTop: '1em' }}>
+            ⬅ retour à l&rsquo;accueil
+          </Link>
         </div>
-      </form>
+      )}
 
       <style global jsx>{`
         .group {
@@ -126,6 +149,18 @@ export default function Publish() {
           line-height: 1.66;
           letter-spacing: 0.03em;
           color: rgba(0, 0, 0, 0.54);
+        }
+      `}</style>
+
+      <style jsx>{`
+        .success {
+          margin-top: 2em;
+        }
+        .success h2 {
+          font-size: 20px;
+        }
+        .success p {
+          margin: 1em 0 0.5em;
         }
       `}</style>
     </>
