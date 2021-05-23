@@ -1,6 +1,6 @@
-import { createJob, createUser, selectUsers, updateUser } from '@api/base';
+// import { createJob, createUser, selectUsers, updateUser } from '@api/base';
 import { emailPattern, PRICE1, PRICE2, PRICE3, PRICE4 } from '@utils/constant';
-import { getCredentials } from '@api/auth';
+// import { getCredentials } from '@api/auth';
 
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
@@ -54,22 +54,22 @@ export default async (req, res) => {
   try {
     // await createJob(fields);
 
-    const { authLinkToken, authLinkExpires } = getCredentials();
+    // const { authLinkToken, authLinkExpires } = getCredentials();
 
-    const users = await selectUsers(
-      ['authLinkToken', 'authLinkExpires'],
-      `{email} = '${body.companyEmail}'`
-    );
+    // const users = await selectUsers(
+    //   ['authLinkToken', 'authLinkExpires'],
+    //   `{email} = '${body.companyEmail}'`
+    // );
 
-    if (!users.length) {
-      await createUser({
-        email: body.companyEmail,
-        authLinkToken,
-        authLinkExpires,
-      });
-    } else {
-      await updateUser(users[0].id, { authLinkToken, authLinkExpires });
-    }
+    // if (!users.length) {
+    //   await createUser({
+    //     email: body.companyEmail,
+    //     authLinkToken,
+    //     authLinkExpires,
+    //   });
+    // } else {
+    //   await updateUser(users[0].id, { authLinkToken, authLinkExpires });
+    // }
 
     // console.log(users, users[0].id, authLinkToken, authLinkExpires);
 

@@ -13,7 +13,7 @@ import { PRICE1, PRICE2, PRICE3, PRICE4 } from '@utils/constant';
 export default function Publish() {
   const { state } = useMyState();
 
-  const [success, setSuccess] = useState(true);
+  const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const [price, setPrice] = useState(0);
 
