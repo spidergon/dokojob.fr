@@ -23,7 +23,7 @@ export default function Preview() {
           position: sticky;
           top: 0;
           background: var(--white);
-          z-index: 1;
+          z-index: 10;
         }
       `}</style>
     </div>

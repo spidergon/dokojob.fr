@@ -93,7 +93,7 @@ export default function Options() {
         <Checkbox checked={!!state.option4} id="option4" onChange={handleOptionChange}>
           <p>
             Mon annonce parmi les 10 premières de la liste pendant{' '}
-            <strong>30&nbsp;jours&nbsp;&nbsp;➔&nbsp;&nbsp;{PRICE4}&nbsp;€</strong>
+            <strong>15&nbsp;jours&nbsp;&nbsp;➔&nbsp;&nbsp;{PRICE4}&nbsp;€</strong>
           </p>
         </Checkbox>
       </div>

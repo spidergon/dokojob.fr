@@ -74,7 +74,8 @@ export default function JobItem({ job, preview }) {
           }}
         />
         <p style={{ fontSize: '14px', margin: '0.5rem 0' }}>
-          {job.contract} - {codeToLabel[job.contract]}
+          {job.contract}
+          {codeToLabel[job.contract] !== job.contract ? ` - ${codeToLabel[job.contract]}` : ''}
         </p>
         {job.salary && (
           <p style={{ fontSize: '14px', marginBottom: '0.5rem' }}>Salaire : {job.salary}</p>

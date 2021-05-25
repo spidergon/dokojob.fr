@@ -1,6 +1,6 @@
-// import { createJob, createUser, selectUsers, updateUser } from '@api/base';
+import { createJob } from '@api/base';
 import { emailPattern, PRICE1, PRICE2, PRICE3, PRICE4 } from '@utils/constant';
-// import { getCredentials } from '@api/auth';
+import { getCredentials } from '@api/auth';
 
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
@@ -43,18 +43,18 @@ export default async (req, res) => {
     return response(400, 'Invalid request', `Field "companyEmail" not correct email`);
   }
 
-  const fields = { ...body };
-
-  fields.price =
-    fields.option1 * PRICE1 +
-    fields.option2 * PRICE2 +
-    fields.option3 * PRICE3 +
-    fields.option4 * PRICE4;
-
   try {
-    // await createJob(fields);
+    const { authLinkToken, authLinkExpires } = getCredentials();
 
-    // const { authLinkToken, authLinkExpires } = getCredentials();
+    const fields = { ...body, authLinkToken, authLinkExpires };
+
+    fields.price =
+      fields.option1 * PRICE1 +
+      fields.option2 * PRICE2 +
+      fields.option3 * PRICE3 +
+      fields.option4 * PRICE4;
+
+    await createJob(fields);
 
     // const users = await selectUsers(
     //   ['authLinkToken', 'authLinkExpires'],
@@ -70,8 +70,6 @@ export default async (req, res) => {
     // } else {
     //   await updateUser(users[0].id, { authLinkToken, authLinkExpires });
     // }
-
-    // console.log(users, users[0].id, authLinkToken, authLinkExpires);
 
     res.status(200).json({ message: 'success' });
   } catch (error) {

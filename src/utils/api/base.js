@@ -15,6 +15,15 @@ export function createJob(fields) {
 }
 
 /**
+ * Update a job.
+ * @param {string} id The id of the job.
+ * @param {object} fields The fields to be updated.
+ */
+export function updateJob(id, fields) {
+  return base(jobsTable).update([{ id, fields }]);
+}
+
+/**
  * Select all jobs.
  * @param {array} sort The array of objects (ex: [{ field: 'created' }]).
  */
