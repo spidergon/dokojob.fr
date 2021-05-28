@@ -50,9 +50,10 @@ export default function JobItem({ job, preview }) {
         <div className="job-content">
           <p>{job.companyName}</p>
           <h3>
-            <Link href="/" style={{ color: dark ? '#fff' : 'var(--black)' }}>
+            {/* <Link href="/" style={{ color: dark ? '#fff' : 'var(--black)' }}>
               {job.title}
-            </Link>
+            </Link> */}
+            {job.title}
           </h3>
           <CategoryList dark={dark} items={[job.location, job.contract]} />
         </div>
