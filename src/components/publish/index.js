@@ -9,6 +9,7 @@ import Preview from './preview';
 import Link from '@components/link';
 import { useMyState } from '@utils/publishState';
 import { PRICE1, PRICE2, PRICE3, PRICE4 } from '@utils/constant';
+import { clearStorage } from '@utils/storage';
 
 export default function Publish() {
   const { state } = useMyState();
@@ -76,6 +77,8 @@ export default function Publish() {
       const { message } = await jobsRes.json();
 
       console.log(message);
+
+      clearStorage();
 
       setSuccess(true);
     } catch (error) {

@@ -30,3 +30,12 @@ export function setStorage(key, value) {
     console.error(error);
   }
 }
+
+export function clearStorage() {
+  if (typeof window === 'undefined') return;
+  try {
+    sessionStorage.removeItem(storageName);
+  } catch (error) {
+    console.error(error);
+  }
+}
