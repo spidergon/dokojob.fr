@@ -9,6 +9,8 @@ import purify from '@utils/purify';
 export default function JobItem({ job, preview }) {
   const [dark, setDark] = useState(false);
 
+  // console.log('jobItem rendered');
+
   useEffect(() => {
     if (job.color) {
       const color = job.color.replace('#', '');

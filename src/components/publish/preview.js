@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import JobItem from '@components/jobItem';
 import { useMyState } from '@utils/publishState';
 import { logoText } from '@utils/tools';
@@ -5,12 +6,19 @@ import { logoText } from '@utils/tools';
 export default function Preview() {
   const { state } = useMyState();
 
+  // console.log('Preview rendered');
+
+  const memoizedLogoText = useMemo(
+    () => logoText(state.companyName || 'Entreprise'),
+    [state.companyName]
+  );
+
   const job = {
     ...state,
     companyName: state.companyName || 'Entreprise',
     title: state.title || "Intitulé de l'annonce",
     logo: state.logo?.preview ? state.logo.preview : null,
-    logoText: logoText(state.companyName || 'Entreprise'),
+    logoText: memoizedLogoText,
     createdAt: '1 h',
   };
 
