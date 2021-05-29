@@ -16,8 +16,6 @@ export async function getStaticProps() {
   const allJobs = await getJobs();
 
   return {
-    props: {
-      allJobs,
-    },
+    props: { allJobs },
   };
 }
