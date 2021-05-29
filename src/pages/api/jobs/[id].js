@@ -27,6 +27,9 @@ export default async (req, res) => {
       });
     }
   } catch (error) {
+    if (error.statusCode && error.statusCode >= 400 && error.statusCode < 500) {
+      return manageError({ res, message: 'Invalid request', error });
+    }
     manageError({ res, status: 500, message: 'Internal error', error });
   }
 };
