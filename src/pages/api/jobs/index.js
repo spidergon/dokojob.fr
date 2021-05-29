@@ -1,78 +1,81 @@
-import { createJob } from '@api/base';
 import { emailPattern, PRICE1, PRICE2, PRICE3, PRICE4 } from '@utils/constant';
-import { getCredentials } from '@api/auth';
+import { createJob, selectAllJobs } from '@utils/api/base';
+import { getCredentials } from '@utils/api/auth';
+import { manageError } from '@utils/api/tools';
 
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 export default async (req, res) => {
-  const response = (status, message, error) => {
-    if (error) console.error('Error: ', { status, message, error });
-    res.status(status).json({ status, message });
-  };
+  if (req.method === 'GET') {
+    try {
+      const rawJobs = await selectAllJobs([{ field: 'created' }]);
 
-  if (req.method !== 'POST') {
-    return response(400, 'Invalid request', { method: req.method, body: req.body });
-  }
+      const jobs = rawJobs.map((record) => ({ id: record.id, ...record.fields }));
 
-  const { body } = req;
-
-  const requiredFields = [
-    'companyName',
-    'title',
-    'location',
-    'contract',
-    'description',
-    'companyEmail',
-  ];
-
-  for (const field of requiredFields) {
-    if (!body[field]) {
-      return response(400, 'Invalid request', `Field "${field}" required`);
+      res.status(200).json({ jobs });
+    } catch (error) {
+      manageError({ res, status: 500, message: 'Internal error', error });
     }
-  }
+  } else if (req.method === 'POST') {
+    const { body } = req;
 
-  if (!body.source && !body.sourceEmail) {
-    return response(400, 'Invalid request', `Field "source" or "sourceEmail" required`);
-  }
+    const requiredFields = [
+      'companyName',
+      'title',
+      'location',
+      'contract',
+      'description',
+      'companyEmail',
+    ];
 
-  if (body.sourceEmail && !emailPattern.test(body.sourceEmail)) {
-    return response(400, 'Invalid request', `Field "sourceEmail" not correct email`);
-  }
+    for (const field of requiredFields) {
+      if (!body[field]) {
+        return manageError({ res, message: 'Invalid request', error: `Field "${field}" required` });
+      }
+    }
 
-  if (!emailPattern.test(body.companyEmail)) {
-    return response(400, 'Invalid request', `Field "companyEmail" not correct email`);
-  }
+    if (!body.source && !body.sourceEmail) {
+      return manageError({
+        res,
+        message: 'Invalid request',
+        error: `Field "source" or "sourceEmail" required`,
+      });
+    }
 
-  try {
-    const { authLinkToken, authLinkExpires } = getCredentials();
+    if (body.sourceEmail && !emailPattern.test(body.sourceEmail)) {
+      return manageError({
+        res,
+        message: 'Invalid request',
+        error: `Field "sourceEmail" not correct email`,
+      });
+    }
 
-    const fields = { ...body, authLinkToken, authLinkExpires };
+    if (!emailPattern.test(body.companyEmail)) {
+      return manageError({
+        res,
+        message: 'Invalid request',
+        error: `Field "companyEmail" not correct email`,
+      });
+    }
 
-    fields.price =
-      fields.option1 * PRICE1 +
-      fields.option2 * PRICE2 +
-      fields.option3 * PRICE3 +
-      fields.option4 * PRICE4;
+    try {
+      const { authLinkToken, authLinkExpires } = getCredentials();
 
-    await createJob(fields);
+      const fields = { ...body, authLinkToken, authLinkExpires };
 
-    // const users = await selectUsers(
-    //   ['authLinkToken', 'authLinkExpires'],
-    //   `{email} = '${body.companyEmail}'`
-    // );
+      fields.price =
+        fields.option1 * PRICE1 +
+        fields.option2 * PRICE2 +
+        fields.option3 * PRICE3 +
+        fields.option4 * PRICE4;
 
-    // if (!users.length) {
-    //   await createUser({
-    //     email: body.companyEmail,
-    //     authLinkToken,
-    //     authLinkExpires,
-    //   });
-    // } else {
-    //   await updateUser(users[0].id, { authLinkToken, authLinkExpires });
-    // }
+      const [job] = await createJob(fields);
 
-    res.status(200).json({ message: 'success' });
-  } catch (error) {
-    response(500, 'Internal error', error);
+      res.status(200).json({ id: job.id, message: 'success' });
+    } catch (error) {
+      manageError({ res, status: 500, message: 'Internal error', error });
+    }
+  } else {
+    manageError({ res, message: 'Invalid request', error: { method: req.method, body: req.body } });
   }
 };

@@ -15,6 +15,15 @@ export function createJob(fields) {
 }
 
 /**
+ *
+ * @param {string} id The id of the job.
+ * @returns the job.
+ */
+export function getJob(id) {
+  return base(jobsTable).find(id);
+}
+
+/**
  * Update a job.
  * @param {string} id The id of the job.
  * @param {object} fields The fields to be updated.

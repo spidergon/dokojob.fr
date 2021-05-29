@@ -1,13 +1,13 @@
-import { cloudinaryEnv } from '@api/env';
+import { cloudinaryEnv } from '@utils/api/env';
+import { manageError } from '@utils/api/tools';
 
 export default async (req, res) => {
-  const response = (status, message, error) => {
-    if (error) console.error('Error: ', { status, message, error });
-    res.status(status).json({ status, message });
-  };
-
   if (req.method !== 'POST' || !req?.body?.file) {
-    return response(400, 'Invalid request', { method: req.method, body: req.body });
+    return manageError({
+      res,
+      message: 'Invalid request',
+      error: { method: req.method, body: req.body },
+    });
   }
 
   try {
@@ -28,6 +28,6 @@ export default async (req, res) => {
 
     res.status(200).json({ message: 'success', secure_url });
   } catch (error) {
-    response(500, 'Internal error', error);
+    manageError({ res, status: 500, message: 'Internal error', error });
   }
 };
