@@ -14,9 +14,9 @@ export default async (req, res) => {
     if (req.method === 'GET') {
       const job = await getJob(req.query.id);
 
-      res.status(200).json({ id: job.id, ...job.fields });
+      res.status(200).json(job);
     } else if (req.method === 'PATCH') {
-      const { id } = await updateJob(req.query.id, req.body);
+      const id = await updateJob(req.query.id, req.body);
 
       res.status(200).json({ id });
     } else {

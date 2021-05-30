@@ -27,7 +27,7 @@
     "dayjs": "1.10.5",
     "eslint": "7.27.0",
     "eslint-config-alloy": "4.1.0",
-    "eslint-plugin-react": "7.23.2",
+    "eslint-plugin-react": "7.24.0",
     "eslint-plugin-react-hooks": "4.2.0",
     "prettier": "2.3.0",
     "slugify": "1.5.3"

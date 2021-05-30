@@ -1,16 +1,12 @@
 import { emailPattern, PRICE1, PRICE2, PRICE3, PRICE4 } from '@utils/constant';
-import { createJob, selectAllJobs } from '@utils/api/base';
+import { createJob, getJobs } from '@utils/api/base';
 import { getCredentials } from '@utils/api/auth';
 import { manageError } from '@utils/api/tools';
-
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 export default async (req, res) => {
   if (req.method === 'GET') {
     try {
-      const rawJobs = await selectAllJobs([{ field: 'created' }]);
-
-      const jobs = rawJobs.map((record) => ({ id: record.id, ...record.fields }));
+      const jobs = await getJobs();
 
       res.status(200).json({ jobs });
     } catch (error) {
@@ -69,9 +65,9 @@ export default async (req, res) => {
         fields.option3 * PRICE3 +
         fields.option4 * PRICE4;
 
-      const [job] = await createJob(fields);
+      const id = await createJob(fields);
 
-      res.status(200).json({ id: job.id, message: 'success' });
+      res.status(200).json({ id, message: 'success' });
     } catch (error) {
       manageError({ res, status: 500, message: 'Internal error', error });
     }

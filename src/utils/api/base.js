@@ -3,65 +3,54 @@ import { airtableEnv } from './env';
 
 const base = new Airtable({ apiKey: airtableEnv.apiKey }).base(airtableEnv.baseId);
 
-const jobsTable = 'Jobs';
-const usersTable = 'Users';
+const JOBS_TABLE = 'Jobs';
+
+/**
+ * Get all the valid and published jobs.
+ * @returns The jobs array.
+ */
+export async function getJobs() {
+  const jobs = await base(JOBS_TABLE)
+    .select({
+      filterByFormula: 'AND({valid}=TRUE(),{status}="published")',
+      sort: [{ field: 'created' }],
+      view: 'Grid view',
+    })
+    .firstPage();
+
+  return jobs.map((record) => ({ id: record.id, ...record.fields }));
+}
+
+/**
+ * Get a job.
+ * @param {string} id The id of the job.
+ * @returns The job object.
+ */
+export async function getJob(id) {
+  const job = await base(JOBS_TABLE).find(id);
+
+  return { id: job.id, ...job.fields };
+}
 
 /**
  * Create a job.
  * @param {object} fields The fields to be created.
+ * @returns The job id.
  */
-export function createJob(fields) {
-  return base(jobsTable).create([{ fields }]);
-}
+export async function createJob(fields) {
+  const [job] = await base(JOBS_TABLE).create([{ fields }]);
 
-/**
- *
- * @param {string} id The id of the job.
- * @returns the job.
- */
-export function getJob(id) {
-  return base(jobsTable).find(id);
+  return job.id;
 }
 
 /**
  * Update a job.
  * @param {string} id The id of the job.
  * @param {object} fields The fields to be updated.
+ * @returns The job id.
  */
-export function updateJob(id, fields) {
-  return base(jobsTable).update([{ id, fields }]);
-}
+export async function updateJob(id, fields) {
+  const job = await base(JOBS_TABLE).update([{ id, fields }]);
 
-/**
- * Select all jobs.
- * @param {array} sort The array of objects (ex: [{ field: 'created' }]).
- */
-export function selectAllJobs(sort) {
-  return base(jobsTable).select({ sort, view: 'Grid view' }).firstPage();
-}
-
-/**
- * Create a user.
- * @param {object} fields The fields to be created.
- */
-export function createUser(fields) {
-  return base(usersTable).create([{ fields }]);
-}
-
-/**
- * Update a user.
- * @param {string} id The id of the user.
- * @param {object} fields The fields to be updated.
- */
-export function updateUser(id, fields) {
-  return base(usersTable).update([{ id, fields }]);
-}
-
-/**
- * Select users.
- * @param {array} fields The fields to be selected (ex: ['authLinkToken', 'authLinkExpires']).
- * @param {string} filterByFormula The formula by which to select the users.
- */
-export function selectUsers(fields, filterByFormula) {
-  return base(usersTable).select({ fields, filterByFormula, view: 'Grid view' }).firstPage();
+  return job.id;
 }
