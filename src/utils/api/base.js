@@ -21,6 +21,18 @@ export async function getJobs() {
   return jobs.map((record) => ({ id: record.id, ...record.fields }));
 }
 
+export async function getJobsByEmail(email) {
+  const jobs = await base(JOBS_TABLE)
+    .select({
+      filterByFormula: `{companyEmail}='${email}'`,
+      sort: [{ field: 'created' }],
+      view: 'Grid view',
+    })
+    .firstPage();
+
+  return jobs.map((record) => ({ id: record.id, ...record.fields }));
+}
+
 /**
  * Get a job.
  * @param {string} id The id of the job.

@@ -1,17 +1,29 @@
-import { sign } from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 import { emailPattern, PRICE1, PRICE2, PRICE3, PRICE4 } from '@utils/constant';
-import { createJob, getJobs } from '@utils/api/base';
+import { createJob, getJobs, getJobsByEmail } from '@utils/api/base';
 import { secuEnv } from '@utils/api/env';
 import { manageError } from '@utils/api/tools';
 
 export default async (req, res) => {
   if (req.method === 'GET') {
-    try {
-      const jobs = await getJobs();
+    if (req.query.token) {
+      try {
+        const { email } = verify(req.query.token, secuEnv.secret);
 
-      res.status(200).json({ jobs });
-    } catch (error) {
-      manageError({ res, status: 500, message: 'Internal error', error });
+        const jobs = await getJobsByEmail(email);
+
+        res.status(200).json({ jobs });
+      } catch (error) {
+        manageError({ res, message: 'Invalid request', error });
+      }
+    } else {
+      try {
+        const jobs = await getJobs();
+
+        res.status(200).json({ jobs });
+      } catch (error) {
+        manageError({ res, status: 500, message: 'Internal error', error });
+      }
     }
   } else if (req.method === 'POST') {
     const { body } = req;
