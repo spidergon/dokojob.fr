@@ -1,6 +1,7 @@
+import { sign } from 'jsonwebtoken';
 import { emailPattern, PRICE1, PRICE2, PRICE3, PRICE4 } from '@utils/constant';
 import { createJob, getJobs } from '@utils/api/base';
-import { getCredentials } from '@utils/api/auth';
+import { secuEnv } from '@utils/api/env';
 import { manageError } from '@utils/api/tools';
 
 export default async (req, res) => {
@@ -55,9 +56,7 @@ export default async (req, res) => {
     }
 
     try {
-      const { authLinkToken, authLinkExpires } = getCredentials();
-
-      const fields = { ...body, authLinkToken, authLinkExpires };
+      const fields = { ...body };
 
       fields.price =
         fields.option1 * PRICE1 +
@@ -67,7 +66,20 @@ export default async (req, res) => {
 
       const id = await createJob(fields);
 
-      res.status(200).json({ id, message: 'success' });
+      sign(
+        { id, email: fields.companyEmail },
+        secuEnv.secret,
+        { expiresIn: '1h' },
+        (err, token) => {
+          if (err) {
+            return console.error(err);
+          }
+          console.log(token);
+          // TODO: send token via email
+        }
+      );
+
+      res.status(200).json({ message: 'success' });
     } catch (error) {
       manageError({ res, status: 500, message: 'Internal error', error });
     }

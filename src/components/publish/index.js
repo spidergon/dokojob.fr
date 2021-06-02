@@ -74,11 +74,11 @@ export default function Publish() {
 
       if (!jobsRes.ok) throw jobsRes;
 
-      const { id, message } = await jobsRes.json();
+      const { message } = await jobsRes.json();
 
-      console.log(id, message);
+      console.log(message);
 
-      clearStorage();
+      // clearStorage();
 
       setSuccess(true);
     } catch (error) {
