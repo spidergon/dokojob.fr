@@ -66,7 +66,6 @@ export default function Options() {
             Mon annonce mise en avant en jaune <strong>➔&nbsp;&nbsp;{PRICE1}&nbsp;€</strong>
           </p>
         </Checkbox>
-
         <Checkbox checked={!!state.option2} id="option2" onChange={handleOptionChange}>
           <p>
             Mon annonce à la couleur de mon entreprise <strong>➔&nbsp;&nbsp;{PRICE2}&nbsp;€</strong>

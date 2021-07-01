@@ -73,7 +73,7 @@ export default function FieldInput({
           font-size: 14px;
           letter-spacing: 0.7px;
         }
-        input[type='text'],
+        input,
         select {
           border: 1px solid #ddd;
           border-radius: 6px;

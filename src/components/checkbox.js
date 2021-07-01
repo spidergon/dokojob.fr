@@ -18,7 +18,6 @@ export default function CheckBox({ action, checked, id, children, onChange, titl
         label {
           display: inline-flex;
           align-items: center;
-          margin-right: 1em;
         }
         input {
           margin-right: 0.5em;

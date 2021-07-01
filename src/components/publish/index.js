@@ -98,7 +98,7 @@ export default function Publish() {
             <Options />
             <Details />
             <Company />
-            <div style={{ marginTop: '2em', textAlign: 'center' }}>
+            <div className="createAction center">
               <input
                 className="btn"
                 disabled={loading}
@@ -145,6 +145,8 @@ export default function Publish() {
           margin-bottom: 0.5em;
         }
         .optionGroup {
+          display: flex;
+          flex-direction: column;
           margin-top: 1.5em;
         }
         .helperText {
@@ -152,6 +154,13 @@ export default function Publish() {
           line-height: 1.66;
           letter-spacing: 0.03em;
           color: rgba(0, 0, 0, 0.54);
+        }
+        .createAction {
+          position: sticky;
+          margin-top: 2em;
+          bottom: 0;
+          background: var(--white);
+          padding-bottom: 1em;
         }
       `}</style>
 
