@@ -9,8 +9,6 @@ import purify from '@utils/purify';
 export default function JobItem({ job, preview }) {
   const [dark, setDark] = useState(false);
 
-  // console.log('jobItem rendered');
-
   useEffect(() => {
     if (job.color) {
       const color = job.color.replace('#', '');
@@ -43,6 +41,7 @@ export default function JobItem({ job, preview }) {
                   width={64}
                 />
               )}
+              {/* eslint-disable @next/next/no-img-element */}
               {preview && <img alt="" src={job.logo} />}
             </>
           )) || <p>{job.logoText}</p>}

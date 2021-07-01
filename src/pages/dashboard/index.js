@@ -37,7 +37,7 @@ export default function App() {
   return (
     <>
       <Head>
-        <title>Tableau de bord | {siteData.title}</title>
+        <title>Tableau de bord | {siteData.title}</title>
       </Head>
 
       <Header title={siteData.title} />

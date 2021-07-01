@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ['alloy', 'alloy/react'],
+  extends: ['alloy', 'alloy/react', 'next'],
   plugins: ['react-hooks'],
   env: {
     // Your environments (which contains several predefined global variables)

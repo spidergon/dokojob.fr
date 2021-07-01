@@ -4,7 +4,7 @@ import { createJob, getJobs, getJobsByEmail } from '@utils/api/base';
 import { secuEnv } from '@utils/api/env';
 import { manageError } from '@utils/api/tools';
 
-export default async (req, res) => {
+export default async function jobsApi(req, res) {
   if (req.method === 'GET') {
     if (req.query.token) {
       try {
@@ -98,4 +98,4 @@ export default async (req, res) => {
   } else {
     manageError({ res, message: 'Invalid request', error: { method: req.method, body: req.body } });
   }
-};
+}

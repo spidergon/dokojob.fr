@@ -71,7 +71,7 @@ export default function Layout({ children, title }) {
         <meta content="summary" name="twitter:card" />
 
         <title>
-          {title} | {siteData.title}
+          {title} | {siteData.title}
         </title>
       </Head>
 

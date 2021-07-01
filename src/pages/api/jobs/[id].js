@@ -1,7 +1,7 @@
 import { getJob, updateJob } from '@utils/api/base';
 import { manageError } from '@utils/api/tools';
 
-export default async (req, res) => {
+export default async function jobByIdApi(req, res) {
   try {
     if (!req.query.id) {
       return manageError({
@@ -32,4 +32,4 @@ export default async (req, res) => {
     }
     manageError({ res, status: 500, message: 'Internal error', error });
   }
-};
+}

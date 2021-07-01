@@ -1,7 +1,7 @@
 import { cloudinaryEnv } from '@utils/api/env';
 import { manageError } from '@utils/api/tools';
 
-export default async (req, res) => {
+export default async function uploadApi(req, res) {
   if (req.method !== 'POST' || !req?.body?.file) {
     return manageError({
       res,
@@ -30,4 +30,4 @@ export default async (req, res) => {
   } catch (error) {
     manageError({ res, status: 500, message: 'Internal error', error });
   }
-};
+}
