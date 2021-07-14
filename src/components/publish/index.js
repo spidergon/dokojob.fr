@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import slugify from 'slugify';
 import { v4 as uuidv4 } from 'uuid';
 import Company from './company';
@@ -8,7 +8,7 @@ import Options from './options';
 import Preview from './preview';
 import Link from '@components/link';
 import { useMyState } from '@utils/publishState';
-import { PRICE1, PRICE2, PRICE3, PRICE4 } from '@utils/constant';
+// import { PRICE1, PRICE2, PRICE3, PRICE4 } from '@utils/constant';
 // import { clearStorage } from '@utils/storage';
 
 export default function Publish() {
@@ -16,16 +16,16 @@ export default function Publish() {
 
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [price, setPrice] = useState(0);
+  // const [price, setPrice] = useState(0);
 
-  useEffect(() => {
-    setPrice(
-      state.option1 * PRICE1 +
-        state.option2 * PRICE2 +
-        state.option3 * PRICE3 +
-        state.option4 * PRICE4
-    );
-  }, [state.option1, state.option2, state.option3, state.option4]);
+  // useEffect(() => {
+  //   setPrice(
+  //     state.option1 * PRICE1 +
+  //       state.option2 * PRICE2 +
+  //       state.option3 * PRICE3 +
+  //       state.option4 * PRICE4
+  //   );
+  // }, [state.option1, state.option2, state.option3, state.option4]);
 
   const createJob = async (e) => {
     e.preventDefault();
@@ -103,7 +103,7 @@ export default function Publish() {
                 className="btn"
                 disabled={loading}
                 type="submit"
-                value={!loading ? `Créer mon annonce  ➔  ${price} €` : 'Chargement...'}
+                value={!loading ? `Créer mon annonce  ➔  0 €` : 'Chargement...'}
               />
             </div>
           </form>

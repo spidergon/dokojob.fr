@@ -18,8 +18,6 @@ function toObj(arr) {
 }
 
 export default function Filter({ allJobs, jobs, setJobs }) {
-  // console.log('Filter rendered');
-
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(false);
   const [selectedLoc, setSelectedLoc] = useState(toObj(locations));

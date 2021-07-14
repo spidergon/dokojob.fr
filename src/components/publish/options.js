@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Checkbox from '@components/checkbox';
 import { useMyState } from '@utils/publishState';
-import { PRICE1, PRICE2, PRICE3, PRICE4 } from '@utils/constant';
+import { PRICE1, PRICE2 } from '@utils/constant';
 
 const YELLOW = '#fff9c9';
 const RED = '#f5a4a4';
@@ -63,12 +63,20 @@ export default function Options() {
         <h3>Choisissez la couleur de votre annonce&nbsp;:</h3>
         <Checkbox checked={!!state.option1} id="option1" onChange={handleOptionChange}>
           <p>
-            Mon annonce mise en avant en jaune <strong>➔&nbsp;&nbsp;{PRICE1}&nbsp;€</strong>
+            Mon annonce mise en avant en jaune{' '}
+            <strong>
+              ➔&nbsp;&nbsp;<span className="strike">{PRICE1}&nbsp;€</span>
+              &nbsp;&nbsp;0&nbsp;€
+            </strong>
           </p>
         </Checkbox>
         <Checkbox checked={!!state.option2} id="option2" onChange={handleOptionChange}>
           <p>
-            Mon annonce à la couleur de mon entreprise <strong>➔&nbsp;&nbsp;{PRICE2}&nbsp;€</strong>
+            Mon annonce à la couleur de mon entreprise{' '}
+            <strong>
+              ➔&nbsp;&nbsp;<span className="strike">{PRICE2}&nbsp;€</span>
+              &nbsp;&nbsp;0&nbsp;€
+            </strong>
           </p>
           <input
             name="colorPicker"
@@ -81,18 +89,19 @@ export default function Options() {
         </Checkbox>
       </div>
 
-      <div className="optionGroup">
-        <h3>Placez votre annonce en pole position&nbsp;:</h3>
-        <Checkbox checked={!!state.option3} id="option3" onChange={handleOptionChange}>
+      <div className="optionGroup" style={{ color: 'gray' }}>
+        <h3>
+          <span className="strike">Placez votre annonce en pole position&nbsp;:</span> (bientôt
+          disponible)
+        </h3>
+        <Checkbox disabled checked={!!state.option3} id="option3" onChange={handleOptionChange}>
           <p>
-            Mon annonce parmi les 10 premières de la liste pendant{' '}
-            <strong>7&nbsp;jours&nbsp;&nbsp;➔&nbsp;&nbsp;{PRICE3}&nbsp;€</strong>
+            Mon annonce parmi les 10 premières de la liste pendant <strong>7&nbsp;jours</strong>
           </p>
         </Checkbox>
-        <Checkbox checked={!!state.option4} id="option4" onChange={handleOptionChange}>
+        <Checkbox disabled checked={!!state.option4} id="option4" onChange={handleOptionChange}>
           <p>
-            Mon annonce parmi les 10 premières de la liste pendant{' '}
-            <strong>15&nbsp;jours&nbsp;&nbsp;➔&nbsp;&nbsp;{PRICE4}&nbsp;€</strong>
+            Mon annonce parmi les 10 premières de la liste pendant <strong>15&nbsp;jours</strong>
           </p>
         </Checkbox>
       </div>

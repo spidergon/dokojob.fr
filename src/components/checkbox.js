@@ -1,6 +1,15 @@
 import PropTypes from 'prop-types';
 
-export default function CheckBox({ action, checked, id, children, onChange, title, ...other }) {
+export default function CheckBox({
+  action,
+  checked,
+  children,
+  disabled,
+  id,
+  onChange,
+  title,
+  ...other
+}) {
   let onChangeHandler;
 
   if (onChange) {
@@ -10,8 +19,15 @@ export default function CheckBox({ action, checked, id, children, onChange, titl
   }
 
   return (
-    <label htmlFor={id} title={title}>
-      <input checked={checked} id={id} type="checkbox" onChange={onChangeHandler} {...other} />
+    <label className={disabled ? 'disabled' : ''} htmlFor={id} title={title}>
+      <input
+        checked={checked}
+        disabled={disabled}
+        id={id}
+        type="checkbox"
+        onChange={onChangeHandler}
+        {...other}
+      />
       {children || id}
 
       <style jsx>{`
@@ -19,6 +35,9 @@ export default function CheckBox({ action, checked, id, children, onChange, titl
           display: inline-flex;
           align-items: center;
           margin-right: 1em;
+        }
+        label.disabled {
+          color: gray;
         }
         input {
           margin-right: 0.5em;
@@ -36,6 +55,8 @@ CheckBox.propTypes = {
   action: PropTypes.func,
   checked: PropTypes.bool.isRequired,
   children: PropTypes.node,
+  disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
   title: PropTypes.string,
 };

@@ -31,6 +31,10 @@ body {
   font-weight: 700;
 }
 
+.strike {
+  text-decoration: line-through;
+}
+
 button {
   box-sizing: border-box;
   padding: 10px 20px;

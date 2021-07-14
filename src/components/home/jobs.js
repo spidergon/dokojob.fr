@@ -19,6 +19,7 @@ export default function Jobs({ data }) {
 
   useEffect(() => {
     setPages(Math.ceil(jobs.length / PER_PAGE));
+    setStep(0);
   }, [jobs]);
 
   useEffect(() => {
