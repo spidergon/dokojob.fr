@@ -4,7 +4,7 @@ import JobItem from '@components/jobItem';
 import Filter from './filter';
 import { scrollToAnchor } from '@utils/tools';
 
-const PER_PAGE = 20;
+const PER_PAGE = 30;
 
 export default function Jobs({ data }) {
   const [jobs, setJobs] = useState([]);
@@ -47,7 +47,11 @@ export default function Jobs({ data }) {
         })}
         <div className="pagination center">
           <p>
-            Page {step + 1} / {pages}
+            {(pages !== 0 && (
+              <>
+                Page {step + 1} / {pages}
+              </>
+            )) || <strong>Aucun résultat, veuillez modifier votre sélection.</strong>}
           </p>
           {pages > 1 && (
             <div className="buttons flex">

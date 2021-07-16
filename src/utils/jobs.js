@@ -7,7 +7,7 @@ import { logoText } from '@utils/tools';
 dayjs.extend(relativeTime);
 dayjs.locale(fr);
 
-const locations = {
+const LOCATIONS = {
   971: 'Guadeloupe',
   972: 'Martinique',
   973: 'Guyane',
@@ -115,7 +115,7 @@ async function fetchJobs() {
       id,
       companyName: entreprise?.nom ? entreprise.nom : 'Pôle Emploi',
       title: intitule,
-      location: lieuTravail?.libelle ? locations[lieuTravail.libelle.slice(0, 3)] : '',
+      location: lieuTravail?.libelle ? LOCATIONS[lieuTravail.libelle.slice(0, 3)] : '',
       contract: convertContractCode(typeContrat),
       // contractLabel: typeContratLibelle,
       logo: entreprise?.logo ? entreprise.logo : '',
@@ -164,7 +164,7 @@ async function fetchJobs() {
     //   newJob.company.logoText = logoText(newJob.company.name);
     // }
 
-    // if (newJob.location.label) newJob.location.label = locations[newJob.location.label.slice(0, 3)];
+    // if (newJob.location.label) newJob.location.label = LOCATIONS[newJob.location.label.slice(0, 3)];
 
     jobs.push(newJob);
   });
