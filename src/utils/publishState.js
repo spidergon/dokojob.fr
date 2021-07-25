@@ -28,6 +28,7 @@ export const StateProvider = ({ children }) => {
     companyTwitter: storage['companyTwitter'] || '',
     companyEmail: storage['companyEmail'] || '',
     companyUrl: storage['companyUrl'] || '',
+    consent: false,
   });
 
   const setMyState = (id, value, stored = true) => {

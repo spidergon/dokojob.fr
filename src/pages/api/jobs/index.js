@@ -35,6 +35,7 @@ export default async function jobsApi(req, res) {
       'contract',
       'description',
       'companyEmail',
+      'consent',
     ];
 
     for (const field of requiredFields) {
@@ -75,6 +76,8 @@ export default async function jobsApi(req, res) {
         fields.option2 * PRICE2 +
         fields.option3 * PRICE3 +
         fields.option4 * PRICE4;
+
+      delete fields['consent'];
 
       const id = await createJob(fields);
 

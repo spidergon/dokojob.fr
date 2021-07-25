@@ -2,6 +2,7 @@ import { useState } from 'react';
 import slugify from 'slugify';
 import { v4 as uuidv4 } from 'uuid';
 import Company from './company';
+import Consent from './consent';
 import Details from './details';
 import MainInfo from './mainInfo';
 import Options from './options';
@@ -98,6 +99,7 @@ export default function Publish() {
             <Options />
             <Details />
             <Company />
+            <Consent />
             <div className="createAction center">
               <input
                 className="btn"
