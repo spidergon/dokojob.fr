@@ -65,6 +65,7 @@ export default function Publish() {
         ...state,
         logo,
         slug,
+        hostLink: window.location.origin,
       };
 
       const jobsRes = await fetch('/api/jobs', {

@@ -3,6 +3,8 @@ import { emailPattern, PRICE1, PRICE2, PRICE3, PRICE4 } from '@utils/constant';
 import { createJob, getJobs, getJobsByEmail } from '@utils/api/base';
 import { secuEnv } from '@utils/api/env';
 import { manageError } from '@utils/api/tools';
+import sendEmail from '@utils/api/mail';
+import siteData from '@utils/siteData';
 
 export default async function jobsApi(req, res) {
   if (req.method === 'GET') {
@@ -36,6 +38,7 @@ export default async function jobsApi(req, res) {
       'description',
       'companyEmail',
       'consent',
+      'hostLink',
     ];
 
     for (const field of requiredFields) {
@@ -77,7 +80,10 @@ export default async function jobsApi(req, res) {
         fields.option3 * PRICE3 +
         fields.option4 * PRICE4;
 
+      const hostLink = fields.hostLink;
+
       delete fields['consent'];
+      delete fields['hostLink'];
 
       const id = await createJob(fields);
 
@@ -89,8 +95,23 @@ export default async function jobsApi(req, res) {
           if (err) {
             return console.error(err);
           }
-          console.log(token);
-          // TODO: send token via email
+
+          // Send token via email
+          const to = fields.companyEmail;
+          const linkURL = `${hostLink}/connexion?token=${token}`;
+
+          const { title } = siteData;
+
+          sendEmail({
+            to,
+            subject: `Accedez à vos annonces sur ${title}`,
+            html: `<p>Bonjour</p>
+                <p>Nous avons reçu une demande de connexion à <i>${title}</i> depuis cette adresse e-mail. Si vous voulez vous connecter avec votre compte <strong>${to}</strong>, veuillez cliquer sur le lien suivant :</p>
+                <p><a href="${linkURL}" target="_blank" rel="noopener noreferrer">Accedez à vos annonces !</a></p>
+                <p>Si vous n'êtes pas à l'origine de cette demande, vous pouvez ignorer cet e-mail.</p>
+                <p>Merci,</p>
+                <p>Votre équipe <i>${title}</i></p>`,
+          });
         }
       );
 
