@@ -5,10 +5,12 @@ import purify from '@utils/purify';
 
 const { host, port, user, pass, from } = mailEnv;
 
+console.log('ENV:', process.env.NODE_ENV);
+
 const transport = nodemailer.createTransport({
   host,
   port,
-  secure: process.env.NODE_ENV === 'production',
+  secure: process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV !== 'development',
   auth: { user, pass },
 });
 
