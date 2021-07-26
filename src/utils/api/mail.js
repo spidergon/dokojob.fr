@@ -10,7 +10,7 @@ console.log('ENV:', process.env.NODE_ENV);
 const transport = nodemailer.createTransport({
   host,
   port,
-  secure: process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV !== 'development',
+  secure: port === 465,
   auth: { user, pass },
 });
 
