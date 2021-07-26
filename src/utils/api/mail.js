@@ -12,14 +12,14 @@ const transport = nodemailer.createTransport({
   auth: { user, pass },
 });
 
-console.log(transport);
-
 transport.verify((error) => {
   if (error) console.error('SMTP conf error: ', error);
 });
 
 export default async function sendEmail({ to, subject, html }) {
   const cleanHtml = purify(html);
+
+  console.log(transport);
 
   return transport.sendMail({
     from,
