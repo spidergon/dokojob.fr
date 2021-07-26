@@ -3,12 +3,12 @@ import { htmlToText } from 'html-to-text';
 import { mailEnv } from './env';
 import purify from '@utils/purify';
 
-const { host, port, user, pass, from } = mailEnv;
+const { host, user, pass, from } = mailEnv;
 
 const transport = nodemailer.createTransport({
   host,
-  port,
-  secure: port === '465',
+  port: 465,
+  secure: true,
   auth: { user, pass },
 });
 
