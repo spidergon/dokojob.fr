@@ -3,14 +3,16 @@ import { htmlToText } from 'html-to-text';
 import { mailEnv } from './env';
 import purify from '@utils/purify';
 
-const { host, user, pass, from } = mailEnv;
+const { host, port, user, pass, from } = mailEnv;
 
 const transport = nodemailer.createTransport({
   host,
-  port: 465,
-  secure: true,
+  port,
+  secure: Number(port) === 465,
   auth: { user, pass },
 });
+
+console.log(transport);
 
 transport.verify((error) => {
   if (error) console.error('SMTP conf error: ', error);
