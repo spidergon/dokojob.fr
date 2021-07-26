@@ -5,8 +5,6 @@ import purify from '@utils/purify';
 
 const { host, port, user, pass, from } = mailEnv;
 
-console.log('ENV:', process.env.NODE_ENV);
-
 const transport = nodemailer.createTransport({
   host,
   port,
