@@ -8,7 +8,7 @@ const { host, port, user, pass, from } = mailEnv;
 const transport = nodemailer.createTransport({
   host,
   port,
-  secure: port === 465,
+  secure: port === '465',
   auth: { user, pass },
 });
 
