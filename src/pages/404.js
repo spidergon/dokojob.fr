@@ -1,13 +1,14 @@
+import HomeLink from '@components/homeLink';
 import Layout from '@components/layout';
-import Link from '@components/link';
+import Page from '@components/page';
 
 export default function FourOhFour() {
   return (
-    <Layout title="Votre emploi digital en Outre-mer">
-      <h1>Oups ! Page inexistante</h1>
-      <p>
-        <Link href="/">⬅ Retourner à la page d&rsquo;accueil</Link>
-      </p>
+    <Layout title="Page inexistante">
+      <Page>
+        <h1>Oups ! Page inexistante</h1>
+        <HomeLink />
+      </Page>
     </Layout>
   );
 }

@@ -1,6 +1,6 @@
-import { sign, verify } from 'jsonwebtoken';
+import { sign } from 'jsonwebtoken';
 import { emailPattern, PRICE1, PRICE2, PRICE3, PRICE4 } from '@utils/constant';
-import { createJob, getJobs, getJobsByEmail } from '@utils/api/base';
+import { createJob, getJobs } from '@utils/api/base';
 import { secuEnv } from '@utils/api/env';
 import { manageError } from '@utils/api/tools';
 import sendEmail from '@utils/api/mail';
@@ -8,25 +8,25 @@ import siteData from '@utils/siteData';
 
 export default async function jobsApi(req, res) {
   if (req.method === 'GET') {
-    if (req.query.token) {
-      try {
-        const { email } = verify(req.query.token, secuEnv.secret);
+    // if (req.query.token) {
+    //   try {
+    //     const { email } = verify(req.query.token, secuEnv.secret);
 
-        const jobs = await getJobsByEmail(email);
+    //     const jobs = await getJobsByEmail(email);
 
-        res.status(200).json({ jobs });
-      } catch (error) {
-        manageError({ res, message: 'Invalid request', error });
-      }
-    } else {
-      try {
-        const jobs = await getJobs();
+    //     res.status(200).json({ jobs });
+    //   } catch (error) {
+    //     manageError({ res, message: 'Invalid request', error });
+    //   }
+    // } else {
+    try {
+      const jobs = await getJobs();
 
-        res.status(200).json({ jobs });
-      } catch (error) {
-        manageError({ res, status: 500, message: 'Internal error', error });
-      }
+      res.status(200).json({ jobs });
+    } catch (error) {
+      manageError({ res, status: 500, message: 'Internal error', error });
     }
+    // }
   } else if (req.method === 'POST') {
     const { body } = req;
 
@@ -98,18 +98,18 @@ export default async function jobsApi(req, res) {
 
           // Send token via email
           const to = fields.companyEmail;
-          const linkURL = `${hostLink}/connexion?token=${token}`;
+          const linkURL = `${hostLink}/validation?token=${token}`;
 
           const { title } = siteData;
 
           sendEmail({
             to,
-            subject: `Accedez à vos annonces sur ${title}`,
-            html: `<p>Bonjour</p>
-                <p>Nous avons reçu une demande de connexion à <i>${title}</i> depuis cette adresse e-mail. Si vous voulez vous connecter avec votre compte <strong>${to}</strong>, veuillez cliquer sur le lien suivant :</p>
-                <p><a href="${linkURL}" target="_blank" rel="noopener noreferrer">Accedez à vos annonces !</a></p>
-                <p>Si vous n'êtes pas à l'origine de cette demande, vous pouvez ignorer cet e-mail.</p>
-                <p>Merci,</p>
+            subject: `Validez votre annonce sur ${title}`,
+            html: `<p>Bonjour</p><br />
+                <p>Merci d'avoir créer votre annonce sur <i>${title}</i>&nbsp;!</p>
+                <p>Afin de la valider, veuillez cliquer sur le lien suivant :</p>
+                <p><a href="${linkURL}" target="_blank" rel="noopener noreferrer">Validez votre annonce !</a></p>
+                <p>Si vous n'êtes pas à l'origine de cette demande, vous pouvez ignorer cet e-mail.</p><br />
                 <p>Votre équipe <i>${title}</i></p>`,
           });
         }
