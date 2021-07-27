@@ -1390,10 +1390,10 @@ escodegen@^2.0.0:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-alloy@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-alloy/-/eslint-config-alloy-4.1.0.tgz#3d5df5d139fb27797943c36e91945be5b300886e"
-  integrity sha512-zpW7rxURMsGyNBaN1z9gISm0NWglNR5BzwrOI3TKocT+30jyi8qBjMJJZoYlKbYHPkdy/DM8O2oGvqgJjKTxNA==
+eslint-config-alloy@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-alloy/-/eslint-config-alloy-4.2.0.tgz#6913b0bc8e96c6179b13a26ab6bcb9542d44d3bf"
+  integrity sha512-h93hTjwa++RZLAHFZKSv7mv6WGowIcfmoURW5caZ5xqOIzODYIak5WCR9X6dcX/syS+w0i5Yh4/htd9wPU7jAA==
 
 eslint-config-next@11.0.1:
   version "11.0.1"
