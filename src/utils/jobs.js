@@ -3,6 +3,7 @@ import fr from 'dayjs/locale/fr';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import slugify from 'slugify';
 import { logoText } from '@utils/tools';
+import { getJobs as getOwnJobs } from '@utils/api/base';
 
 dayjs.extend(relativeTime);
 dayjs.locale(fr);
@@ -78,6 +79,30 @@ async function get(appId, token, params) {
 }
 
 async function fetchJobs() {
+  const jobs = [];
+
+  console.log('Getting Custom Jobs...');
+  const customJobs = await getOwnJobs();
+
+  customJobs.forEach((job) => {
+    jobs.push({
+      id: job.id,
+      companyName: job.companyName,
+      title: job.title,
+      location: job.location,
+      contract: job.contract,
+      logo: job.logo || '',
+      logoText: logoText(job.companyName),
+      salary: job.salary || '',
+      description: job.description,
+      source: job.source,
+      companyUrl: job.companyUrl || '',
+      color: job.color || '',
+      createdAt: formatDate(job.created),
+      slug: slugify(job.title + '-' + job.id, { lower: true }).replace(/-\(?hf\)?/, ''),
+    });
+  });
+
   console.log('ES - Job Auth Token...');
 
   const token = await getAuthToken(
@@ -93,8 +118,6 @@ async function fetchJobs() {
     sort: 1,
   });
 
-  const jobs = [];
-
   data.forEach((job) => {
     if (!job.description) return; // Job description is required
 
@@ -108,7 +131,6 @@ async function fetchJobs() {
       origineOffre,
       salaire,
       typeContrat,
-      // typeContratLibelle,
     } = job;
 
     const newJob = {
@@ -117,7 +139,6 @@ async function fetchJobs() {
       title: intitule,
       location: lieuTravail?.libelle ? LOCATIONS[lieuTravail.libelle.slice(0, 3)] : '',
       contract: convertContractCode(typeContrat),
-      // contractLabel: typeContratLibelle,
       logo: entreprise?.logo ? entreprise.logo : '',
       salary: salaire?.libelle ? salaire.libelle : '',
       description,
@@ -127,26 +148,6 @@ async function fetchJobs() {
       slug: slugify(intitule + '-' + id, { lower: true }).replace(/-\(?hf\)?/, ''),
     };
 
-    // const newJob = {
-    //   id,
-    //   title: intitule,
-    //   slug: slugify(intitule + '-' + id, {
-    //     lower: true,
-    //   }).replace(/-\(?hf\)?/, ''),
-    //   description,
-    //   location: { label: lieuTravail && lieuTravail.libelle ? lieuTravail.libelle : '' },
-    //   source: origineOffre && origineOffre.urlOrigine ? origineOffre.urlOrigine : '',
-    //   salary: salaire && salaire.libelle ? salaire.libelle : '',
-    //   contract: { code: convertContractCode(typeContrat), label: typeContratLibelle },
-    //   company: {
-    //     name: entreprise && entreprise.nom ? entreprise.nom : 'Pôle Emploi',
-    //     logo: entreprise && entreprise.logo ? entreprise.logo : '',
-    //     url: entreprise && entreprise.url ? entreprise.url : '',
-    //   },
-    //   createdAt: formatDate(dateCreation),
-    //   raw_createdAt: dateCreation,
-    // };
-
     if (newJob.companyName === 'Pôle Emploi' && !newJob.logo) {
       newJob.logo =
         'https://res.cloudinary.com/cserviusprod/image/upload/v1581454070/jobapp/pole-emploi-logo.png';
@@ -155,16 +156,6 @@ async function fetchJobs() {
     if (!newJob.logo) {
       newJob.logoText = logoText(newJob.companyName);
     }
-    // if (newJob.company.name === 'Pôle Emploi' && !newJob.company.logo) {
-    //   newJob.company.logo =
-    //     'https://res.cloudinary.com/cserviusprod/image/upload/v1581454070/jobapp/pole-emploi-logo.png';
-    // }
-
-    // if (!newJob.company.logo) {
-    //   newJob.company.logoText = logoText(newJob.company.name);
-    // }
-
-    // if (newJob.location.label) newJob.location.label = LOCATIONS[newJob.location.label.slice(0, 3)];
 
     jobs.push(newJob);
   });
@@ -203,16 +194,16 @@ export async function getJobs() {
   let jobs;
 
   if (process.env.NODE_ENV === 'production') {
-    console.log('ES - Processing job data...');
+    console.log('Processing job data...');
 
     jobs = await processJobs();
   } else {
-    console.log('ES - Processing sample job data...');
+    console.log('Processing sample job data...');
 
     try {
       jobs = require('./sampleJobs.json');
     } catch (error) {
-      console.log('ES - No sample data found');
+      console.log('No sample data found');
 
       jobs = await processJobs();
 
@@ -224,27 +215,27 @@ export async function getJobs() {
     }
   }
 
-  console.log('ES - Done.');
+  console.log('Done.');
 
   return jobs;
 }
 
-export function getAllJobIds() {
-  console.log('ALL');
-  const ids = ['test'];
+// export function getAllJobIds() {
+//   console.log('ALL');
+//   const ids = ['test'];
 
-  return ids.map((id) => {
-    return {
-      params: {
-        id,
-      },
-    };
-  });
-}
+//   return ids.map((id) => {
+//     return {
+//       params: {
+//         id,
+//       },
+//     };
+//   });
+// }
 
-export function getJobData(id) {
-  return {
-    id,
-    name: id,
-  };
-}
+// export function getJobData(id) {
+//   return {
+//     id,
+//     name: id,
+//   };
+// }

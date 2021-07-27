@@ -12,8 +12,9 @@ const JOBS_TABLE = 'Jobs';
 export async function getJobs() {
   const jobs = await base(JOBS_TABLE)
     .select({
-      filterByFormula: 'AND({valid}=TRUE(),{status}="published")',
-      sort: [{ field: 'created' }],
+      filterByFormula:
+        'AND({valid}=TRUE(),{status}="published",DATETIME_DIFF(NOW(),{created},"days")<=30)',
+      sort: [{ field: 'created', direction: 'desc' }],
       view: 'Grid view',
     })
     .firstPage();
