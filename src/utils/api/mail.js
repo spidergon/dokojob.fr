@@ -22,8 +22,6 @@ transport.verify((error) => {
 export default async function sendEmail({ to, subject, html }) {
   const cleanHtml = purify(html);
 
-  console.log(transport);
-
   return transport.sendMail({
     from,
     to,

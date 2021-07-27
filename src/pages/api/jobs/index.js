@@ -87,33 +87,52 @@ export default async function jobsApi(req, res) {
 
       const id = await createJob(fields);
 
-      sign(
-        { id, email: fields.companyEmail },
-        secuEnv.secret,
-        { expiresIn: '1h' },
-        (err, token) => {
-          if (err) {
-            return console.error(err);
-          }
+      const token = sign({ id, email: fields.companyEmail }, secuEnv.secret, { expiresIn: '1h' });
 
-          // Send token via email
-          const to = fields.companyEmail;
-          const linkURL = `${hostLink}/validation?token=${token}`;
+      // Send token via email
+      const to = fields.companyEmail;
+      const linkURL = `${hostLink}/validation?token=${token}`;
 
-          const { title } = siteData;
+      const { title } = siteData;
 
-          sendEmail({
-            to,
-            subject: `Validez votre annonce sur ${title}`,
-            html: `<p>Bonjour</p><br />
+      await sendEmail({
+        to,
+        subject: `Validez votre annonce sur ${title}`,
+        html: `<p>Bonjour</p><br />
                 <p>Merci d'avoir créer votre annonce sur <i>${title}</i>&nbsp;!</p>
                 <p>Afin de la valider, veuillez cliquer sur le lien suivant :</p>
                 <p><a href="${linkURL}" target="_blank" rel="noopener noreferrer">Validez votre annonce !</a></p>
                 <p>Si vous n'êtes pas à l'origine de cette demande, vous pouvez ignorer cet e-mail.</p><br />
                 <p>Votre équipe <i>${title}</i></p>`,
-          });
-        }
-      );
+      });
+
+      // sign(
+      //   { id, email: fields.companyEmail },
+      //   secuEnv.secret,
+      //   { expiresIn: '1h' },
+      //   async (err, token) => {
+      //     if (err) {
+      //       return console.error(err);
+      //     }
+
+      //     // Send token via email
+      //     const to = fields.companyEmail;
+      //     const linkURL = `${hostLink}/validation?token=${token}`;
+
+      //     const { title } = siteData;
+
+      //     await sendEmail({
+      //       to,
+      //       subject: `Validez votre annonce sur ${title}`,
+      //       html: `<p>Bonjour</p><br />
+      //           <p>Merci d'avoir créer votre annonce sur <i>${title}</i>&nbsp;!</p>
+      //           <p>Afin de la valider, veuillez cliquer sur le lien suivant :</p>
+      //           <p><a href="${linkURL}" target="_blank" rel="noopener noreferrer">Validez votre annonce !</a></p>
+      //           <p>Si vous n'êtes pas à l'origine de cette demande, vous pouvez ignorer cet e-mail.</p><br />
+      //           <p>Votre équipe <i>${title}</i></p>`,
+      //     });
+      //   }
+      // );
 
       res.status(200).json({ message: 'success' });
     } catch (error) {
