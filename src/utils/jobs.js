@@ -38,7 +38,7 @@ const formatDate = (d) =>
     .replace(/heures?/, 'h')
     .replace(/jours?/, 'j')
     .replace('mois', 'mo')
-    .replace('quelques secondes', '1 m');
+    .replace(/quelques s.*/, '1 m');
 
 async function getAuthToken(scope) {
   const authUrl =
@@ -99,6 +99,7 @@ async function fetchJobs() {
       companyUrl: job.companyUrl || '',
       color: job.color || '',
       createdAt: formatDate(job.created),
+      date: dayjs(job.created).valueOf(),
       slug: slugify(job.title + '-' + job.id, { lower: true }).replace(/-\(?hf\)?/, ''),
     });
   });
@@ -145,6 +146,7 @@ async function fetchJobs() {
       source: origineOffre?.urlOrigine ? origineOffre.urlOrigine : '',
       companyUrl: entreprise?.url ? entreprise.url : '',
       createdAt: formatDate(dateCreation),
+      date: dayjs(dateCreation).valueOf(),
       slug: slugify(intitule + '-' + id, { lower: true }).replace(/-\(?hf\)?/, ''),
     };
 
@@ -160,7 +162,7 @@ async function fetchJobs() {
     jobs.push(newJob);
   });
 
-  return jobs;
+  return jobs.sort((a, b) => b.date - a.date);
 }
 
 // async function fetchGoodBoys() {
