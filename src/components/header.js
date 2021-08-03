@@ -11,9 +11,11 @@ export default function Header({ title }) {
         <Link className="title" href="/">
           {title}
         </Link>
-        <Link className="btn" href="/publier-annonce/" title="Entreprises / Publier une annonce">
-          Publier une annonce
-        </Link>
+        {!/\/publier-annonce\/?/.test(pathname) && (
+          <Link className="btn" href="/publier-annonce/" title="Entreprises / Publier une annonce">
+            Publier une annonce
+          </Link>
+        )}
       </div>
 
       <style jsx>{`
@@ -41,9 +43,6 @@ export default function Header({ title }) {
           text-decoration: none;
         }
         header .btn {
-          display: none;
-        }
-        header.home .btn {
           display: block;
           font-weight: 700;
           padding: 5px 15px;
@@ -51,6 +50,10 @@ export default function Header({ title }) {
           border: 1px solid;
           text-transform: uppercase;
           width: initial;
+          color: var(--black);
+        }
+        header.home .btn {
+          color: inherit;
         }
         header .btn:hover,
         header .btn:focus {
