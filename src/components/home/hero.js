@@ -10,7 +10,7 @@ export default function Hero() {
         <div className="overlay flex">
           <div className="bgContent">
             <h1>
-              Votre emploi digital en <span className="no-wrap">Outre-mer</span>
+              Votre emploi numérique en <span className="no-wrap">Outre-mer</span>
             </h1>
             <h2>
               Parcourez la liste des offres d’emploi sélectionnées pour vous avec soin, et trouvez
