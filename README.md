@@ -10,7 +10,7 @@ All changes in main branch are automatically deployed to the above URL.
 
 ## Code of Conduct
 
-- [Code of Conduct](.github/CODE_OF_CONDUCT.md)
+- [Code of Conduct](/CODE_OF_CONDUCT.md)
 
 ## Getting Started
 
