@@ -4,7 +4,6 @@ const siteData = {
   socials: {
     twitter: 'chrisservius',
     fb: '',
-    email: 'hello@example.com',
   },
 };
 
