@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import JobItem from '@components/jobItem';
-import { useMyState } from '@utils/publishState';
-import { logoText } from '@utils/tools';
+import { useMyState } from '@lib/publishState';
+import { logoText } from '@lib/tools';
 
 export default function Preview() {
   const { state } = useMyState();

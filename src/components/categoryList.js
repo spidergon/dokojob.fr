@@ -1,14 +1,12 @@
-import React from 'react';
+import { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { codeToLabel } from '@utils/constant';
+import { codeToLabel } from '@lib/constant';
 
 export default function CategoryList({ dark, items }) {
   return (
     <div className={`flex${dark ? ' dark' : ''}`}>
       {items.map((item, index) => (
-        <React.Fragment key={index}>
-          {item && <span title={codeToLabel[item]}>{item}</span>}
-        </React.Fragment>
+        <Fragment key={index}>{item && <span title={codeToLabel[item]}>{item}</span>}</Fragment>
       ))}
 
       <style jsx>{`

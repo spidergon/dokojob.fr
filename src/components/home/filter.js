@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import CheckBox from '@components/checkbox';
-import { locations, codeToLabel, contracts } from '@utils/constant';
+import { locations, codeToLabel, contracts } from '@lib/constant';
 
 function isChecked(selected) {
   return Object.values(selected).find((v) => v === true);

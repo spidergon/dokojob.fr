@@ -20,7 +20,7 @@ export default function Header({ title }) {
 
       <style jsx>{`
         header {
-          border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+          border-bottom: 1px solid var(--border-color);
         }
         .home {
           position: absolute;

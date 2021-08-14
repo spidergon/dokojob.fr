@@ -1,13 +1,14 @@
 {
   "name": "jobs",
-  "version": "0.1.0",
-  "description": "",
+  "version": "1.0.0",
+  "description": "Parcourez les offres d’emploi numérique en Guyane et en outre-mer",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint -o ./eslint_result.html -f html .",
+    "lint": "next lint",
+    "clint": "eslint -o ./eslint_result.html -f html .",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write ."
   },
@@ -32,12 +33,9 @@
     "uuid": "8.3.2"
   },
   "devDependencies": {
-    "babel-eslint": "10.1.0",
     "eslint": "7.32.0",
-    "eslint-config-alloy": "4.2.0",
     "eslint-config-next": "11.1.0",
-    "eslint-plugin-react": "7.24.0",
-    "eslint-plugin-react-hooks": "4.2.0",
+    "eslint-config-prettier": "8.3.0",
     "prettier": "2.3.2"
   },
   "repository": {

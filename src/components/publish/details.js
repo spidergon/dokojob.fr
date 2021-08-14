@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Description from './description';
 import FieldInput from './fieldInput';
 import Logo from './logo';
-import { useMyState } from '@utils/publishState';
+import { useMyState } from '@lib/publishState';
 
 export default function Details() {
   const { state, setState } = useMyState();

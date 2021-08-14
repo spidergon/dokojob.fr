@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import JobItem from '@components/jobItem';
 import Filter from './filter';
-import { scrollToAnchor } from '@utils/tools';
+import { scrollToAnchor } from '@lib/tools';
 
 const PER_PAGE = 30;
 

@@ -7,7 +7,7 @@ import Details from './details';
 import MainInfo from './mainInfo';
 import Options from './options';
 import Preview from './preview';
-import { useMyState } from '@utils/publishState';
+import { useMyState } from '@lib/publishState';
 import HomeLink from '@components/homeLink';
 import Page from '@components/page';
 // import { PRICE1, PRICE2, PRICE3, PRICE4 } from '@utils/constant';

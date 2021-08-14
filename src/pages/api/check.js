@@ -1,7 +1,7 @@
 import { verify } from 'jsonwebtoken';
-import { secuEnv } from '@utils/api/env';
-import { manageError } from '@utils/api/tools';
-import { updateJob } from '@utils/api/base';
+import { secuEnv } from '@lib/api/env';
+import { manageError } from '@lib/api/tools';
+import { updateJob } from '@lib/api/base';
 
 export default async function checkTokenApi(req, res) {
   if (!req.query.token) {

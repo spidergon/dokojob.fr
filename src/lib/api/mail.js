@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 import smtpTransport from 'nodemailer-smtp-transport';
 import { htmlToText } from 'html-to-text';
 import { mailEnv } from './env';
-import purify from '@utils/purify';
+import purify from '@lib/purify';
 
 const { host, port, user, pass, from } = mailEnv;
 

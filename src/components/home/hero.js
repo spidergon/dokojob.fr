@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { scrollToAnchor } from '@utils/tools';
+import { scrollToAnchor } from '@lib/tools';
 
 export default function Hero() {
   return (
@@ -13,8 +13,8 @@ export default function Hero() {
               Votre emploi numérique en <span className="no-wrap">Outre-mer</span>
             </h1>
             <h2>
-              Parcourez la liste des offres d’emploi sélectionnées pour vous avec soin, et trouvez
-              le job de vos rêves en <span className="no-wrap">Outre-mer&nbsp;!</span>
+              Parcourez les offres d’emploi sélectionnées pour vous avec soin, et trouvez le job de
+              vos rêves en <span className="no-wrap">Outre-mer&nbsp;!</span>
             </h2>
             <p>
               <Link href="/publier-annonce/">

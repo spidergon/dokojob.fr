@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
-import { useMyState } from '@utils/publishState';
-import purify from '@utils/purify';
+import { useMyState } from '@lib/publishState';
+import purify from '@lib/purify';
 import 'easymde/dist/easymde.min.css';
 
 const DynamicMDE = dynamic(() => import('react-simplemde-editor'), { ssr: false });

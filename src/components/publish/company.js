@@ -1,5 +1,5 @@
 import FieldInput from './fieldInput';
-import { useMyState } from '@utils/publishState';
+import { useMyState } from '@lib/publishState';
 
 export default function Company() {
   const { state, setState } = useMyState();
