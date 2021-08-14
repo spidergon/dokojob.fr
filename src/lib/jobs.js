@@ -211,7 +211,7 @@ export async function getJobs() {
 
       const fs = require('fs');
 
-      fs.writeFile('./src/utils/sampleJobs.json', JSON.stringify(jobs), 'utf8', (err) => {
+      fs.writeFile('./src/lib/sampleJobs.json', JSON.stringify(jobs), 'utf8', (err) => {
         if (err) console.error('Error writing sample data:', err);
       });
     }
