@@ -8,9 +8,19 @@ Companies can add their own job offers for free.
 
 All changes in main branch are automatically deployed to the above URL.
 
+## Screenshot
+
+![Screenshot](https://res.cloudinary.com/cserviusprod/image/upload/v1628968981/jobapp/screenshot.jpg)
+
 ## Code of Conduct
 
-- [Code of Conduct](.github/CODE_OF_CONDUCT.md)
+- [Code of Conduct](/CODE_OF_CONDUCT.md)
+
+## Stack
+
+- [Next.js](https://nextjs.org/) / [Vercel](https://vercel.com/)
+- [Airtable](https://airtable.com/)
+- [Cloudinary](https://cloudinary.com)
 
 ## Getting Started
 
