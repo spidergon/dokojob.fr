@@ -6,7 +6,7 @@ import Footer from '@components/footer';
 import siteData from '@utils/siteData';
 
 const google = 'https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap';
-const boxicons = 'https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css';
+// const boxicons = 'https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css';
 
 export default function Layout({ children, title }) {
   const { pathname } = useRouter();
@@ -32,16 +32,16 @@ export default function Layout({ children, title }) {
 
         {/* [2] */}
         <link as="style" href={google} rel="preload" />
-        <link as="style" href={boxicons} rel="preload" />
+        {/* <link as="style" href={boxicons} rel="preload" /> */}
 
         {/* [3] */}
         <link href={google} media="print" rel="stylesheet" onLoad="this.media='all'" />
-        <link href={boxicons} media="print" rel="stylesheet" onLoad="this.media='all'" />
+        {/* <link href={boxicons} media="print" rel="stylesheet" onLoad="this.media='all'" /> */}
 
         {/* [4] */}
         <noscript>
           <link href={google} rel="stylesheet" />
-          <link href={boxicons} rel="stylesheet" />
+          {/* <link href={boxicons} rel="stylesheet" /> */}
         </noscript>
 
         {/* <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&amp;display=swap" rel="stylesheet" /> */}

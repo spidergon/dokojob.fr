@@ -15,7 +15,7 @@ export default function Consent() {
       >
         <p>
           Vous acceptez nos{' '}
-          <Link blank noprefetch href="/mentions-legales#publier">
+          <Link blank noprefetch href="/mentions-legales#privacy">
             conditions générales d&rsquo;utilisation
           </Link>
         </p>

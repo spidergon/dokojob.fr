@@ -9,10 +9,18 @@ export default function Page({ children }) {
           margin-top: 2em;
         }
         .page h1 {
-          font-size: 20px;
+          font-size: 2rem;
+        }
+        .page h2 {
+          font-size: 1.25rem;
+          margin-top: 2em;
         }
         .page p {
           margin: 1em 0 0.5em;
+        }
+        .page ul {
+          margin: 1em 0;
+          padding-left: 2.5em;
         }
       `}</style>
     </div>
