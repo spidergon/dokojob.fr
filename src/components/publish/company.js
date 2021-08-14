@@ -7,7 +7,6 @@ export default function Company() {
   return (
     <div className="group">
       <h2>Vos informations</h2>
-
       {/* companyTwitter */}
       <FieldInput
         helperText="Identifiant Twitter sans '@'. Utilisé pour tagger votre entreprise quand nous posterons votre annonce sur Twitter"
@@ -17,7 +16,6 @@ export default function Company() {
         value={state.companyTwitter}
         onChange={setState}
       />
-
       {/* companyEmail */}
       <FieldInput
         required
@@ -29,7 +27,6 @@ export default function Company() {
         value={state.companyEmail}
         onChange={setState}
       />
-
       {/* companyUrl */}
       <FieldInput
         helperText="Site Internet de votre entreprise"
@@ -41,6 +38,21 @@ export default function Company() {
         value={state.companyUrl}
         onChange={setState}
       />
+      {/* Comment */}
+      <FieldInput
+        helperText="Votre commentaire est privé et ne sera pas visible sur votre annonce"
+        id="comment"
+        label="Commentaire"
+      >
+        <textarea
+          id="comment"
+          placeholder="Un commentaire, une suggestion ?"
+          rows="10"
+          style={{ border: '1px solid #ddd', borderRadius: '6px', padding: '0.5em' }}
+          value={state.comment}
+          onChange={({ target }) => setState(target.id, target.value)}
+        />
+      </FieldInput>
     </div>
   );
 }
