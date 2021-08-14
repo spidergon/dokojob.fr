@@ -77,7 +77,7 @@ export default function FieldInput({
         select {
           border: 1px solid #ddd;
           border-radius: 6px;
-          padding: 7px;
+          padding: 0.5em;
         }
         select {
           appearance: none;
