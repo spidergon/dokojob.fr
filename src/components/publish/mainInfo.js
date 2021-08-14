@@ -1,6 +1,6 @@
 import FieldInput from './fieldInput';
-import { contracts, locations } from '@utils/constant';
-import { useMyState } from '@utils/publishState';
+import { contracts, locations } from '@lib/constant';
+import { useMyState } from '@lib/publishState';
 
 export default function MainInfo() {
   const { state, setState } = useMyState();

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { codeToLabel } from '@utils/constant';
+import { codeToLabel } from '@lib/constant';
 
 export default function FieldInput({
   autoFocus,

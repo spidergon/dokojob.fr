@@ -1,6 +1,6 @@
 import Checkbox from '@components/checkbox';
 import Link from '@components/link';
-import { useMyState } from '@utils/publishState';
+import { useMyState } from '@lib/publishState';
 
 export default function Consent() {
   const { state, setState } = useMyState();

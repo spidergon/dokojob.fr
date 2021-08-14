@@ -3,8 +3,8 @@ import Image from 'next/image';
 import PropTypes from 'prop-types';
 import CategoryList from '@components/categoryList';
 import Link from '@components/link';
-import { codeToLabel } from '@utils/constant';
-import purify from '@utils/purify';
+import { codeToLabel } from '@lib/constant';
+import purify from '@lib/purify';
 
 export default function JobItem({ job, preview }) {
   const [dark, setDark] = useState(false);

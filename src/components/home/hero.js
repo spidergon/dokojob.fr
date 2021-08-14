@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { scrollToAnchor } from '@utils/tools';
+import { scrollToAnchor } from '@lib/tools';
 
 export default function Hero() {
   return (

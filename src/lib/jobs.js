@@ -2,8 +2,8 @@ import dayjs from 'dayjs';
 import fr from 'dayjs/locale/fr';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import slugify from 'slugify';
-import { logoText } from '@utils/tools';
-import { getJobs as getOwnJobs } from '@utils/api/base';
+import { logoText } from '@lib/tools';
+import { getJobs as getOwnJobs } from '@lib/api/base';
 
 dayjs.extend(relativeTime);
 dayjs.locale(fr);

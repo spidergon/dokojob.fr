@@ -1,10 +1,10 @@
 import { sign } from 'jsonwebtoken';
-import { emailPattern, PRICE1, PRICE2, PRICE3, PRICE4 } from '@utils/constant';
-import { createJob, getJobs } from '@utils/api/base';
-import { secuEnv } from '@utils/api/env';
-import { manageError } from '@utils/api/tools';
-import sendEmail from '@utils/api/mail';
-import siteData from '@utils/siteData';
+import { emailPattern, PRICE1, PRICE2, PRICE3, PRICE4 } from '@lib/constant';
+import { createJob, getJobs } from '@lib/api/base';
+import { secuEnv } from '@lib/api/env';
+import { manageError } from '@lib/api/tools';
+import sendEmail from '@lib/api/mail';
+import siteData from '@lib/siteData';
 
 export default async function jobsApi(req, res) {
   if (req.method === 'GET') {

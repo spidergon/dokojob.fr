@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useMyState } from '@utils/publishState';
-import compress from '@utils/compress';
+import { useMyState } from '@lib/publishState';
+import compress from '@lib/compress';
 
 export default function Logo() {
   const { state, setState } = useMyState();
