@@ -1,7 +1,7 @@
 {
   "name": "jobs",
-  "version": "0.1.0",
-  "description": "",
+  "version": "1.0.0",
+  "description": "Parcourez les offres d’emploi numérique en Guyane et en outre-mer",
   "private": true,
   "scripts": {
     "dev": "next dev",
