@@ -1,10 +1,15 @@
 import PropTypes from 'prop-types';
 import Link from '@components/link';
 
-export default function Footer({ socials, title }) {
+export default function Footer({ socials }) {
   return (
     <footer>
-      <div className="wrapper flex">
+      <div className="container flex">
+        <div>
+          <Link href="/publier-annonce/">Publier</Link>
+          {' | '}
+          <Link href="/mentions-legales/">Mentions légales</Link>
+        </div>
         <div className="socialLinks flex">
           <Link blank href={`https://twitter.com/${socials.twitter}`}>
             <svg
@@ -27,16 +32,10 @@ export default function Footer({ socials, title }) {
             </svg>
           </Link>
         </div>
-        <div>
-          <Link href="/publier-annonce/">Publier</Link>
-          {' | '}
-          <Link href="/mentions-legales/">Mentions légales</Link>
-        </div>
-        <div>
+        <div className="copy">
           <p>
-            © {new Date().getFullYear()} <Link href="/">{title}</Link>
-            {' - '}
-            Fait avec
+            © {new Date().getFullYear()}
+            {' - '}Fait avec
             <svg
               aria-hidden="true"
               className="love"
@@ -55,13 +54,13 @@ export default function Footer({ socials, title }) {
         footer {
           margin-top: 3em;
           padding: 1.5em 0;
-          border-top: solid 1px rgba(151, 151, 151, 0.2);
+          border-top: solid 1px var(--border-color);
         }
         svg {
           height: 1em;
           width: 1em;
         }
-        .wrapper {
+        .container {
           flex-direction: column;
           align-items: center;
           gap: 1em;
@@ -71,17 +70,24 @@ export default function Footer({ socials, title }) {
           vertical-align: sub;
           margin: 0 5px;
         }
+        @media (min-width: 768px) {
+          .container {
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0 1em;
+          }
+        }
       `}</style>
 
       <style global jsx>{`
-        a {
+        footer a {
           color: var(--black);
         }
-        a:hover svg,
-        a:focus svg {
+        footer a:hover svg,
+        footer a:focus svg {
           fill: rgb(44, 56, 126);
         }
-        .socialLinks a {
+        footer .socialLinks a {
           display: flex;
           padding: 0.5em;
         }
@@ -92,5 +98,4 @@ export default function Footer({ socials, title }) {
 
 Footer.propTypes = {
   socials: PropTypes.object.isRequired,
-  title: PropTypes.string.isRequired,
 };

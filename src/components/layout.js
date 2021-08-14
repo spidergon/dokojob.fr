@@ -79,7 +79,7 @@ export default function Layout({ children, title }) {
 
       <main>{children}</main>
 
-      <Footer socials={siteData.socials} title={siteData.title} />
+      <Footer socials={siteData.socials} />
     </>
   );
 }
