@@ -1,10 +1,24 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 import CategoryList from '@components/categoryList';
 import Link from '@components/link';
 import { codeToLabel } from '@lib/constant';
 import purify from '@lib/purify';
+
+const MyImage = memo(function MyComponent({ alt, src }) {
+  return <Image alt={alt} height={64} objectFit="contain" src={src} width={64} />;
+});
+
+const MyContent = memo(function MyComponent({ description }) {
+  return (
+    <p
+      dangerouslySetInnerHTML={{
+        __html: purify(description.replace(/(?:\r\n|\r|\n)/g, '<br>')),
+      }}
+    />
+  );
+});
 
 export default function JobItem({ job, preview }) {
   const [dark, setDark] = useState(false);
@@ -32,15 +46,7 @@ export default function JobItem({ job, preview }) {
         <div className="logo-content">
           {(job.logo && (
             <>
-              {!preview && (
-                <Image
-                  alt={job.companyName}
-                  height={64}
-                  objectFit="contain"
-                  src={job.logo}
-                  width={64}
-                />
-              )}
+              {!preview && <MyImage alt={job.companyName} src={job.logo} />}
               {/* eslint-disable @next/next/no-img-element */}
               {preview && <img alt="" src={job.logo} />}
             </>
@@ -48,12 +54,7 @@ export default function JobItem({ job, preview }) {
         </div>
         <div className="job-content">
           <p>{job.companyName}</p>
-          <h3>
-            {/* <Link href="/" style={{ color: dark ? '#fff' : 'var(--black)' }}>
-              {job.title}
-            </Link> */}
-            {job.title}
-          </h3>
+          <h3>{job.title}</h3>
           <CategoryList dark={dark} items={[job.location, job.contract]} />
         </div>
         <div className="job-date">
@@ -62,11 +63,7 @@ export default function JobItem({ job, preview }) {
       </summary>
 
       <div className="content">
-        <p
-          dangerouslySetInnerHTML={{
-            __html: purify(job.description.replace(/(?:\r\n|\r|\n)/g, '<br>')),
-          }}
-        />
+        <MyContent description={job.description} />
         <div
           style={{
             width: '50px',
