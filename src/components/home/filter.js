@@ -137,6 +137,7 @@ export default function Filter({ allJobs, jobs, setJobs }) {
         }
         .filterBtn {
           position: absolute;
+          align-items: center;
           right: 0;
           top: 0;
           gap: 0.5em;

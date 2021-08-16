@@ -24,10 +24,19 @@ export default function Link({ blank, children, href, noprefetch, ...other }) {
   const internal = /^\/(?!\/)/.test(href);
 
   // Use NextJs Link for internal links, and <a> for others
-  if (internal) {
+  if (internal && !blank) {
     const file = /\.[0-9a-z]+$/i.test(href);
 
-    if (file || noprefetch) return A;
+    // if (file || noprefetch) return A;
+    if (file) return A;
+
+    if (noprefetch) {
+      return (
+        <NextLink href={href} prefetch={false}>
+          <a {...other}>{children}</a>
+        </NextLink>
+      );
+    }
 
     return (
       <NextLink href={href}>
