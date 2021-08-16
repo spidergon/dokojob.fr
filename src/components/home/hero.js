@@ -1,12 +1,12 @@
 import Image from 'next/image';
-// import Link from '@components/link';
+import HeroImg from 'public/img/hero.webp';
 import { scrollToAnchor } from '@lib/tools';
 
 export default function Hero() {
   return (
     <section>
       <div className="bgWrap">
-        <Image alt="" layout="fill" objectFit="cover" quality={100} src="/img/hero.webp" />
+        <Image alt="" layout="fill" objectFit="cover" placeholder="blur" src={HeroImg} />
         <div className="overlay flex">
           <div className="bgContent">
             <h1>
