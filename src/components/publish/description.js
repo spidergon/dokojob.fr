@@ -1,10 +1,15 @@
-import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
+import dynamic from 'next/dynamic';
 import { useMyState } from '@lib/publishState';
 import purify from '@lib/purify';
 import 'easymde/dist/easymde.min.css';
 
-const DynamicMDE = dynamic(() => import('react-simplemde-editor'), { ssr: false });
+const SimpleMde = dynamic(() => import('react-simplemde-editor'), {
+  loading() {
+    return <p>Chargement...</p>;
+  },
+  ssr: false,
+});
 
 export default function Description() {
   const { state, setState } = useMyState();
@@ -57,7 +62,7 @@ export default function Description() {
   }, []);
 
   return (
-    <DynamicMDE
+    <SimpleMde
       // getCodemirrorInstance={getCmInstanceCallback}
       // getMdeInstance={getMdeInstanceCallback}
       options={options}

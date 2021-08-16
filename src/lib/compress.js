@@ -1,10 +1,13 @@
 async function compress(file) {
-  if (typeof window === 'undefined') return; // Server side rendering check
-  const imageCompression = require('browser-image-compression').default;
+  // if (typeof window === 'undefined') return; // Server side rendering check
+  // const imageCompression = require('browser-image-compression').default;
+  const imageCompression = (await import('browser-image-compression')).default;
+
   const compressedFile = await imageCompression(file, {
     maxSizeMB: 1,
     maxWidthOrHeight: 64,
   });
+
   const raw = await imageCompression.getDataUrlFromFile(compressedFile); // value to save into cloud
 
   console.log(`File: ${compressedFile.name}`);
