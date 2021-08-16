@@ -1,14 +1,25 @@
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import Link from '@components/link';
 
 export default function Footer({ socials }) {
+  const { pathname } = useRouter();
+
   return (
     <footer>
       <div className="container flex">
         <div>
-          <Link href="/publier-annonce/">Publier</Link>
+          {(!/\/publier-annonce\/?/.test(pathname) && (
+            <Link noprefetch href="/publier-annonce/">
+              Publier
+            </Link>
+          )) || <strong>Publier</strong>}
           {' | '}
-          <Link href="/mentions-legales/">Mentions légales</Link>
+          {(!/\/mentions-legales\/?/.test(pathname) && (
+            <Link noprefetch href="/mentions-legales/">
+              Mentions légales
+            </Link>
+          )) || <strong>Mentions légales</strong>}
         </div>
         <div className="socialLinks flex">
           <Link blank href={`https://twitter.com/${socials.twitter}`}>

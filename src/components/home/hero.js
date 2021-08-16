@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+// import Link from '@components/link';
 import { scrollToAnchor } from '@lib/tools';
 
 export default function Hero() {
@@ -16,14 +16,12 @@ export default function Hero() {
               Parcourez les offres d’emploi sélectionnées pour vous avec soin, et trouvez le job de
               vos rêves en <span className="no-wrap">Outre-mer&nbsp;!</span>
             </h2>
-            <p>
-              <Link href="/publier-annonce/">
-                <a>
-                  <strong>Entreprises : Publiez votre annonce</strong>
-                </a>
+            {/* <p>
+              <Link noprefetch href="/publier-annonce/">
+                <strong>Entreprises : Publiez votre annonce</strong>
               </Link>{' '}
               et trouvez votre prochain talent. C’est gratuit&nbsp;!
-            </p>
+            </p> */}
           </div>
         </div>
         <div className="scrollBtnWrap">
@@ -76,10 +74,6 @@ export default function Hero() {
         }
         p {
           letter-spacing: 0.00938em;
-        }
-        a {
-          text-decoration: underline;
-          color: inherit;
         }
         .scrollBtnWrap {
           position: absolute;

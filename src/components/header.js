@@ -8,11 +8,16 @@ export default function Header({ title }) {
   return (
     <header className={pathname === '/' ? 'home' : ''}>
       <div className="wrapper flex">
-        <Link className="title" href="/">
+        <Link noprefetch className="title" href="/">
           {title}
         </Link>
         {!/\/publier-annonce\/?/.test(pathname) && (
-          <Link className="btn" href="/publier-annonce/" title="Entreprises / Publier une annonce">
+          <Link
+            noprefetch
+            className="btn"
+            href="/publier-annonce/"
+            title="Entreprises / Publier une annonce"
+          >
             Publier une annonce
           </Link>
         )}

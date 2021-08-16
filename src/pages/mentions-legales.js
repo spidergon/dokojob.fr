@@ -45,11 +45,11 @@ export default function LegalPage() {
           En vertu de la loi Informatique et Libertés, en date du 6 janvier 1978, l’Utilisateur
           dispose d’un droit d’accès, de rectification, de suppression et d’opposition de ses
           données personnelles. L’Utilisateur exerce ce droit :
-          <ul>
-            <li>par e-mail à l’adresse contact@{siteName}</li>
-            <li>via le formulaire de contact</li>
-          </ul>
         </p>
+        <ul>
+          <li>par e-mail à l’adresse contact@{siteName}</li>
+          <li>via le formulaire de contact</li>
+        </ul>
         <h2>Article 5 : Cookies</h2>
         <p>
           Un cookie est un élément qui ne permet pas d’identifier l’Utilisateur, mais sert à
