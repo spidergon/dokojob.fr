@@ -61,14 +61,15 @@ export default function Layout({ children, title }) {
 
         {/* Open Graph */}
         <meta content={title} property="og:title" />
+        <meta content="website" property="og:type" />
+        <meta content="/logo.svg" property="og:image" />
+        <meta content={pathname} property="og:url" />
         <meta content={siteData.title} property="og:site_name" />
         <meta content={siteData.description} property="og:description" />
-        <meta content={pathname} property="og:url" />
-        <meta content="/logo.svg" property="og:image" />
 
-        {/* Twitter */}
-        <meta content={`@${siteData.socials.twitter}`} name="twitter:site" />
+        {/* Twitter Card */}
         <meta content="summary" name="twitter:card" />
+        <meta content={`@${siteData.socials.twitter}`} name="twitter:site" />
 
         <title>
           {title} | {siteData.title}

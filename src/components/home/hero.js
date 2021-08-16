@@ -26,13 +26,12 @@ export default function Hero() {
             </p>
           </div>
         </div>
-        <div
-          className="scrollBtnWrap"
-          onClick={() => {
-            scrollToAnchor();
-          }}
-        >
-          <button className="scrollBtn flex">
+        <div className="scrollBtnWrap">
+          <button
+            aria-label="Scroller vers le bas"
+            className="scrollBtn flex"
+            onClick={scrollToAnchor}
+          >
             <svg
               aria-hidden="true"
               fill="#fff"

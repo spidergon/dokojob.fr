@@ -1,8 +1,15 @@
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import Description from './description';
 import FieldInput from './fieldInput';
-import Logo from './logo';
 import { useMyState } from '@lib/publishState';
+
+const Logo = dynamic(() => import('./logo'), {
+  loading() {
+    return <p>Chargement...</p>;
+  },
+  ssr: false,
+});
 
 export default function Details() {
   const { state, setState } = useMyState();
