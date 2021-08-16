@@ -6,8 +6,6 @@ import { logoText } from '@lib/tools';
 export default function Preview() {
   const { state } = useMyState();
 
-  // console.log('Preview rendered');
-
   const memoizedLogoText = useMemo(
     () => logoText(state.companyName || 'Entreprise'),
     [state.companyName]
