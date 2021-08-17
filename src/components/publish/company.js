@@ -38,21 +38,6 @@ export default function Company() {
         value={state.companyUrl}
         onChange={setState}
       />
-      {/* Comment */}
-      <FieldInput
-        helperText="Votre commentaire est privé et ne sera pas visible sur votre annonce"
-        id="comment"
-        label="Commentaire"
-      >
-        <textarea
-          id="comment"
-          placeholder="Un commentaire, une suggestion ?"
-          rows="10"
-          style={{ border: '1px solid #ddd', borderRadius: '6px', padding: '0.5em' }}
-          value={state.comment}
-          onChange={({ target }) => setState(target.id, target.value)}
-        />
-      </FieldInput>
     </div>
   );
 }
