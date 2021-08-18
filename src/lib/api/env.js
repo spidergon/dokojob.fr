@@ -10,7 +10,10 @@ export const cloudinaryEnv = {
 
 export const secuEnv = {
   secret: process.env.SECRET,
+  runSecret: process.env.RUN_SECRET,
 };
+
+export const REDIS_URL = process.env.REDIS_URL;
 
 export const mailEnv = {
   host: process.env.MAIL_HOST,

@@ -1,7 +1,7 @@
 import { getJob, updateJob } from '@lib/api/base';
 import { manageError } from '@lib/api/tools';
 
-export default async function jobByIdApi(req, res) {
+export default async function handler(req, res) {
   try {
     if (!req.query.id) {
       return manageError({
