@@ -1,20 +1,30 @@
 import { useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
+import useSWR from 'swr';
 import JobItem from '@components/jobItem';
 import Filter from './filter';
 import { scrollToAnchor } from '@lib/tools';
 
 const PER_PAGE = 30;
 
-export default function Jobs({ data }) {
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+export default function Jobs() {
   const [jobs, setJobs] = useState([]);
   const [step, setStep] = useState(0);
   const [pages, setPages] = useState(1);
+  const [loading, setLoading] = useState(true);
+
+  const { data, error } = useSWR('/api/jobs', fetcher);
 
   const canScroll = useRef(false);
 
   useEffect(() => {
-    setJobs(data);
+    if (data?.jobs) {
+      setJobs(data.jobs);
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
   }, [data]);
 
   useEffect(() => {
@@ -29,10 +39,13 @@ export default function Jobs({ data }) {
     }
   }, [step]);
 
+  if (error) return <div>Erreur de chargement !</div>;
+  if (loading) return <div>Chargement...</div>;
+
   return (
     <section id="top-anchor">
       <div className="container">
-        <Filter allJobs={data} jobs={jobs} setJobs={setJobs} />
+        <Filter allJobs={data.jobs} jobs={jobs} setJobs={setJobs} />
         {step > 0 && (
           <button
             style={{ marginBottom: '2em', padding: 'initial' }}
@@ -122,7 +135,3 @@ export default function Jobs({ data }) {
     </section>
   );
 }
-
-Jobs.propTypes = {
-  data: PropTypes.array.isRequired,
-};

@@ -19,6 +19,7 @@
     "dayjs": "1.10.6",
     "easymde": "2.15.0",
     "html-to-text": "8.0.0",
+    "ioredis": "4.27.7",
     "isomorphic-dompurify": "0.15.0",
     "js-cookie": "3.0.0",
     "jsonwebtoken": "8.5.1",

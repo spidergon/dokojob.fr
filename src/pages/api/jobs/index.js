@@ -1,32 +1,21 @@
 import { sign } from 'jsonwebtoken';
 import { emailPattern, PRICE1, PRICE2, PRICE3, PRICE4 } from '@lib/constant';
-import { createJob, getJobs } from '@lib/api/base';
+import { createJob } from '@lib/api/base';
 import { secuEnv } from '@lib/api/env';
 import { manageError } from '@lib/api/tools';
 import sendEmail from '@lib/api/mail';
+import redis from '@lib/api/redis';
 import siteData from '@lib/siteData';
 
-export default async function jobsApi(req, res) {
+export default async function handler(req, res) {
   if (req.method === 'GET') {
-    // if (req.query.token) {
-    //   try {
-    //     const { email } = verify(req.query.token, secuEnv.secret);
-
-    //     const jobs = await getJobsByEmail(email);
-
-    //     res.status(200).json({ jobs });
-    //   } catch (error) {
-    //     manageError({ res, message: 'Invalid request', error });
-    //   }
-    // } else {
     try {
-      const jobs = await getJobs();
+      const jobs = JSON.parse(await redis.get('jobs'));
 
       res.status(200).json({ jobs });
     } catch (error) {
       manageError({ res, status: 500, message: 'Internal error', error });
     }
-    // }
   } else if (req.method === 'POST') {
     const { body } = req;
 

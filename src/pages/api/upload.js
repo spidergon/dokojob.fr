@@ -1,7 +1,7 @@
 import { cloudinaryEnv } from '@lib/api/env';
 import { manageError } from '@lib/api/tools';
 
-export default async function uploadApi(req, res) {
+export default async function handler(req, res) {
   if (req.method !== 'POST' || !req?.body?.file) {
     return manageError({
       res,
