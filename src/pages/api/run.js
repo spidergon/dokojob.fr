@@ -25,7 +25,7 @@ export default async function handler(req, res) {
 
     const jobs = await getJobs();
 
-    await redis.set('jobs', JSON.stringify(jobs));
+    await redis.setJobs(jobs);
 
     res.status(200).json({ success: 'true' });
   } catch (error) {
