@@ -10,9 +10,9 @@ import siteData from '@lib/siteData';
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
-      const jobs = JSON.parse(await redis.get('jobs'));
+      const jobs = await redis.getJobs();
 
-      res.status(200).json({ jobs });
+      res.status(200).json(JSON.parse(jobs) || { jobs: [] });
     } catch (error) {
       manageError({ res, status: 500, message: 'Internal error', error });
     }

@@ -13,7 +13,10 @@ export const secuEnv = {
   runSecret: process.env.RUN_SECRET,
 };
 
-export const REDIS_URL = process.env.REDIS_URL;
+export const redisEnv = {
+  url: process.env.REDIS_URL,
+  key: process.env.REDIS_KEY || 'jobs_dev',
+};
 
 export const mailEnv = {
   host: process.env.MAIL_HOST,
