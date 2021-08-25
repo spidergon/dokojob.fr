@@ -24,9 +24,8 @@ export default function LegalPage() {
         </p>
         <h2>Article 2 : L’hébergeur</h2>
         <p>
-          L’hébergeur du site {siteName} est la Société o2switch, dont le siège social est situé au
-          222-224 Boulevard Gustave Flaubert 63000 Clermont-Ferrand, avec le numéro de téléphone :
-          04 44 44 60 40.
+          L’hébergeur du site {siteName} est la Société Vercel Inc., dont le siège social est situé
+          au 340 S Lemon Ave #4133, Walnut, CA 91789.
         </p>
         <h2>Article 3 : Accès au site</h2>
         <p>
