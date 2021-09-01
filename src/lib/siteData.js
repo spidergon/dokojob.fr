@@ -1,10 +1,8 @@
 const siteData = {
   title: 'Jobs',
   description: 'Votre emploi digital en Guyane et en Outre-mer.',
-  socials: {
-    twitter: 'chrisservius',
-    fb: '',
-  },
+  email: 'contact@cservius.com',
+  twitter: 'chrisservius',
 };
 
 export default siteData;

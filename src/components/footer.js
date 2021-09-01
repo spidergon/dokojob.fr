@@ -13,13 +13,19 @@ export default function Footer({ socials }) {
             <Link noprefetch href="/publier-annonce/">
               Publier
             </Link>
-          )) || <strong>Publier</strong>}
+          )) || <b>Publier</b>}
+          {' | '}
+          {(!/\/contact\/?/.test(pathname) && (
+            <Link noprefetch href="/contact/">
+              Contact
+            </Link>
+          )) || <b>Contact</b>}
           {' | '}
           {(!/\/mentions-legales\/?/.test(pathname) && (
             <Link noprefetch href="/mentions-legales/">
               Mentions légales
             </Link>
-          )) || <strong>Mentions légales</strong>}
+          )) || <b>Mentions légales</b>}
         </div>
         <div className="socialLinks flex">
           <Link blank href={`https://twitter.com/${socials.twitter}`}>

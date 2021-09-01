@@ -69,7 +69,7 @@ export default function Layout({ children, title }) {
 
         {/* Twitter Card */}
         <meta content="summary" name="twitter:card" />
-        <meta content={`@${siteData.socials.twitter}`} name="twitter:site" />
+        <meta content={`@${siteData.twitter}`} name="twitter:site" />
 
         <title>
           {title} | {siteData.title}
@@ -80,7 +80,7 @@ export default function Layout({ children, title }) {
 
       <main>{children}</main>
 
-      <Footer socials={siteData.socials} />
+      <Footer socials={{ twitter: siteData.twitter }} />
     </>
   );
 }

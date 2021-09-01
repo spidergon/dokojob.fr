@@ -1,7 +1,8 @@
 import Layout from '@components/layout';
 import Page from '@components/page';
+import siteData from '@lib/siteData';
 
-const siteName = 'jobs.com';
+const { title, email } = siteData;
 
 export default function LegalPage() {
   return (
@@ -11,28 +12,28 @@ export default function LegalPage() {
         <p>
           Conformément aux dispositions des Articles 6-III et 19 de la Loi n°2004-575 du 21 juin
           2004 pour la Confiance dans l’économie numérique, dite L.C.E.N., il est porté à la
-          connaissance des Utilisateurs du site {siteName} les présentes mentions légales. La
-          connexion et la navigation sur le site ({siteName}) par l’Utilisateur implique acceptation
-          intégrale et sans réserve des présentes mentions légales. Ces dernières sont accessibles
-          sur le site à la rubrique « Mentions légales ».
+          connaissance des Utilisateurs du site {title} les présentes mentions légales. La connexion
+          et la navigation sur le site ({title}) par l’Utilisateur implique acceptation intégrale et
+          sans réserve des présentes mentions légales. Ces dernières sont accessibles sur le site à
+          la rubrique « Mentions légales ».
         </p>
         <h2>Article 1 : L’éditeur</h2>
         <p>
-          L’édition du site {siteName} est assurée par la Société (micro entreprise) sous le numéro
-          522948256 dont le siège social est situé à Cayenne, adresse e-mail : contact@{siteName}.
-          Le Directeur de la publication est Christopher SERVIUS.
+          L’édition du site {title} est assurée par la Société (micro entreprise) sous le numéro
+          522948256 dont le siège social est situé à Cayenne, adresse e-mail : {email}. Le Directeur
+          de la publication est Christopher SERVIUS.
         </p>
         <h2>Article 2 : L’hébergeur</h2>
         <p>
-          L’hébergeur du site {siteName} est la Société Vercel Inc., dont le siège social est situé
-          au 340 S Lemon Ave #4133, Walnut, CA 91789.
+          L’hébergeur du site {title} est la Société Vercel Inc., dont le siège social est situé au
+          340 S Lemon Ave #4133, Walnut, CA 91789.
         </p>
         <h2>Article 3 : Accès au site</h2>
         <p>
           Le site est accessible par tout endroit, 7j/7, 24h/24 sauf cas de force majeure,
           interruption programmée ou non et pouvant découlant d’une nécessité de maintenance. En cas
-          de modification, interruption ou suspension des services, le site {siteName} ne saurait
-          être tenu responsable.
+          de modification, interruption ou suspension des services, le site {title} ne saurait être
+          tenu responsable.
         </p>
         <h2 id="privacy">Article 4 : Collecte des données</h2>
         <p>
@@ -46,7 +47,7 @@ export default function LegalPage() {
           données personnelles. L’Utilisateur exerce ce droit :
         </p>
         <ul>
-          <li>par e-mail à l’adresse contact@{siteName}</li>
+          <li>par e-mail à l’adresse {email}</li>
         </ul>
         <h2>Article 5 : Cookies</h2>
         <p>
@@ -58,7 +59,7 @@ export default function LegalPage() {
         <h2>Article 6 : Propriété intellectuelle</h2>
         <p>
           Toute utilisation, reproduction, diffusion, commercialisation, modification de toute ou
-          partie du site {siteName}, sans autorisation de l’Éditeur est prohibée et pourra entraîner
+          partie du site {title}, sans autorisation de l’Éditeur est prohibée et pourra entraîner
           des actions et poursuites judiciaires telles que notamment prévues par le Code de la
           propriété intellectuelle et le Code civil.
         </p>
