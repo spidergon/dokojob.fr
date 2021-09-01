@@ -47,7 +47,6 @@ export default function LegalPage() {
         </p>
         <ul>
           <li>par e-mail à l’adresse contact@{siteName}</li>
-          <li>via le formulaire de contact</li>
         </ul>
         <h2>Article 5 : Cookies</h2>
         <p>
