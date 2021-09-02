@@ -20,7 +20,7 @@ const MyContent = memo(function MyComponent({ description }) {
   );
 });
 
-export default function JobItem({ job, preview }) {
+export default function JobItem({ job, open, preview }) {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function JobItem({ job, preview }) {
   }, [job.color]);
 
   return (
-    <details>
+    <details open={open}>
       <summary
         className={`flex${dark ? ' dark' : ''}`}
         style={{ background: job.color || 'var(--white)' }}
@@ -156,5 +156,6 @@ export default function JobItem({ job, preview }) {
 
 JobItem.propTypes = {
   job: PropTypes.object.isRequired,
+  open: PropTypes.bool,
   preview: PropTypes.bool,
 };
