@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import HomeLink from '@components/homeLink';
 import JobItem from '@components/jobItem';
+import JobSkeleton from '@components/jobSkeleton';
 import Layout from '@components/layout';
-import Page from '@components/page';
 
 export default function Job() {
   const [job, setJob] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [title, setTitle] = useState('');
 
   const { isReady, query } = useRouter();
 
@@ -29,6 +30,7 @@ export default function Job() {
           if (!job.title) return manageError();
 
           setJob(job);
+          setTitle(`${job.title} - ${job.companyName}`);
           setLoading(false);
         })
         .catch((err) => {
@@ -38,9 +40,9 @@ export default function Job() {
   }, [isReady, query.id]);
 
   return (
-    <Layout title={`${job.title} - ${job.companyName}` || 'Votre emploi'}>
-      <Page>
-        {loading && <p>Chargement...</p>}
+    <Layout title={title || 'Votre emploi'}>
+      <div className="container" style={{ marginTop: '2em' }}>
+        {loading && <JobSkeleton />}
         {error && (
           <>
             <p>
@@ -53,7 +55,7 @@ export default function Job() {
           </>
         )}
         {job.title && <JobItem open job={job} />}
-      </Page>
+      </div>
     </Layout>
   );
 }
