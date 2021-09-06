@@ -54,7 +54,14 @@ export default function JobItem({ job, open, preview }) {
         </div>
         <div className="job-content">
           <p>{job.companyName}</p>
-          <h3>{job.title}</h3>
+          <h3>
+            {job.title}&nbsp;
+            {!open && (
+              <Link noprefetch href={`/job/${job.slug}`} title="Voir page">
+                {'⬈'}
+              </Link>
+            )}
+          </h3>
           <CategoryList dark={dark} items={[job.location, job.contract]} />
         </div>
         <div className="job-date">
@@ -147,6 +154,17 @@ export default function JobItem({ job, open, preview }) {
           }
           .action .btn {
             width: initial;
+          }
+        }
+      `}</style>
+
+      <style global jsx>{`
+        @media (min-width: 481px) {
+          .job-content a {
+            display: none;
+          }
+          .job-content:hover a {
+            display: inline-block;
           }
         }
       `}</style>
