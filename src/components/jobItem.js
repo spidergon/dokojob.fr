@@ -56,7 +56,7 @@ export default function JobItem({ job, open, preview }) {
           <p>{job.companyName}</p>
           <h3>
             {job.title}&nbsp;
-            {!open && (
+            {!open && !preview && (
               <Link noprefetch href={`/job/${job.slug}`} title="Voir page">
                 &#10132;
               </Link>
