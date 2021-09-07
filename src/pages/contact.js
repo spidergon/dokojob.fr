@@ -7,9 +7,9 @@ export default function Contact() {
   return (
     <Layout title="Contact">
       <Page>
-        <h1>Contactez-nous !</h1>
-        <p>Vous souhaitez nous laisser un commentaire, une remarque ?</p>
-        <p>Ou nous contacter pour toute autre demande ?</p>
+        <h1>Contactez-nous&nbsp;!</h1>
+        <p>Vous souhaitez nous laisser un commentaire, une remarque&nbsp;?</p>
+        <p>Ou nous contacter pour toute autre demande&nbsp;?</p>
         <p>
           Vous pouvez nous écrire sur{' '}
           <Link blank href={`https://twitter.com/${siteData.twitter}`}>
