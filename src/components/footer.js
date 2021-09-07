@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import Link from '@components/link';
 
-export default function Footer({ socials }) {
+export default function Footer({ socials, title }) {
   const { pathname } = useRouter();
 
   return (
@@ -54,6 +54,9 @@ export default function Footer({ socials }) {
         </div>
         <div className="copy">
           <p>
+            <Link noprefetch href="/">
+              <i>{title}</i>
+            </Link>{' '}
             © {new Date().getFullYear()}
             {' - '}Fait avec
             <svg aria-hidden="true" className="love" viewBox="0 0 24 24">
@@ -114,4 +117,5 @@ export default function Footer({ socials }) {
 
 Footer.propTypes = {
   socials: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
 };

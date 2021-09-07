@@ -9,7 +9,7 @@ export default function Header({ title }) {
     <header className={pathname === '/' ? 'home' : ''}>
       <div className="wrapper flex">
         <Link noprefetch className="title" href="/">
-          {title}
+          <i>{title}</i>
         </Link>
         {!/\/publier-annonce\/?/.test(pathname) && (
           <Link

@@ -80,7 +80,7 @@ export default function Layout({ children, title }) {
 
       <main>{children}</main>
 
-      <Footer socials={{ twitter: siteData.twitter }} />
+      <Footer socials={{ twitter: siteData.twitter }} title={siteData.title} />
     </>
   );
 }
