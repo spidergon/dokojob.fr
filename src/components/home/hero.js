@@ -22,24 +22,24 @@ export default function Hero() {
               </Link>{' '}
               et trouvez votre prochain talent. C’est gratuit&nbsp;!
             </p> */}
+            <div className="scrollBtnWrap">
+              <button
+                aria-label="Scroller vers le bas"
+                className="scrollBtn flex"
+                onClick={scrollToAnchor}
+              >
+                <svg
+                  aria-hidden="true"
+                  fill="#fff"
+                  focusable="false"
+                  style={{ width: '1em', height: '1em' }}
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
-        <div className="scrollBtnWrap">
-          <button
-            aria-label="Scroller vers le bas"
-            className="scrollBtn flex"
-            onClick={scrollToAnchor}
-          >
-            <svg
-              aria-hidden="true"
-              fill="#fff"
-              focusable="false"
-              style={{ width: '1em', height: '1em' }}
-              viewBox="0 0 24 24"
-            >
-              <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
-            </svg>
-          </button>
         </div>
       </div>
 
@@ -79,7 +79,6 @@ export default function Hero() {
           position: absolute;
           left: 50%;
           transform: translateX(-50%);
-          bottom: 1em;
         }
         .scrollBtn {
           font-size: 1.5rem;

@@ -18,7 +18,7 @@ export default function Header({ title }) {
             href="/publier-annonce/"
             title="Entreprises / Publier une annonce"
           >
-            Publier une annonce
+            Publier<span> une annonce</span>
           </Link>
         )}
       </div>
@@ -57,12 +57,20 @@ export default function Header({ title }) {
           width: initial;
           color: var(--black);
         }
+        header .btn span {
+          display: none;
+        }
         header.home .btn {
           color: inherit;
         }
         header .btn:hover,
         header .btn:focus {
           background-color: rgba(0, 0, 0, 0.3);
+        }
+        @media (min-width: 481px) {
+          header .btn span {
+            display: inline;
+          }
         }
       `}</style>
     </header>

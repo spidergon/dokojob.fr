@@ -58,7 +58,7 @@ export default function JobItem({ job, open, preview }) {
             {job.title}&nbsp;
             {!open && (
               <Link noprefetch href={`/job/${job.slug}`} title="Voir page">
-                {'⬈'}
+                &#10132;
               </Link>
             )}
           </h3>
@@ -159,13 +159,11 @@ export default function JobItem({ job, open, preview }) {
       `}</style>
 
       <style global jsx>{`
-        @media (min-width: 481px) {
-          .job-content a {
-            display: none;
-          }
-          .job-content:hover a {
-            display: inline-block;
-          }
+        .job-content a {
+          display: none;
+        }
+        .job-content:hover a {
+          display: inline-block;
         }
       `}</style>
     </details>
