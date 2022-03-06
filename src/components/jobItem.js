@@ -20,7 +20,7 @@ const MyContent = memo(function MyComponent({ description }) {
   );
 });
 
-export default function JobItem({ job, preview }) {
+export default function JobItem({ job, open, preview }) {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function JobItem({ job, preview }) {
   }, [job.color]);
 
   return (
-    <details>
+    <details open={open}>
       <summary
         className={`flex${dark ? ' dark' : ''}`}
         style={{ background: job.color || 'var(--white)' }}
@@ -54,7 +54,14 @@ export default function JobItem({ job, preview }) {
         </div>
         <div className="job-content">
           <p>{job.companyName}</p>
-          <h3>{job.title}</h3>
+          <h3>
+            {job.title}&nbsp;
+            {!open && !preview && (
+              <Link noprefetch href={`/job/${job.slug}`} title="Voir page">
+                &#10132;
+              </Link>
+            )}
+          </h3>
           <CategoryList dark={dark} items={[job.location, job.contract]} />
         </div>
         <div className="job-date">
@@ -150,11 +157,21 @@ export default function JobItem({ job, preview }) {
           }
         }
       `}</style>
+
+      <style global jsx>{`
+        .job-content a {
+          display: none;
+        }
+        .job-content:hover a {
+          display: inline-block;
+        }
+      `}</style>
     </details>
   );
 }
 
 JobItem.propTypes = {
   job: PropTypes.object.isRequired,
+  open: PropTypes.bool,
   preview: PropTypes.bool,
 };

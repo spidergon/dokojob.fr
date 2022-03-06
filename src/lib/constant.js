@@ -1,23 +1,23 @@
-export const locations = ['Guadeloupe', 'Martinique', 'Guyane', 'Réunion', 'Mayotte'];
+export const locations = ['Guadeloupe', 'Guyane', 'Martinique', 'Mayotte', 'Réunion'];
 
 export const contracts = [
   'CDI',
   'CDD',
-  'Télétravail',
   'Intérim',
+  'Télétravail',
+  'Alternance',
   'Saisonnier',
   'Stage',
-  'Alternance',
 ];
 
 export const codeToLabel = {
   CDI: 'Contrat à durée indéterminée',
   CDD: 'Contrat à durée déterminée',
-  Télétravail: 'Télétravail',
   Intérim: 'Mission intérimaire',
+  Télétravail: 'Télétravail',
+  Alternance: 'Alternance',
   Saisonnier: 'Contrat travail saisonnier',
   Stage: 'Stage',
-  Alternance: 'Alternance',
 };
 
 export const PRICE1 = 20;

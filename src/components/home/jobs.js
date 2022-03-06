@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import useSWR from 'swr';
 import JobItem from '@components/jobItem';
-import Filter from './filter';
+import JobSkeleton from '@components/jobSkeleton';
 import { scrollToAnchor } from '@lib/tools';
+import Filter from './filter';
 
 const PER_PAGE = 30;
 
@@ -46,13 +47,7 @@ export default function Jobs() {
       <div className="container">
         <Filter allJobs={allJobs} jobs={jobs} setJobs={setJobs} />
 
-        {loading && !error && (
-          <>
-            {[0, 1, 2, 3, 4].map((i) => (
-              <div key={i} className="placeholder"></div>
-            ))}
-          </>
-        )}
+        {loading && !error && <JobSkeleton nb={5} />}
 
         {error && (
           <p className="error center">
@@ -143,29 +138,6 @@ export default function Jobs() {
         }
         .buttons button[disabled] svg {
           fill: rgba(0, 0, 0, 0.3);
-        }
-        .placeholder {
-          height: 100px;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-          margin-bottom: 1em;
-          --shine: white;
-          --background: #efefef;
-          background-image: linear-gradient(
-            90deg,
-            var(--background) 0px,
-            var(--shine) 40px,
-            var(--background) 80px
-          );
-          background-size: 500px;
-          animation: shine 1s infinite linear;
-        }
-        @keyframes shine {
-          from {
-            background-position: 200%;
-          }
-          to {
-            background-position: -40px;
-          }
         }
         @media (min-width: 601px) {
           section {

@@ -1,10 +1,8 @@
 const siteData = {
-  title: 'Jobs',
+  title: 'DokoJob',
   description: 'Votre emploi digital en Guyane et en Outre-mer.',
-  socials: {
-    twitter: 'chrisservius',
-    fb: '',
-  },
+  email: 'contact@dokojob.fr',
+  twitter: 'chrisservius',
 };
 
 export default siteData;

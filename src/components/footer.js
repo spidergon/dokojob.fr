@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import Link from '@components/link';
 
-export default function Footer({ socials }) {
+export default function Footer({ socials, title }) {
   const { pathname } = useRouter();
 
   return (
@@ -13,13 +13,19 @@ export default function Footer({ socials }) {
             <Link noprefetch href="/publier-annonce/">
               Publier
             </Link>
-          )) || <strong>Publier</strong>}
+          )) || <b>Publier</b>}
+          {' | '}
+          {(!/\/contact\/?/.test(pathname) && (
+            <Link noprefetch href="/contact/">
+              Contact
+            </Link>
+          )) || <b>Contact</b>}
           {' | '}
           {(!/\/mentions-legales\/?/.test(pathname) && (
             <Link noprefetch href="/mentions-legales/">
               Mentions légales
             </Link>
-          )) || <strong>Mentions légales</strong>}
+          )) || <b>Mentions légales</b>}
         </div>
         <div className="socialLinks flex">
           <Link blank href={`https://twitter.com/${socials.twitter}`}>
@@ -48,6 +54,9 @@ export default function Footer({ socials }) {
         </div>
         <div className="copy">
           <p>
+            <Link noprefetch href="/">
+              <i>{title}</i>
+            </Link>{' '}
             © {new Date().getFullYear()}
             {' - '}Fait avec
             <svg aria-hidden="true" className="love" viewBox="0 0 24 24">
@@ -108,4 +117,5 @@ export default function Footer({ socials }) {
 
 Footer.propTypes = {
   socials: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
 };

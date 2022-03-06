@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import Script from 'next/script';
 import PropTypes from 'prop-types';
 import Header from '@components/header';
 import Footer from '@components/footer';
@@ -55,7 +56,7 @@ export default function Layout({ children, title }) {
 
         <link href="/favicon.ico" rel="icon" />
 
-        {/* <link rel="canonical" href="https://epsylon.vercel.app">  */}
+        <link href="https://dokojob.fr" rel="canonical" />
 
         <meta content={siteData.description} name="description" />
 
@@ -69,7 +70,7 @@ export default function Layout({ children, title }) {
 
         {/* Twitter Card */}
         <meta content="summary" name="twitter:card" />
-        <meta content={`@${siteData.socials.twitter}`} name="twitter:site" />
+        <meta content={`@${siteData.twitter}`} name="twitter:site" />
 
         <title>
           {title} | {siteData.title}
@@ -80,7 +81,14 @@ export default function Layout({ children, title }) {
 
       <main>{children}</main>
 
-      <Footer socials={siteData.socials} />
+      <Footer socials={{ twitter: siteData.twitter }} title={siteData.title} />
+
+      <Script
+        data-dnt="false"
+        data-host="https://microanalytics.io"
+        id="ZwSg9rf6GA"
+        src="https://microanalytics.io/js/script.js"
+      />
     </>
   );
 }

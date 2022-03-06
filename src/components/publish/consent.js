@@ -14,9 +14,9 @@ export default function Consent() {
         onChange={() => setState('consent', !state.consent, false)}
       >
         <p>
-          Vous acceptez nos{' '}
+          Vous acceptez notre{' '}
           <Link blank href="/mentions-legales/#privacy">
-            conditions générales d&rsquo;utilisation
+            politique des données personnelles
           </Link>
         </p>
       </Checkbox>

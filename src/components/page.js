@@ -7,6 +7,7 @@ export default function Page({ children }) {
       <style global jsx>{`
         .page {
           margin-top: 2em;
+          padding: 0 1em;
         }
         .page h1 {
           font-size: 2rem;
