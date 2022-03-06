@@ -16,7 +16,7 @@ const transport = nodemailer.createTransport(
 );
 
 transport.verify((error) => {
-  if (error) console.error('SMTP conf error: ', error);
+  if (error) console.error('SMTP conf error: ', error, { host, port });
 });
 
 export default async function sendEmail({ to, subject, html }) {
