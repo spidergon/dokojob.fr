@@ -6,4 +6,5 @@ module.exports = withBundleAnalyzer({
   images: {
     domains: ['entreprise.pole-emploi.fr', 'res.cloudinary.com'],
   },
+  swcMinify: true,
 });

@@ -1,5 +1,5 @@
 import FieldInput from './fieldInput';
-import { contracts, locations } from '@lib/constant';
+import { contracts, locations } from '@lib/constants';
 import { useMyState } from '@lib/publishState';
 
 export default function MainInfo() {
