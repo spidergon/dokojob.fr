@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Checkbox from '@components/checkbox';
 import { useMyState } from '@lib/publishState';
-import { PRICE1, PRICE2 } from '@lib/constant';
+import { PRICE1, PRICE2 } from '@lib/constants';
 
 const YELLOW = '#fff9c9';
 const RED = '#f5a4a4';

@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders lib/siteData unchanged 1`] = `
+Object {
+  "description": "Votre emploi digital en Guyane et en Outre-mer.",
+  "email": "contact@dokojob.fr",
+  "title": "DokoJob",
+  "twitter": "chrisservius",
+}
+`;

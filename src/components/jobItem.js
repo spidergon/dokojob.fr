@@ -3,7 +3,7 @@ import Image from 'next/image';
 import PropTypes from 'prop-types';
 import CategoryList from '@components/categoryList';
 import Link from '@components/link';
-import { codeToLabel } from '@lib/constant';
+import { codeToLabel } from '@lib/constants';
 import purify from '@lib/purify';
 
 const MyImage = memo(function MyComponent({ alt, src }) {

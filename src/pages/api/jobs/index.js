@@ -1,5 +1,5 @@
 import { sign } from 'jsonwebtoken';
-import { emailPattern, PRICE1, PRICE2, PRICE3, PRICE4 } from '@lib/constant';
+import { emailPattern, PRICE1, PRICE2, PRICE3, PRICE4 } from '@lib/constants';
 import { createJob } from '@lib/api/base';
 import { secuEnv } from '@lib/api/env';
 import { manageError } from '@lib/api/tools';

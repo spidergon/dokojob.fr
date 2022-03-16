@@ -8,6 +8,8 @@
     "build": "next build",
     "analyse": "ANALYZE=true next build",
     "start": "next start",
+    "test": "jest --watch",
+    "test:ci": "jest --ci",
     "lint": "next lint",
     "clint": "eslint -o ./eslint_result.html -f html .",
     "prettier": "prettier --check .",
@@ -36,9 +38,12 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "12.1.0",
+    "@testing-library/jest-dom": "5.16.2",
+    "@testing-library/react": "12.1.4",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
     "eslint-config-prettier": "8.5.0",
+    "jest": "27.5.1",
     "prettier": "2.6.0"
   },
   "repository": {

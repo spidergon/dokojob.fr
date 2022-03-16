@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders lib/constants unchanged 1`] = `
+Object {
+  "PRICE1": 20,
+  "PRICE2": 45,
+  "PRICE3": 75,
+  "PRICE4": 90,
+  "codeToLabel": Object {
+    "Alternance": "Alternance",
+    "CDD": "Contrat à durée déterminée",
+    "CDI": "Contrat à durée indéterminée",
+    "Intérim": "Mission intérimaire",
+    "Saisonnier": "Contrat travail saisonnier",
+    "Stage": "Stage",
+    "Télétravail": "Télétravail",
+  },
+  "contracts": Array [
+    "CDI",
+    "CDD",
+    "Intérim",
+    "Télétravail",
+    "Alternance",
+    "Saisonnier",
+    "Stage",
+  ],
+  "emailPattern": /\\^\\(\\(\\[\\^<>\\(\\)\\\\\\[\\\\\\]\\\\\\\\\\.,;:\\\\s@"\\]\\+\\(\\\\\\.\\[\\^<>\\(\\)\\\\\\[\\\\\\]\\\\\\\\\\.,;:\\\\s@"\\]\\+\\)\\*\\)\\|\\("\\.\\+"\\)\\)@\\(\\(\\\\\\[\\[0-9\\]\\{1,3\\}\\\\\\.\\[0-9\\]\\{1,3\\}\\\\\\.\\[0-9\\]\\{1,3\\}\\\\\\.\\[0-9\\]\\{1,3\\}\\]\\)\\|\\(\\(\\[a-zA-Z\\\\-0-9\\]\\+\\\\\\.\\)\\+\\[a-zA-Z\\]\\{2,\\}\\)\\)\\$/,
+  "locations": Array [
+    "Guadeloupe",
+    "Guyane",
+    "Martinique",
+    "Mayotte",
+    "Réunion",
+  ],
+}
+`;

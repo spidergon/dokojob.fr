@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { codeToLabel } from '@lib/constant';
+import { codeToLabel } from '@lib/constants';
 
 export default function CategoryList({ dark, items }) {
   return (
