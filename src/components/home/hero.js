@@ -16,12 +16,6 @@ export default function Hero() {
               Parcourez les offres d’emploi sélectionnées pour vous avec soin, et trouvez le job de
               vos rêves en <span className="no-wrap">Outre-mer&nbsp;!</span>
             </h2>
-            {/* <p>
-              <Link noprefetch href="/publier-annonce/">
-                <strong>Entreprises : Publiez votre annonce</strong>
-              </Link>{' '}
-              et trouvez votre prochain talent. C’est gratuit&nbsp;!
-            </p> */}
             <div className="scrollBtnWrap">
               <button
                 aria-label="Scroller vers le bas"
@@ -70,13 +64,13 @@ export default function Hero() {
           font-weight: 500;
           line-height: 1.6;
           letter-spacing: 0.0075em;
-          margin-bottom: 2em;
         }
         p {
           letter-spacing: 0.00938em;
         }
         .scrollBtnWrap {
           position: absolute;
+          margin-top: 2em;
           left: 50%;
           transform: translateX(-50%);
         }
@@ -92,7 +86,7 @@ export default function Hero() {
         }
         @media (min-width: 601px) {
           .bgWrap {
-            height: 50vh;
+            height: 40vh;
           }
           .scrollBtnWrap {
             display: none;

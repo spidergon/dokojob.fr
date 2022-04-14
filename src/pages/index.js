@@ -1,7 +1,6 @@
 import Layout from '@components/layout';
 import Hero from '@components/home/hero';
 import Jobs from '@components/home/jobs';
-// import { getJobs } from '@lib/jobs';
 
 export default function Home() {
   return (
@@ -11,11 +10,3 @@ export default function Home() {
     </Layout>
   );
 }
-
-// export async function getStaticProps() {
-//   const allJobs = await getJobs();
-
-//   return {
-//     props: { allJobs },
-//   };
-// }
