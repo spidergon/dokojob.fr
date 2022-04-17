@@ -2,12 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import useSWR from 'swr';
 import JobItem from '@components/jobItem';
 import JobSkeleton from '@components/jobSkeleton';
-import { scrollToAnchor } from '@lib/tools';
+import { fetcher, scrollToAnchor } from '@lib/tools';
 import Filter from './filter';
 
 const PER_PAGE = 30;
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Jobs() {
   const [jobs, setJobs] = useState([]);
@@ -113,9 +111,6 @@ export default function Jobs() {
       </div>
 
       <style jsx>{`
-        section {
-          padding: 20px 0;
-        }
         .pagination {
           margin-top: 2em;
         }
@@ -132,17 +127,13 @@ export default function Jobs() {
         }
         .buttons button {
           display: flex;
+          align-items: center;
         }
         .buttons button svg {
           width: 1.5em;
         }
         .buttons button[disabled] svg {
           fill: rgba(0, 0, 0, 0.3);
-        }
-        @media (min-width: 601px) {
-          section {
-            padding: 40px 0;
-          }
         }
       `}</style>
     </section>

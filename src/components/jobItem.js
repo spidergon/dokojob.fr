@@ -81,14 +81,7 @@ export default function JobItem({ job, open, preview }) {
 
       <div className="content">
         <MyContent description={job.description} />
-        <div
-          style={{
-            width: '50px',
-            height: '1px',
-            backgroundColor: 'rgba(0,0,0,0.4)',
-            marginTop: '1rem',
-          }}
-        />
+        <div className="separator" />
         <p style={{ fontSize: '14px', margin: '0.5rem 0' }}>
           {job.contract}
           {codeToLabel[job.contract] !== job.contract ? ` - ${codeToLabel[job.contract]}` : ''}
@@ -104,12 +97,22 @@ export default function JobItem({ job, open, preview }) {
             </Link>
           </p>
         )}
-        <Link blank href={shareLink(job)} title="Partager sur Twitter">
-          Partager
-        </Link>
+        <div className="links">
+          {!open && !preview && (
+            <>
+              <Link noprefetch href={`/job/${job.slug}`} title="Voir page détaillée">
+                Voir plus
+              </Link>
+              {' | '}
+            </>
+          )}
+          <Link blank href={shareLink(job)} title="Partager sur Twitter">
+            Partager
+          </Link>
+        </div>
         <div className="action">
           <Link blank className="btn" href={job.source || 'mailto:' + job.sourceEmail}>
-            Soumettre votre candidature
+            POSTULER
           </Link>
         </div>
       </div>
@@ -145,6 +148,15 @@ export default function JobItem({ job, open, preview }) {
         .job-content {
           flex-grow: 1;
         }
+        .links {
+          margin-top: 1em;
+        }
+        .separator {
+          width: 50px;
+          height: 1px;
+          background-color: rgba(0, 0, 0, 0.4);
+          margin-top: 1rem;
+        }
         @media (min-width: 481px) {
           .logo-content {
             display: flex;
@@ -177,6 +189,10 @@ export default function JobItem({ job, open, preview }) {
         }
         .job-content:hover a {
           display: flex;
+          color: initial;
+        }
+        .job-content a:hover {
+          color: rgb(44, 56, 126);
         }
         .cat-group {
           align-items: center;

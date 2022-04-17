@@ -38,6 +38,9 @@ export default function Hero() {
       </div>
 
       <style jsx>{`
+        section {
+          padding: 0;
+        }
         .bgWrap {
           height: 100vh;
         }

@@ -15,6 +15,8 @@ export function logoText(txt) {
   return result;
 }
 
+export const fetcher = (url) => fetch(url).then((res) => res.json());
+
 // export const wait = (ms = 0) =>
 //   new Promise((resolve) => {
 //     setTimeout(resolve, ms);

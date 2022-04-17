@@ -2,7 +2,7 @@
 
 exports[`renders lib/siteData unchanged 1`] = `
 Object {
-  "description": "Votre emploi digital en Guyane et en Outre-mer.",
+  "description": "Votre emploi numérique en Guyane et en Outre-mer.",
   "email": "contact@dokojob.fr",
   "title": "DokoJob",
   "twitter": "chrisservius",
