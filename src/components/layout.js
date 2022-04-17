@@ -83,8 +83,6 @@ export default function Layout({ children, title }) {
 
       <Footer socials={{ twitter: siteData.twitter }} title={siteData.title} />
 
-      <Script async defer src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" />
-
       <Script
         data-dnt="false"
         data-host="https://microanalytics.io"

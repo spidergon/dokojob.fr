@@ -2,12 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import useSWR from 'swr';
 import JobItem from '@components/jobItem';
 import JobSkeleton from '@components/jobSkeleton';
-import { scrollToAnchor } from '@lib/tools';
+import { fetcher, scrollToAnchor } from '@lib/tools';
 import Filter from './filter';
 
 const PER_PAGE = 30;
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Jobs() {
   const [jobs, setJobs] = useState([]);
