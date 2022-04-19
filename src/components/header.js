@@ -1,20 +1,23 @@
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import Link from '@components/link';
+import styles from '@styles/layout.module.css';
 
 export default function Header({ title }) {
   const { pathname } = useRouter();
 
+  const headerClass = `${styles.header} ${pathname === '/' ? styles.home : ''}`;
+
   return (
-    <header className={pathname === '/' ? 'home' : ''}>
-      <div className="wrapper flex">
-        <Link noprefetch className="title" href="/">
+    <header className={headerClass}>
+      <div className={`flex ${styles.wrapper}`}>
+        <Link noprefetch className={styles.title} href="/">
           <i>{title}</i>
         </Link>
         {!/\/publier-annonce\/?/.test(pathname) && (
           <Link
             noprefetch
-            className="btn"
+            className={`btn ${styles.btn}`}
             href="/publier-annonce/"
             title="Entreprises / Publier une annonce"
           >
@@ -22,57 +25,6 @@ export default function Header({ title }) {
           </Link>
         )}
       </div>
-
-      <style jsx>{`
-        header {
-          border-bottom: 1px solid var(--border-color);
-        }
-        .home {
-          position: absolute;
-          color: #fff;
-          border: none;
-          width: 100%;
-          z-index: 10;
-        }
-        .wrapper {
-          align-items: center;
-          justify-content: space-between;
-          height: 64px;
-          padding: 0 1em;
-        }
-      `}</style>
-      <style global jsx>{`
-        header .title {
-          font-size: 2.125rem;
-          color: inherit;
-          text-decoration: none;
-        }
-        header .btn {
-          display: block;
-          font-weight: 700;
-          padding: 5px 15px;
-          background-color: transparent;
-          border: 1px solid;
-          text-transform: uppercase;
-          width: initial;
-          color: var(--black);
-        }
-        header .btn span {
-          display: none;
-        }
-        header.home .btn {
-          color: inherit;
-        }
-        header .btn:hover,
-        header .btn:focus {
-          background-color: rgba(0, 0, 0, 0.3);
-        }
-        @media (min-width: 481px) {
-          header .btn span {
-            display: inline;
-          }
-        }
-      `}</style>
     </header>
   );
 }

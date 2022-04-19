@@ -10,6 +10,7 @@ import Preview from './preview';
 import { useMyState } from '@lib/publishState';
 import HomeLink from '@components/homeLink';
 import Page from '@components/page';
+import styles from '@styles/publish.module.css';
 // import { PRICE1, PRICE2, PRICE3, PRICE4 } from '@utils/constant';
 // import { clearStorage } from '@utils/storage';
 
@@ -102,7 +103,7 @@ export default function Publish({ edit, data }) {
             <Details />
             <Company />
             <Consent />
-            <div className="createAction center">
+            <div className={`center ${styles.createAction}`}>
               <input
                 className="btn"
                 disabled={loading}
@@ -125,45 +126,6 @@ export default function Publish({ edit, data }) {
           <HomeLink />
         </Page>
       )}
-
-      <style global jsx>{`
-        .group {
-          background: #fff;
-          margin-top: 1.5em;
-          padding: 1em;
-          border-radius: 6px;
-          border: 1px solid #ddd;
-        }
-        .group h2 {
-          font-weight: 700;
-          font-size: 14px;
-          letter-spacing: 0.7px;
-          text-transform: uppercase;
-          text-decoration: underline;
-        }
-        .group h3 {
-          font-weight: 700;
-          margin-bottom: 0.5em;
-        }
-        .optionGroup {
-          display: flex;
-          flex-direction: column;
-          margin-top: 1.5em;
-        }
-        .helperText {
-          font-size: 14px;
-          line-height: 1.66;
-          letter-spacing: 0.03em;
-          color: rgba(0, 0, 0, 0.54);
-        }
-        .createAction {
-          position: sticky;
-          margin-top: 2em;
-          bottom: 0;
-          background: var(--white);
-          padding-bottom: 1em;
-        }
-      `}</style>
     </>
   );
 }

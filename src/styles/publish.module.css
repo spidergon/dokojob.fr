@@ -1,0 +1,134 @@
+.group {
+  background: #fff;
+  margin-top: 1.5em;
+  padding: 1em;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.group h2 {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+.group h3 {
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+
+.optionGroup {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5em;
+}
+
+.helperText {
+  font-size: 14px;
+  line-height: 1.66;
+  letter-spacing: 0.03em;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.createAction {
+  position: sticky;
+  margin-top: 2em;
+  bottom: 0;
+  background: var(--white);
+  padding-bottom: 1em;
+}
+
+/* --- FieldInput --- */
+
+.field {
+  flex-direction: column;
+  gap: 0.5em;
+  width: 100%;
+  margin-top: 2em;
+}
+
+.field label {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.7px;
+}
+
+.field input,
+.field select {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.5em;
+}
+
+.field select {
+  appearance: none;
+  background: #fff;
+}
+
+/* --- Preview --- */
+
+.preview {
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  z-index: 10;
+}
+
+/* --- Main Info --- */
+
+.contractArea {
+  flex-direction: column;
+}
+
+@media (min-width: 601px) {
+  .contractArea {
+    flex-direction: row;
+    gap: 1em;
+  }
+}
+
+/* --- Logo --- */
+
+.logo {
+  margin-top: 0.5em;
+}
+
+.logo_img {
+  width: 90px;
+  height: 90px;
+  border: 1px solid #333;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.logo input {
+  display: none;
+}
+
+.logo .delete {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  padding: 0;
+  background: #fff;
+  width: 24px;
+  height: 24px;
+  z-index: 1;
+}
+
+.logo .btn {
+  text-transform: none;
+  margin-bottom: 0.5em;
+}
+.logo .error {
+  margin-bottom: 0.3em;
+}

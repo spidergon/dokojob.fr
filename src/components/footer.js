@@ -1,13 +1,14 @@
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import Link from '@components/link';
+import styles from '@styles/layout.module.css';
 
 export default function Footer({ socials, title }) {
   const { pathname } = useRouter();
 
   return (
-    <footer>
-      <div className="container flex">
+    <footer className={styles.footer}>
+      <div className={`flex container ${styles.container}`}>
         <div>
           {(!/\/publier-annonce\/?/.test(pathname) && (
             <Link noprefetch href="/publier-annonce/">
@@ -27,7 +28,7 @@ export default function Footer({ socials, title }) {
             </Link>
           )) || <b>Mentions légales</b>}
         </div>
-        <div className="socialLinks flex">
+        <div className={`flex ${styles.socialLinks}`}>
           <Link blank href={`https://twitter.com/${socials.twitter}`}>
             {/* <svg
               aria-hidden="true"
@@ -59,58 +60,13 @@ export default function Footer({ socials, title }) {
             </Link>{' '}
             © {new Date().getFullYear()}
             {' - '}Fait avec
-            <svg aria-hidden="true" className="love" viewBox="0 0 24 24">
+            <svg aria-hidden="true" className={styles.love} viewBox="0 0 24 24">
               <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
             </svg>
             en Guyane
           </p>
         </div>
       </div>
-
-      <style jsx>{`
-        footer {
-          margin-top: 3em;
-          padding: 1.5em 0;
-          border-top: solid 1px var(--border-color);
-        }
-        svg {
-          height: 1.5em;
-          width: 1.5em;
-        }
-        .container {
-          flex-direction: column;
-          align-items: center;
-          gap: 1em;
-        }
-        .love {
-          fill: red;
-          vertical-align: sub;
-          margin: 0 5px;
-          height: 1.25em;
-          width: 1.25em;
-        }
-        @media (min-width: 768px) {
-          .container {
-            flex-direction: row;
-            justify-content: space-between;
-            padding: 0 1em;
-          }
-        }
-      `}</style>
-
-      <style global jsx>{`
-        footer a {
-          color: var(--black);
-        }
-        footer a:hover svg,
-        footer a:focus svg {
-          fill: rgb(44, 56, 126);
-        }
-        footer .socialLinks a {
-          display: flex;
-          padding: 0.5em;
-        }
-      `}</style>
     </footer>
   );
 }

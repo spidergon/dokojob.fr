@@ -1,0 +1,15 @@
+.cat span {
+  font-size: 0.85rem;
+  margin: 0.5em;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  border-radius: 16px;
+  padding: 0 10px;
+}
+
+.cat span:first-of-type {
+  margin-left: 0;
+}
+
+.dark span {
+  border-color: rgba(255, 255, 255, 0.5);
+}

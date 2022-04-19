@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Checkbox from '@components/checkbox';
 import { useMyState } from '@lib/publishState';
 import { PRICE1, PRICE2 } from '@lib/constants';
+import styles from '@styles/publish.module.css';
 
 const YELLOW = '#fff9c9';
 const RED = '#f5a4a4';
@@ -47,10 +48,10 @@ export default function Options() {
   };
 
   return (
-    <div className="group">
+    <div className={styles.group}>
       <h2>Choisissez vos options</h2>
 
-      <div className="optionGroup">
+      <div className={styles.optionGroup}>
         <Checkbox checked readOnly id="option0" title="Option sélectionnée par défaut">
           <p>
             Mon annonce est visible pendant{' '}
@@ -59,7 +60,7 @@ export default function Options() {
         </Checkbox>
       </div>
 
-      <div className="optionGroup">
+      <div className={styles.optionGroup}>
         <h3>Choisissez la couleur de votre annonce&nbsp;:</h3>
         <Checkbox checked={!!state.option1} id="option1" onChange={handleOptionChange}>
           <p>
@@ -89,7 +90,7 @@ export default function Options() {
         </Checkbox>
       </div>
 
-      <div className="optionGroup" style={{ color: 'gray' }}>
+      <div className={styles.optionGroup} style={{ color: 'gray' }}>
         <h3>
           <span className="strike">Placez votre annonce en pole position&nbsp;:</span> (bientôt
           disponible)

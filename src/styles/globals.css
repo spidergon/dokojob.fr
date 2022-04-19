@@ -1,6 +1,8 @@
 :root {
   --black: #1a1a1a;
   --white: #f8f8f8;
+  --blue1: #3f51b5;
+  --blue2: rgb(44, 56, 126);
   --border-color: rgba(151, 151, 151, 0.2);
 }
 
@@ -51,11 +53,11 @@ button {
 }
 
 a {
-  color: #3f51b5;
+  color: var(--blue1);
 }
 a:hover,
 a:focus {
-  color: rgb(44, 56, 126);
+  color: var(--blue2);
   text-decoration: underline;
 }
 
@@ -67,7 +69,7 @@ button.btn {
   font-weight: 700;
   padding: 15px 20px;
   border-radius: 6px;
-  background-color: #3f51b5;
+  background-color: var(--blue1);
   color: #fff;
   width: 100%;
   text-decoration: none;
@@ -83,7 +85,7 @@ input.btn:hover,
 input.btn:focus,
 button.btn:hover,
 button.btn:focus {
-  background-color: rgb(44, 56, 126);
+  background-color: var(--blue2);
 }
 
 button[disabled],
@@ -99,4 +101,9 @@ input.btn[disabled] {
   button.btn {
     width: initial;
   }
+}
+
+svg {
+  height: 1.5em;
+  width: 1.5em;
 }
