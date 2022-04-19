@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { codeToLabel } from '@lib/constants';
+import styles from '@styles/publish.module.css';
 
 export default function FieldInput({
   autoFocus,
@@ -23,7 +24,7 @@ export default function FieldInput({
   };
 
   return (
-    <div className="field flex" style={style}>
+    <div className={`flex ${styles.field}`} style={style}>
       <label htmlFor={id}>
         {label}
         {required ? '*' : ''}
@@ -58,32 +59,7 @@ export default function FieldInput({
         ))) ||
         children}
 
-      {helperText && <span className="helperText">{helperText}</span>}
-
-      <style jsx>{`
-        .field {
-          flex-direction: column;
-          gap: 0.5em;
-          width: 100%;
-          margin-top: 2em;
-        }
-        label {
-          text-transform: uppercase;
-          font-weight: 700;
-          font-size: 14px;
-          letter-spacing: 0.7px;
-        }
-        input,
-        select {
-          border: 1px solid #ddd;
-          border-radius: 6px;
-          padding: 0.5em;
-        }
-        select {
-          appearance: none;
-          background: #fff;
-        }
-      `}</style>
+      {helperText && <span className={styles.helperText}>{helperText}</span>}
     </div>
   );
 }

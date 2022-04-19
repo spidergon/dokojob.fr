@@ -1,12 +1,13 @@
 import FieldInput from './fieldInput';
 import { contracts, locations } from '@lib/constants';
 import { useMyState } from '@lib/publishState';
+import styles from '@styles/publish.module.css';
 
 export default function MainInfo() {
   const { state, setState } = useMyState();
 
   return (
-    <div className="group info">
+    <div className={styles.group}>
       {/* Intitulé */}
       <FieldInput
         autoFocus
@@ -27,7 +28,7 @@ export default function MainInfo() {
         value={state.title}
         onChange={setState}
       />
-      <div className="contractArea flex">
+      <div className={`flex ${styles.contractArea}`}>
         {/* Région ou territoire */}
         <FieldInput
           required
@@ -59,18 +60,6 @@ export default function MainInfo() {
           onChange={setState}
         />
       )}
-
-      <style jsx>{`
-        .contractArea {
-          flex-direction: column;
-        }
-        @media (min-width: 601px) {
-          .contractArea {
-            flex-direction: row;
-            gap: 1em;
-          }
-        }
-      `}</style>
     </div>
   );
 }

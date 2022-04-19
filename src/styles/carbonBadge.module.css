@@ -1,0 +1,30 @@
+.wcb {
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+  color: #0e11a8;
+  font-size: 15px;
+  line-height: 1.15;
+}
+
+.wcb_c {
+  border: 0.13em solid #00ffbc;
+  border-radius: 0.3em 0 0 0.3em;
+  border-right: 0;
+  min-width: 8.2em;
+  padding: 0.3em 0.8em;
+}
+
+.wcb_link {
+  font-weight: bold;
+  border-color: #0e11a8;
+  background-color: #0e11a8;
+  color: #fff;
+  border-radius: 0 0.3em 0.3em 0;
+  padding: 0.3em 0.5em;
+}
+.wcb_link:hover,
+.wcb_link:focus {
+  text-decoration: none;
+  color: #fff;
+}

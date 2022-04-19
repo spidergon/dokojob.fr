@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 import Description from './description';
 import FieldInput from './fieldInput';
 import { useMyState } from '@lib/publishState';
+import styles from '@styles/publish.module.css';
 
 const Logo = dynamic(() => import('./logo'), {
   loading() {
@@ -17,7 +18,7 @@ export default function Details() {
   const [isSourceLink, setIsSourceLink] = useState(true);
 
   return (
-    <div className="group">
+    <div className={styles.group}>
       <h2>Détails de votre annonce</h2>
 
       {/* Logo */}

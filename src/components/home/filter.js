@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import CheckBox from '@components/checkbox';
 import { locations, codeToLabel, contracts } from '@lib/constants';
+import styles from '@styles/home.module.css';
 
 function isChecked(selected) {
   return Object.values(selected).find((v) => v === true);
@@ -66,7 +67,7 @@ export default function Filter({ allJobs, jobs, setJobs }) {
   };
 
   return (
-    <div className={`wrapper flex ${open ? 'open' : ''}`}>
+    <div className={`flex ${styles.filter} ${open ? styles.open : ''}`}>
       {open && (
         <div style={{ width: '100%' }}>
           <p style={active ? { color: '#3f51b5', fontWeight: 'bold' } : {}}>
@@ -77,13 +78,13 @@ export default function Filter({ allJobs, jobs, setJobs }) {
             )) ||
               'Aucune offre'}
           </p>
-          <p className="title">Pays</p>
+          <p className={styles.title}>Pays</p>
           <div>
             {locations.map((loc, index) => (
               <CheckBox key={index} action={setLocation} checked={selectedLoc[loc]} id={loc} />
             ))}
           </div>
-          <p className="title">Contrats</p>
+          <p className={styles.title}>Contrats</p>
           <div>
             {contracts.map((code, index) => (
               <CheckBox
@@ -98,7 +99,7 @@ export default function Filter({ allJobs, jobs, setJobs }) {
         </div>
       )}
       <button
-        className={`filterBtn flex ${active ? 'active' : ''}`}
+        className={`flex ${styles.btn} ${active ? styles.active : ''}`}
         title={open ? 'Fermer' : 'Filtrer'}
         onClick={() => setOpen(!open)}
       >
@@ -111,7 +112,7 @@ export default function Filter({ allJobs, jobs, setJobs }) {
             {active ? 'Filtre activé' : 'Filtrer'}
             <svg
               aria-hidden="true"
-              className={active ? 'active' : ''}
+              className={active ? styles.active : ''}
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -120,43 +121,6 @@ export default function Filter({ allJobs, jobs, setJobs }) {
           </>
         )}
       </button>
-
-      <style jsx>{`
-        .wrapper {
-          min-height: 1.5em;
-          padding: 0.5em;
-          margin-bottom: 1em;
-        }
-        .wrapper.open {
-          background-color: rgba(0, 0, 0, 0.05);
-          margin-bottom: 2em;
-        }
-        .title {
-          margin: 1rem 0 0.5rem;
-          border-bottom: 1px solid #dadce0;
-        }
-        .filterBtn {
-          position: absolute;
-          align-items: center;
-          right: 0;
-          top: 0;
-          gap: 0.5em;
-          padding: 0.5em;
-          border: none;
-          background: transparent;
-        }
-        .filterBtn.active {
-          color: #3f51b5;
-          font-weight: bold;
-        }
-        svg {
-          width: 1.5em;
-          fill: var(--black);
-        }
-        svg.active {
-          fill: #3f51b5;
-        }
-      `}</style>
     </div>
   );
 }

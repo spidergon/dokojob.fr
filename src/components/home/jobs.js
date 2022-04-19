@@ -4,6 +4,7 @@ import JobItem from '@components/jobItem';
 import JobSkeleton from '@components/jobSkeleton';
 import { fetcher, scrollToAnchor } from '@lib/tools';
 import Filter from './filter';
+import styles from '@styles/home.module.css';
 
 const PER_PAGE = 30;
 
@@ -41,7 +42,7 @@ export default function Jobs() {
   }, [step]);
 
   return (
-    <section id="top-anchor">
+    <section className={styles.jobs} id="top-anchor">
       <div className="container">
         <Filter allJobs={allJobs} jobs={jobs} setJobs={setJobs} />
 
@@ -67,7 +68,7 @@ export default function Jobs() {
             {jobs.slice(step * PER_PAGE, step * PER_PAGE + PER_PAGE).map((job, index) => (
               <JobItem key={`${index}${job.id}`} job={job} />
             ))}
-            <div className="pagination center">
+            <div className={`${styles.pagination} center`}>
               <p>
                 {(pages !== 0 && (
                   <>
@@ -76,7 +77,7 @@ export default function Jobs() {
                 )) || <strong>Aucun résultat, veuillez modifier votre sélection.</strong>}
               </p>
               {pages > 1 && (
-                <div className="buttons flex">
+                <div className={`flex ${styles.buttons}`}>
                   <button
                     disabled={step === 0}
                     title="Page précédente"
@@ -109,33 +110,6 @@ export default function Jobs() {
           </>
         )}
       </div>
-
-      <style jsx>{`
-        .pagination {
-          margin-top: 2em;
-        }
-        .pagination p {
-          margin-bottom: 1em;
-        }
-        .buttons {
-          justify-content: center;
-          gap: 0.5em;
-        }
-        button {
-          border: none;
-          background: inherit;
-        }
-        .buttons button {
-          display: flex;
-          align-items: center;
-        }
-        .buttons button svg {
-          width: 1.5em;
-        }
-        .buttons button[disabled] svg {
-          fill: rgba(0, 0, 0, 0.3);
-        }
-      `}</style>
     </section>
   );
 }

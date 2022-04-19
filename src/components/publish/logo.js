@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useMyState } from '@lib/publishState';
 import compress from '@lib/compress';
+import styles from '@styles/publish.module.css';
 
 export default function Logo() {
   const { state, setState } = useMyState();
@@ -55,13 +56,13 @@ export default function Logo() {
   };
 
   return (
-    <div className="logo">
-      {error && <p className="error">{error}</p>}
+    <div className={styles.logo}>
+      {error && <p className={`error ${styles.error}`}>{error}</p>}
 
       <div className="flex">
         {src && (
-          <div className="logo-img">
-            <button className="delete" title="Effacer" type="button" onClick={deleteHandle}>
+          <div className={styles.logo_img}>
+            <button className={styles.delete} title="Effacer" type="button" onClick={deleteHandle}>
               <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
                 <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
               </svg>
@@ -75,14 +76,14 @@ export default function Logo() {
           {!src && (
             <>
               <button
-                className="btn"
+                className={`btn ${styles.btn}`}
                 disabled={loading}
                 type="button"
                 onClick={() => document.getElementById('file').click()}
               >
                 {(!loading && 'Ajouter votre logo') || 'Chargement...'}
               </button>
-              <p className="helperText">
+              <p className={styles.helperText}>
                 {
                   'Téléverser le logo de votre entreprise (taille < 2 MB, dimensions recommendées : 64x64)'
                 }
@@ -91,44 +92,6 @@ export default function Logo() {
           )}
         </div>
       </div>
-
-      <style jsx>{`
-        .logo {
-          margin-top: 0.5em;
-        }
-        .logo-img {
-          width: 90px;
-          height: 90px;
-          border: 1px solid #333;
-        }
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-        }
-        .delete {
-          position: absolute;
-          top: -10px;
-          right: -10px;
-          border: 1px solid #ddd;
-          border-radius: 50%;
-          padding: 0;
-          background: #fff;
-          width: 24px;
-          height: 24px;
-          z-index: 1;
-        }
-        input {
-          display: none;
-        }
-        .btn {
-          text-transform: none;
-          margin-bottom: 0.5em;
-        }
-        .error {
-          margin-bottom: 0.3em;
-        }
-      `}</style>
     </div>
   );
 }

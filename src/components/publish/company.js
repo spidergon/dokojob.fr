@@ -1,11 +1,12 @@
 import FieldInput from './fieldInput';
 import { useMyState } from '@lib/publishState';
+import styles from '@styles/publish.module.css';
 
 export default function Company() {
   const { state, setState } = useMyState();
 
   return (
-    <div className="group">
+    <div className={styles.group}>
       <h2>Vos informations</h2>
       {/* companyTwitter */}
       <FieldInput

@@ -1,14 +1,15 @@
 import Image from 'next/image';
 import HeroImg from 'public/img/hero.webp';
 import { scrollToAnchor } from '@lib/tools';
+import styles from '@styles/home.module.css';
 
 export default function Hero() {
   return (
-    <section>
-      <div className="bgWrap">
+    <section className={styles.hero}>
+      <div className={styles.bgWrap}>
         <Image alt="" layout="fill" objectFit="cover" placeholder="blur" src={HeroImg} />
-        <div className="overlay flex">
-          <div className="bgContent">
+        <div className={`flex ${styles.overlay}`}>
+          <div className={styles.bgContent}>
             <h1>
               Votre emploi numérique en <span className="no-wrap">Outre-mer</span>
             </h1>
@@ -16,10 +17,10 @@ export default function Hero() {
               Parcourez les offres d’emploi sélectionnées pour vous avec soin, et trouvez le job de
               vos rêves en <span className="no-wrap">Outre-mer&nbsp;!</span>
             </h2>
-            <div className="scrollBtnWrap">
+            <div className={styles.scrollBtnWrap}>
               <button
                 aria-label="Scroller vers le bas"
-                className="scrollBtn flex"
+                className={`flex ${styles.scrollBtn}`}
                 onClick={scrollToAnchor}
               >
                 <svg
@@ -36,89 +37,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        section {
-          padding: 0;
-        }
-        .bgWrap {
-          height: 100vh;
-        }
-        .overlay {
-          justify-content: center;
-          align-items: center;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.4);
-        }
-        .bgContent {
-          color: #fff;
-          max-width: 736px;
-          padding: 2em;
-          text-align: center;
-        }
-        h1 {
-          font-size: 2rem;
-          letter-spacing: 0.00938em;
-          text-transform: uppercase;
-          margin-bottom: 1em;
-        }
-        h2 {
-          font-size: 1.25rem;
-          font-weight: 500;
-          line-height: 1.6;
-          letter-spacing: 0.0075em;
-        }
-        p {
-          letter-spacing: 0.00938em;
-        }
-        .scrollBtnWrap {
-          position: absolute;
-          margin-top: 2em;
-          left: 50%;
-          transform: translateX(-50%);
-        }
-        .scrollBtn {
-          font-size: 1.5rem;
-          background: rgba(0, 0, 0, 0.3);
-          color: #fff;
-          padding: 12px;
-          border: 0;
-          border-radius: 50%;
-          animation: bounce 1s ease-in-out;
-          cursor: pointer;
-        }
-        @media (min-width: 601px) {
-          .bgWrap {
-            height: 40vh;
-          }
-          .scrollBtnWrap {
-            display: none;
-          }
-        }
-        @media (max-height: 700px) {
-          .bgWrap {
-            height: 100vh;
-          }
-          .scrollBtnWrap {
-            display: block;
-          }
-        }
-        @keyframes bounce {
-          0%,
-          20%,
-          50%,
-          80%,
-          100% {
-            transform: translateY(0);
-          }
-          40% {
-            transform: translateY(-20px);
-          }
-          60% {
-            transform: translateY(-15px);
-          }
-        }
-      `}</style>
     </section>
   );
 }

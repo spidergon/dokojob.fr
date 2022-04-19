@@ -5,6 +5,7 @@ import CategoryList from '@components/categoryList';
 import Link from '@components/link';
 import { codeToLabel } from '@lib/constants';
 import purify from '@lib/purify';
+import styles from '@styles/jobItem.module.css';
 
 const MyImage = memo(function MyComponent({ alt, src }) {
   return <Image alt={alt} height={64} objectFit="contain" src={src} width={64} />;
@@ -41,12 +42,12 @@ export default function JobItem({ job, open, preview }) {
   }, [job.color]);
 
   return (
-    <details open={open}>
+    <details className={styles.details} open={open}>
       <summary
-        className={`flex${dark ? ' dark' : ''}`}
+        className={`flex ${dark ? styles.dark : ''}`}
         style={{ background: job.color || 'var(--white)' }}
       >
-        <div className="logo-content">
+        <div className={styles.logo_content}>
           {(job.logo && (
             <>
               {!preview && <MyImage alt={job.companyName} src={job.logo} />}
@@ -55,7 +56,7 @@ export default function JobItem({ job, open, preview }) {
             </>
           )) || <p>{job.logoText}</p>}
         </div>
-        <div className="job-content">
+        <div className={styles.job_content}>
           <p>{job.companyName}</p>
           <h3 className="flex">
             {job.title}&nbsp;
@@ -65,7 +66,7 @@ export default function JobItem({ job, open, preview }) {
               </Link>
             )}
           </h3>
-          <div className="cat-group flex">
+          <div className={`flex ${styles.cat_group}`}>
             <CategoryList dark={dark} items={[job.location, job.contract]} />
             <Link blank href={shareLink(job)} title="Partager sur Twitter">
               <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
@@ -79,9 +80,9 @@ export default function JobItem({ job, open, preview }) {
         </div>
       </summary>
 
-      <div className="content">
+      <div className={styles.content}>
         <MyContent description={job.description} />
-        <div className="separator" />
+        <div className={styles.separator} />
         <p style={{ fontSize: '14px', margin: '0.5rem 0' }}>
           {job.contract}
           {codeToLabel[job.contract] !== job.contract ? ` - ${codeToLabel[job.contract]}` : ''}
@@ -97,7 +98,7 @@ export default function JobItem({ job, open, preview }) {
             </Link>
           </p>
         )}
-        <div className="links">
+        <div className={styles.links}>
           {!open && !preview && (
             <>
               <Link noprefetch href={`/job/${job.slug}`} title="Voir page détaillée">
@@ -110,99 +111,12 @@ export default function JobItem({ job, open, preview }) {
             Partager
           </Link>
         </div>
-        <div className="action">
+        <div className={styles.action}>
           <Link blank className="btn" href={job.source || 'mailto:' + job.sourceEmail}>
             POSTULER
           </Link>
         </div>
       </div>
-
-      <style jsx>{`
-        details {
-          border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-          margin-bottom: 1em;
-        }
-        summary {
-          align-items: center;
-          padding: 0.5em;
-          cursor: pointer;
-        }
-        summary.dark {
-          color: #fff;
-        }
-        .content {
-          border-top: 1px solid rgba(0, 0, 0, 0.2);
-          padding: 1.5em 0.5em 2em;
-        }
-        .action {
-          text-align: center;
-          margin-top: 2em;
-        }
-        .action .btn {
-          width: 100%;
-        }
-        .logo-content {
-          display: none;
-          background: #fff;
-        }
-        .job-content {
-          flex-grow: 1;
-        }
-        .links {
-          margin-top: 1em;
-        }
-        .separator {
-          width: 50px;
-          height: 1px;
-          background-color: rgba(0, 0, 0, 0.4);
-          margin-top: 1rem;
-        }
-        @media (min-width: 481px) {
-          .logo-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-width: 4rem;
-            min-height: 4rem;
-            margin-right: 1em;
-            box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-          }
-          .logo-content p {
-            color: rgba(0, 0, 0, 0.5);
-            font-weight: 700;
-            font-size: 1.5em;
-          }
-        }
-        @media (min-width: 601px) {
-          .content {
-            padding: 1.5em 1.5em 2em;
-          }
-          .action .btn {
-            width: initial;
-          }
-        }
-      `}</style>
-
-      <style global jsx>{`
-        .job-content a {
-          display: none;
-        }
-        .job-content:hover a {
-          display: flex;
-          color: initial;
-        }
-        .job-content a:hover {
-          color: rgb(44, 56, 126);
-        }
-        .cat-group {
-          align-items: center;
-          gap: 5px;
-        }
-        svg {
-          height: 1.5em;
-          width: 1.5em;
-        }
-      `}</style>
     </details>
   );
 }

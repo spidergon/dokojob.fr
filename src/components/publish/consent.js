@@ -1,12 +1,13 @@
 import Checkbox from '@components/checkbox';
 import Link from '@components/link';
 import { useMyState } from '@lib/publishState';
+import styles from '@styles/publish.module.css';
 
 export default function Consent() {
   const { state, setState } = useMyState();
 
   return (
-    <div className="group">
+    <div className={styles.group}>
       <Checkbox
         required
         checked={state.consent}

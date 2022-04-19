@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import JobItem from '@components/jobItem';
 import { useMyState } from '@lib/publishState';
 import { logoText } from '@lib/tools';
+import styles from '@styles/publish.module.css';
 
 export default function Preview() {
   const { state } = useMyState();
@@ -21,17 +22,8 @@ export default function Preview() {
   };
 
   return (
-    <div className="container">
+    <div className={`container ${styles.preview}`}>
       <JobItem preview job={job} />
-
-      <style jsx>{`
-        .container {
-          position: sticky;
-          top: 0;
-          background: var(--white);
-          z-index: 10;
-        }
-      `}</style>
     </div>
   );
 }

@@ -1,0 +1,158 @@
+.hero {
+  padding: 0;
+}
+
+.hero .bgWrap {
+  height: 100vh;
+}
+
+.hero .overlay {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.hero .bgContent {
+  color: #fff;
+  max-width: 736px;
+  padding: 2em;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  letter-spacing: 0.00938em;
+  text-transform: uppercase;
+  margin-bottom: 1em;
+}
+.hero h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
+}
+.hero p {
+  letter-spacing: 0.00938em;
+}
+
+.hero .scrollBtnWrap {
+  position: absolute;
+  margin-top: 2em;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hero .scrollBtn {
+  font-size: 1.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  padding: 12px;
+  border: 0;
+  border-radius: 50%;
+  animation: bounce 1s ease-in-out;
+  cursor: pointer;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+@media (min-width: 601px) {
+  .hero .bgWrap {
+    height: 40vh;
+  }
+  .hero .scrollBtnWrap {
+    display: none;
+  }
+}
+@media (max-height: 700px) {
+  .hero .bgWrap {
+    height: 100vh;
+  }
+  .hero .scrollBtnWrap {
+    display: block;
+  }
+}
+
+/*--- FILTER --- */
+
+.filter {
+  min-height: 1.5em;
+  padding: 0.5em;
+  margin-bottom: 1em;
+}
+
+.filter.open {
+  background-color: rgba(0, 0, 0, 0.05);
+  margin-bottom: 2em;
+}
+
+.filter .title {
+  margin: 1rem 0 0.5rem;
+  border-bottom: 1px solid #dadce0;
+}
+
+.filter .btn {
+  position: absolute;
+  align-items: center;
+  right: 0;
+  top: 0;
+  gap: 0.5em;
+  padding: 0.5em;
+  border: none;
+  background: transparent;
+}
+
+.filter .btn.active {
+  color: #3f51b5;
+  font-weight: bold;
+}
+
+.filter svg.active {
+  fill: #3f51b5;
+}
+
+/*--- JOBS --- */
+
+.jobs .pagination {
+  margin-top: 2em;
+}
+
+.jobs .pagination p {
+  margin-bottom: 1em;
+}
+
+.jobs button {
+  border: none;
+  background: inherit;
+}
+
+.jobs .buttons {
+  justify-content: center;
+  gap: 0.5em;
+}
+
+.jobs .buttons button {
+  display: flex;
+  align-items: center;
+}
+
+.jobs .buttons button svg {
+  width: 1.5em;
+}
+.jobs .buttons button[disabled] svg {
+  fill: rgba(0, 0, 0, 0.3);
+}
