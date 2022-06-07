@@ -1,14 +1,14 @@
-# Jobs
+# Dokojob.fr
 
 Explore digital job offers from French Guiana and Overseas.
 
 Companies can add their own job offers for free.
 
-[Let's dive right in](https://jobs-mu.vercel.app/)
+[Let's dive right in](https://dokojob.fr/)
 
 ## Screenshot
 
-![Screenshot](https://res.cloudinary.com/cserviusprod/image/upload/v1628968981/jobapp/screenshot.jpg)
+![Screenshot](https://res.cloudinary.com/cserviusprod/image/upload/v1654439393/jobapp/screenshot.jpg)
 
 ## Code of Conduct
 
