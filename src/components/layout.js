@@ -72,9 +72,7 @@ export default function Layout({ children, title }) {
         <meta content="summary" name="twitter:card" />
         <meta content={`@${siteData.twitter}`} name="twitter:site" />
 
-        <title>
-          {title} | {siteData.title}
-        </title>
+        <title>{`${title} | ${siteData.title}`}</title>
       </Head>
 
       <Header title={siteData.title} />
