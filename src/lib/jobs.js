@@ -152,7 +152,7 @@ async function fetchJobs() {
 
     if (newJob.companyName === 'Pôle Emploi' && !newJob.logo) {
       newJob.logo =
-        'https://res.cloudinary.com/cserviusprod/image/upload/v1581454070/jobapp/pole-emploi-logo.png';
+        'https://res.cloudinary.com/cservius/image/upload/v1581454070/jobapp/pole-emploi-logo.png';
     }
 
     if (!newJob.logo) {
@@ -202,18 +202,27 @@ export async function getJobs() {
   } else {
     console.log('Processing sample job data...');
 
+    const fs = require('fs');
+    const path = './src/lib/sampleJobs.json';
+
     try {
-      jobs = require('./sampleJobs.json');
+      if (fs.existsSync(path)) {
+        const jsonFile = fs.readFileSync(path);
+
+        jobs = JSON.parse(jsonFile);
+      } else {
+        console.log('No sample data found');
+
+        jobs = await processJobs();
+
+        const fs = require('fs');
+
+        fs.writeFile(path, JSON.stringify(jobs), 'utf8', (err) => {
+          if (err) console.error('Error writing sample data:', err);
+        });
+      }
     } catch (error) {
-      console.log('No sample data found');
-
-      jobs = await processJobs();
-
-      const fs = require('fs');
-
-      fs.writeFile('./src/lib/sampleJobs.json', JSON.stringify(jobs), 'utf8', (err) => {
-        if (err) console.error('Error writing sample data:', err);
-      });
+      console.error(error);
     }
   }
 
