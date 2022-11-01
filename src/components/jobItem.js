@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from 'react';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import PropTypes from 'prop-types';
 import CategoryList from '@components/categoryList';
 import Link from '@components/link';

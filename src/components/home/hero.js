@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import HeroImg from 'public/img/hero.webp';
 import { scrollToAnchor } from '@lib/tools';
 import styles from '@styles/home.module.css';
