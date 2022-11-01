@@ -32,15 +32,15 @@ export default function Link({ blank, children, href, noprefetch, ...other }) {
 
     if (noprefetch) {
       return (
-        <NextLink href={href} prefetch={false}>
-          <a {...other}>{children}</a>
+        <NextLink href={href} prefetch={false} {...other}>
+          {children}
         </NextLink>
       );
     }
 
     return (
-      <NextLink href={href}>
-        <a {...other}>{children}</a>
+      <NextLink href={href} {...other}>
+        {children}
       </NextLink>
     );
   }
