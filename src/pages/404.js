@@ -4,7 +4,7 @@ import Page from '@components/page';
 
 export default function FourOhFour() {
   return (
-    <Layout title="Page inexistante">
+    <Layout title="404 : Page inexistante">
       <Page>
         <h1>Oups ! Page inexistante</h1>
         <HomeLink />
