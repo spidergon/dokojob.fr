@@ -15,11 +15,7 @@ export default function Contact() {
           <Link blank href={`https://twitter.com/${siteData.twitter}`}>
             Twitter
           </Link>{' '}
-          ou par{' '}
-          <Link blank href={`mailto:${siteData.email}`}>
-            e-mail
-          </Link>
-          .
+          ou par <Link href={`mailto:${siteData.email}`}>e-mail</Link>.
         </p>
       </Page>
     </Layout>

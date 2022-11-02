@@ -7,7 +7,16 @@ export default function Hero() {
   return (
     <section className={styles.hero}>
       <div className={styles.bgWrap}>
-        <Image alt="" layout="fill" objectFit="cover" placeholder="blur" src={HeroImg} />
+        <Image
+          fill
+          alt=""
+          placeholder="blur"
+          sizes="100vw"
+          src={HeroImg}
+          style={{
+            objectFit: 'cover',
+          }}
+        />
         <div className={`flex ${styles.overlay}`}>
           <div className={styles.bgContent}>
             <h1>

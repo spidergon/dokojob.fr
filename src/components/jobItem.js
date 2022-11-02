@@ -8,7 +8,19 @@ import purify from '@lib/purify';
 import styles from '@styles/jobItem.module.css';
 
 const MyImage = memo(function MyComponent({ alt, src }) {
-  return <Image alt={alt} height={64} objectFit="contain" src={src} width={64} />;
+  return (
+    <Image
+      alt={alt}
+      height={64}
+      src={src}
+      style={{
+        maxWidth: '100%',
+        height: 'auto',
+        objectFit: 'contain',
+      }}
+      width={64}
+    />
+  );
 });
 
 const MyContent = memo(function MyComponent({ description }) {
