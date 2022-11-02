@@ -6,7 +6,7 @@ export default function Link({ blank, children, href, noprefetch, ...other }) {
     <a
       aria-label={`${href} (s’ouvre dans un nouvel onglet)`}
       href={href}
-      rel="noreferrer noopener nofollow"
+      rel="noreferrer noopener"
       target="_blank"
       {...other}
     >

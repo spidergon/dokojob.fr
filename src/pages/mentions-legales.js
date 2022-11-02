@@ -1,4 +1,5 @@
 import Layout from '@components/layout';
+import Link from '@components/link';
 import Page from '@components/page';
 import siteData from '@lib/siteData';
 
@@ -62,6 +63,18 @@ export default function LegalPage() {
           partie du site {title}, sans autorisation de l’Éditeur est prohibée et pourra entraîner
           des actions et poursuites judiciaires telles que notamment prévues par le Code de la
           propriété intellectuelle et le Code civil.
+        </p>
+        <h2>Article 7 : Design & développement web</h2>
+        <p>
+          Web design :{' '}
+          <Link blank href="https://www.cservius.com/">
+            cservius.com
+          </Link>
+          <br />
+          Développement web :{' '}
+          <Link blank href="https://www.cservius.com/">
+            cservius.com
+          </Link>
         </p>
       </Page>
     </Layout>

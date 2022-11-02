@@ -1,12 +1,14 @@
 import Redis from 'ioredis';
 import { redisEnv } from './env';
 
-const redis = new Redis(redisEnv.url);
+const { url, key } = redisEnv;
 
-redis.setJobs = (jobs) => redis.set(redisEnv.key, JSON.stringify({ jobs, date: Date.now() }));
+const redis = new Redis(url);
 
-redis.getJobs = () => redis.get(redisEnv.key);
+redis.setJobs = (jobs) => redis.set(key, JSON.stringify({ jobs, date: Date.now() }));
 
-redis.delJobs = () => redis.del(redisEnv.key);
+redis.getJobs = () => redis.get(key);
+
+redis.delJobs = () => redis.del(key);
 
 export default redis;
