@@ -1,4 +1,4 @@
-import DOMPurify from 'isomorphic-dompurify';
+import sanitizeHtml from 'sanitize-html';
 
 /**
  * Purify dirty HTML.
@@ -6,5 +6,5 @@ import DOMPurify from 'isomorphic-dompurify';
  * @return The output HTML purified.
  */
 export default function purify(dirty) {
-  return DOMPurify.sanitize(dirty);
+  return sanitizeHtml(dirty);
 }
