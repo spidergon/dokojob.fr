@@ -159,6 +159,10 @@ async function fetchJobs() {
       newJob.logoText = logoText(newJob.companyName);
     }
 
+    if (!newJob.salary) {
+      newJob.salary = salaire?.commentaire ? salaire.commentaire : '';
+    }
+
     jobs.push(newJob);
   });
 
