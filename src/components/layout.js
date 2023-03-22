@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import Script from 'next/script';
 import PropTypes from 'prop-types';
 import Header from '@components/header';
 import Footer from '@components/footer';
@@ -80,13 +79,6 @@ export default function Layout({ children, title }) {
       <main>{children}</main>
 
       <Footer socials={{ twitter: siteData.twitter }} title={siteData.title} />
-
-      <Script
-        data-dnt="false"
-        data-host="https://microanalytics.io"
-        id="ZwSg9rf6GA"
-        src="https://microanalytics.io/js/script.js"
-      />
     </>
   );
 }
